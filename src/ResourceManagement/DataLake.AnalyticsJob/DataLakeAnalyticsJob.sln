@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLakeAnalyticsJobManagement", "DataLakeAnalyticsJobManagement\DataLakeAnalyticsJobManagement.csproj", "{F76883F5-C27D-4A9B-B650-C95BCF82F1C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLakeAnalyticsJob.Tests", "DataLakeAnalyticsJob.Tests\DataLakeAnalyticsJob.Tests.csproj", "{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLakeAnalyticsJob.Tests", "DataLakeAnalyticsJob.Tests\DataLakeAnalyticsJob.Tests.csproj", "{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDependencies", "..\..\TestDependencies\TestDependencies.csproj", "{40F35645-00EE-4DF2-B66E-7624546B66DF}"
 EndProject
@@ -35,14 +35,14 @@ Global
 		{F76883F5-C27D-4A9B-B650-C95BCF82F1C6}.Portable-Debug|Any CPU.Build.0 = Portable-Debug|Any CPU
 		{F76883F5-C27D-4A9B-B650-C95BCF82F1C6}.Portable-Release|Any CPU.ActiveCfg = Portable-Release|Any CPU
 		{F76883F5-C27D-4A9B-B650-C95BCF82F1C6}.Portable-Release|Any CPU.Build.0 = Portable-Release|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net40-Debug|Any CPU.ActiveCfg = Net40-Debug|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net40-Release|Any CPU.ActiveCfg = Net40-Release|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net45-Debug|Any CPU.ActiveCfg = Net45-Debug|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net45-Debug|Any CPU.Build.0 = Net45-Debug|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net45-Release|Any CPU.ActiveCfg = Net45-Release|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Net45-Release|Any CPU.Build.0 = Net45-Release|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Portable-Debug|Any CPU.ActiveCfg = Portable-Debug|Any CPU
-		{95C2D9FB-CC82-4719-90AE-3BEDB95F277A}.Portable-Release|Any CPU.ActiveCfg = Portable-Release|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net40-Debug|Any CPU.ActiveCfg = Net40-Debug|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net40-Release|Any CPU.ActiveCfg = Net40-Release|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net45-Debug|Any CPU.ActiveCfg = Net45-Debug|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net45-Debug|Any CPU.Build.0 = Net45-Debug|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net45-Release|Any CPU.ActiveCfg = Net45-Release|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Net45-Release|Any CPU.Build.0 = Net45-Release|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Portable-Debug|Any CPU.ActiveCfg = Portable-Debug|Any CPU
+		{EAD9E4DD-0AE2-4E52-B4CC-FFB9D8DCC67F}.Portable-Release|Any CPU.ActiveCfg = Portable-Release|Any CPU
 		{40F35645-00EE-4DF2-B66E-7624546B66DF}.Net40-Debug|Any CPU.ActiveCfg = Net40-Debug|Any CPU
 		{40F35645-00EE-4DF2-B66E-7624546B66DF}.Net40-Release|Any CPU.ActiveCfg = Net40-Release|Any CPU
 		{40F35645-00EE-4DF2-B66E-7624546B66DF}.Net45-Debug|Any CPU.ActiveCfg = Net45-Debug|Any CPU

@@ -21,15 +21,25 @@
 
 using System;
 using System.Linq;
-using Microsoft.Azure.Management.DataLake.AnalyticsJob.Models;
 
 namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
 {
     /// <summary>
     /// The Data Lake Analytics job error details.
     /// </summary>
-    public partial class JobErrorDetails
+    public partial class InnerError
     {
+        private string _component;
+        
+        /// <summary>
+        /// Optional. Gets or sets the component that failed.
+        /// </summary>
+        public string Component
+        {
+            get { return this._component; }
+            set { this._component = value; }
+        }
+        
         private string _description;
         
         /// <summary>
@@ -52,16 +62,15 @@ namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
             set { this._details = value; }
         }
         
-        private int? _endOffset;
+        private int _diagnosticCode;
         
         /// <summary>
-        /// Optional. Gets or sets the end offset in the job where the error
-        /// was found.
+        /// Optional. Gets or sets the diagnostic error code.
         /// </summary>
-        public int? EndOffset
+        public int DiagnosticCode
         {
-            get { return this._endOffset; }
-            set { this._endOffset = value; }
+            get { return this._diagnosticCode; }
+            set { this._diagnosticCode = value; }
         }
         
         private string _errorId;
@@ -76,18 +85,6 @@ namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
             set { this._errorId = value; }
         }
         
-        private string _filePath;
-        
-        /// <summary>
-        /// Optional. Gets or sets the path to any supplemental error files, if
-        /// any.
-        /// </summary>
-        public string FilePath
-        {
-            get { return this._filePath; }
-            set { this._filePath = value; }
-        }
-        
         private string _helpLink;
         
         /// <summary>
@@ -98,18 +95,6 @@ namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
         {
             get { return this._helpLink; }
             set { this._helpLink = value; }
-        }
-        
-        private InnerError _innerError;
-        
-        /// <summary>
-        /// Optional. Gets or sets the inner error of this specific job error
-        /// message, if any.
-        /// </summary>
-        public InnerError InnerError
-        {
-            get { return this._innerError; }
-            set { this._innerError = value; }
         }
         
         private string _internalDiagnostics;
@@ -123,18 +108,6 @@ namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
         {
             get { return this._internalDiagnostics; }
             set { this._internalDiagnostics = value; }
-        }
-        
-        private int? _lineNumber;
-        
-        /// <summary>
-        /// Optional. Gets or sets the specific line number in the job where
-        /// the error occured.
-        /// </summary>
-        public int? LineNumber
-        {
-            get { return this._lineNumber; }
-            set { this._lineNumber = value; }
         }
         
         private string _message;
@@ -184,22 +157,10 @@ namespace Microsoft.Azure.Management.DataLake.AnalyticsJob.Models
             set { this._source = value; }
         }
         
-        private string _startOffset;
-        
         /// <summary>
-        /// Optional. Gets or sets the end offset in the job where the error
-        /// was found
+        /// Initializes a new instance of the InnerError class.
         /// </summary>
-        public string StartOffset
-        {
-            get { return this._startOffset; }
-            set { this._startOffset = value; }
-        }
-        
-        /// <summary>
-        /// Initializes a new instance of the JobErrorDetails class.
-        /// </summary>
-        public JobErrorDetails()
+        public InnerError()
         {
         }
     }
