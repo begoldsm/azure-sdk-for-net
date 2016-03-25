@@ -563,6 +563,10 @@ namespace Microsoft.WindowsAzure.Management.Network
                     createGatewayConnectionParametersElement.Add(sharedKeyElement);
                 }
                 
+                XElement enableBgpElement = new XElement(XName.Get("EnableBgp", "http://schemas.microsoft.com/windowsazure"));
+                enableBgpElement.Value = parameters.EnableBgp.ToString().ToLower();
+                createGatewayConnectionParametersElement.Add(enableBgpElement);
+                
                 requestContent = requestDoc.ToString();
                 httpRequest.Content = new StringContent(requestContent, Encoding.UTF8);
                 httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/xml");
@@ -764,6 +768,27 @@ namespace Microsoft.WindowsAzure.Management.Network
                     XElement vnetIdElement = new XElement(XName.Get("VnetId", "http://schemas.microsoft.com/windowsazure"));
                     vnetIdElement.Value = parameters.VnetId;
                     createVirtualNetworkGatewayParametersElement.Add(vnetIdElement);
+                }
+                
+                if (parameters.BgpSettings != null)
+                {
+                    XElement bgpSettingsElement = new XElement(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                    createVirtualNetworkGatewayParametersElement.Add(bgpSettingsElement);
+                    
+                    XElement asnElement = new XElement(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                    asnElement.Value = parameters.BgpSettings.Asn.ToString();
+                    bgpSettingsElement.Add(asnElement);
+                    
+                    if (parameters.BgpSettings.BgpPeeringAddress != null)
+                    {
+                        XElement bgpPeeringAddressElement = new XElement(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                        bgpPeeringAddressElement.Value = parameters.BgpSettings.BgpPeeringAddress;
+                        bgpSettingsElement.Add(bgpPeeringAddressElement);
+                    }
+                    
+                    XElement peerWeightElement = new XElement(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                    peerWeightElement.Value = parameters.BgpSettings.PeerWeight.ToString();
+                    bgpSettingsElement.Add(peerWeightElement);
                 }
                 
                 requestContent = requestDoc.ToString();
@@ -4344,6 +4369,10 @@ namespace Microsoft.WindowsAzure.Management.Network
                     updateGatewayConnectionParametersElement.Add(sharedKeyElement);
                 }
                 
+                XElement enableBgpElement = new XElement(XName.Get("EnableBgp", "http://schemas.microsoft.com/windowsazure"));
+                enableBgpElement.Value = parameters.EnableBgp.ToString().ToLower();
+                updateGatewayConnectionParametersElement.Add(enableBgpElement);
+                
                 requestContent = requestDoc.ToString();
                 httpRequest.Content = new StringContent(requestContent, Encoding.UTF8);
                 httpRequest.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/xml");
@@ -4481,7 +4510,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -4577,7 +4606,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -4667,7 +4696,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -4801,12 +4830,13 @@ namespace Microsoft.WindowsAzure.Management.Network
                     {
                         XNamespace defaultNs = "http://schemas.microsoft.com/windowsazure";
                         XNamespace array = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
-                        var addressSpaceSequenceElement = new XElement(defaultNs + "AddressSpace");
+                        XElement addressSpaceSequenceElement = new XElement(defaultNs + "AddressSpace");
                         addressSpaceSequenceElement.Add(new XAttribute(XNamespace.Xmlns + "a", array));
 
                         foreach (string addressSpaceItem in parameters.AddressSpace)
                         {
-                            var addressSpaceItemElement = new XElement(array + "string", addressSpaceItem);
+                            XElement addressSpaceItemElement = new XElement(array + "string", addressSpaceItem);
+                            addressSpaceItemElement.Value = addressSpaceItem;
                             addressSpaceSequenceElement.Add(addressSpaceItemElement);
                         }
                         createLocalNetworkGatewayParametersElement.Add(addressSpaceSequenceElement);
@@ -4825,6 +4855,27 @@ namespace Microsoft.WindowsAzure.Management.Network
                     XElement ipAddressElement = new XElement(XName.Get("IpAddress", "http://schemas.microsoft.com/windowsazure"));
                     ipAddressElement.Value = parameters.IpAddress;
                     createLocalNetworkGatewayParametersElement.Add(ipAddressElement);
+                }
+                
+                if (parameters.BgpSettings != null)
+                {
+                    XElement bgpSettingsElement = new XElement(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                    createLocalNetworkGatewayParametersElement.Add(bgpSettingsElement);
+                    
+                    XElement asnElement = new XElement(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                    asnElement.Value = parameters.BgpSettings.Asn.ToString();
+                    bgpSettingsElement.Add(asnElement);
+                    
+                    if (parameters.BgpSettings.BgpPeeringAddress != null)
+                    {
+                        XElement bgpPeeringAddressElement = new XElement(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                        bgpPeeringAddressElement.Value = parameters.BgpSettings.BgpPeeringAddress;
+                        bgpSettingsElement.Add(bgpPeeringAddressElement);
+                    }
+                    
+                    XElement peerWeightElement = new XElement(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                    peerWeightElement.Value = parameters.BgpSettings.PeerWeight.ToString();
+                    bgpSettingsElement.Add(peerWeightElement);
                 }
                 
                 requestContent = requestDoc.ToString();
@@ -4945,7 +4996,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -5036,7 +5087,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -5129,7 +5180,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -5353,7 +5404,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -5444,7 +5495,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -5541,7 +5592,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -6451,6 +6502,13 @@ namespace Microsoft.WindowsAzure.Management.Network
                                 string sharedKeyInstance = sharedKeyElement.Value;
                                 result.SharedKey = sharedKeyInstance;
                             }
+                            
+                            XElement enableBgpElement = gatewayConnectionElement.Element(XName.Get("EnableBgp", "http://schemas.microsoft.com/windowsazure"));
+                            if (enableBgpElement != null)
+                            {
+                                bool enableBgpInstance = bool.Parse(enableBgpElement.Value);
+                                result.EnableBgp = enableBgpInstance;
+                            }
                         }
                         
                     }
@@ -6981,6 +7039,7 @@ namespace Microsoft.WindowsAzure.Management.Network
                         {
                             XNamespace defaultNs = "http://schemas.microsoft.com/windowsazure";
                             XNamespace array = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
+
                             var addressSpaceSequenceElementFormat = new XElement(defaultNs + "AddressSpace");
                             addressSpaceSequenceElementFormat.Add(new XAttribute(XNamespace.Xmlns + "a", array));
                             XElement addressSpaceSequenceElement = localNetworkGatewayElement.Element(XName.Get(addressSpaceSequenceElementFormat.Name.ToString()));
@@ -7013,6 +7072,34 @@ namespace Microsoft.WindowsAzure.Management.Network
                             {
                                 string ipAddressInstance = ipAddressElement.Value;
                                 result.IpAddress = ipAddressInstance;
+                            }
+                            
+                            XElement bgpSettingsElement = localNetworkGatewayElement.Element(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                            if (bgpSettingsElement != null)
+                            {
+                                BgpSettings bgpSettingsInstance = new BgpSettings();
+                                result.BgpSettings = bgpSettingsInstance;
+                                
+                                XElement asnElement = bgpSettingsElement.Element(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                                if (asnElement != null)
+                                {
+                                    uint asnInstance = uint.Parse(asnElement.Value, CultureInfo.InvariantCulture);
+                                    bgpSettingsInstance.Asn = asnInstance;
+                                }
+                                
+                                XElement bgpPeeringAddressElement = bgpSettingsElement.Element(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                                if (bgpPeeringAddressElement != null)
+                                {
+                                    string bgpPeeringAddressInstance = bgpPeeringAddressElement.Value;
+                                    bgpSettingsInstance.BgpPeeringAddress = bgpPeeringAddressInstance;
+                                }
+                                
+                                XElement peerWeightElement = bgpSettingsElement.Element(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                                if (peerWeightElement != null)
+                                {
+                                    int peerWeightInstance = int.Parse(peerWeightElement.Value, CultureInfo.InvariantCulture);
+                                    bgpSettingsInstance.PeerWeight = peerWeightInstance;
+                                }
                             }
                         }
                         
@@ -7782,6 +7869,34 @@ namespace Microsoft.WindowsAzure.Management.Network
                                 bool enableBgpInstance = bool.Parse(enableBgpElement.Value);
                                 result.EnableBgp = enableBgpInstance;
                             }
+                            
+                            XElement bgpSettingsElement = virtualNetworkGatewayElement.Element(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                            if (bgpSettingsElement != null)
+                            {
+                                BgpSettings bgpSettingsInstance = new BgpSettings();
+                                result.BgpSettings = bgpSettingsInstance;
+                                
+                                XElement asnElement = bgpSettingsElement.Element(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                                if (asnElement != null)
+                                {
+                                    uint asnInstance = uint.Parse(asnElement.Value, CultureInfo.InvariantCulture);
+                                    bgpSettingsInstance.Asn = asnInstance;
+                                }
+                                
+                                XElement bgpPeeringAddressElement = bgpSettingsElement.Element(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                                if (bgpPeeringAddressElement != null)
+                                {
+                                    string bgpPeeringAddressInstance = bgpPeeringAddressElement.Value;
+                                    bgpSettingsInstance.BgpPeeringAddress = bgpPeeringAddressInstance;
+                                }
+                                
+                                XElement peerWeightElement = bgpSettingsElement.Element(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                                if (peerWeightElement != null)
+                                {
+                                    int peerWeightInstance = int.Parse(peerWeightElement.Value, CultureInfo.InvariantCulture);
+                                    bgpSettingsInstance.PeerWeight = peerWeightInstance;
+                                }
+                            }
                         }
                         
                     }
@@ -8193,6 +8308,13 @@ namespace Microsoft.WindowsAzure.Management.Network
                                     string sharedKeyInstance = sharedKeyElement.Value;
                                     gatewayConnectionInstance.SharedKey = sharedKeyInstance;
                                 }
+                                
+                                XElement enableBgpElement = gatewayConnectionsElement.Element(XName.Get("EnableBgp", "http://schemas.microsoft.com/windowsazure"));
+                                if (enableBgpElement != null)
+                                {
+                                    bool enableBgpInstance = bool.Parse(enableBgpElement.Value);
+                                    gatewayConnectionInstance.EnableBgp = enableBgpInstance;
+                                }
                             }
                         }
                         
@@ -8362,13 +8484,41 @@ namespace Microsoft.WindowsAzure.Management.Network
                                 var addressSpaceSequenceElementFormat = new XElement(defaultNs + "AddressSpace");
                                 addressSpaceSequenceElementFormat.Add(new XAttribute(XNamespace.Xmlns + "a", array));
                                 XElement addressSpaceSequenceElement = localNetworkGatewaysElement.Element(XName.Get(addressSpaceSequenceElementFormat.Name.ToString()));
-                                
+
                                 if (addressSpaceSequenceElement != null)
                                 {
                                     var addressSpaceElementFormat = new XElement(array + "string");
                                     foreach (XElement addressSpaceElement in addressSpaceSequenceElement.Elements(XName.Get(addressSpaceElementFormat.Name.ToString())))
                                     {
                                         localNetworkGatewayInstance.AddressSpace.Add(addressSpaceElement.Value);
+                                    }
+                                }
+                                
+                                XElement bgpSettingsElement = localNetworkGatewaysElement.Element(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                                if (bgpSettingsElement != null)
+                                {
+                                    BgpSettings bgpSettingsInstance = new BgpSettings();
+                                    localNetworkGatewayInstance.BgpSettings = bgpSettingsInstance;
+                                    
+                                    XElement asnElement = bgpSettingsElement.Element(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                                    if (asnElement != null)
+                                    {
+                                        uint asnInstance = uint.Parse(asnElement.Value, CultureInfo.InvariantCulture);
+                                        bgpSettingsInstance.Asn = asnInstance;
+                                    }
+                                    
+                                    XElement bgpPeeringAddressElement = bgpSettingsElement.Element(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                                    if (bgpPeeringAddressElement != null)
+                                    {
+                                        string bgpPeeringAddressInstance = bgpPeeringAddressElement.Value;
+                                        bgpSettingsInstance.BgpPeeringAddress = bgpPeeringAddressInstance;
+                                    }
+                                    
+                                    XElement peerWeightElement = bgpSettingsElement.Element(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                                    if (peerWeightElement != null)
+                                    {
+                                        int peerWeightInstance = int.Parse(peerWeightElement.Value, CultureInfo.InvariantCulture);
+                                        bgpSettingsInstance.PeerWeight = peerWeightInstance;
                                     }
                                 }
                             }
@@ -8816,6 +8966,34 @@ namespace Microsoft.WindowsAzure.Management.Network
                                     bool enableBgpInstance = bool.Parse(enableBgpElement.Value);
                                     virtualNetworkGatewayInstance.EnableBgp = enableBgpInstance;
                                 }
+                                
+                                XElement bgpSettingsElement = virtualNetworkGatewaysElement.Element(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                                if (bgpSettingsElement != null)
+                                {
+                                    BgpSettings bgpSettingsInstance = new BgpSettings();
+                                    virtualNetworkGatewayInstance.BgpSettings = bgpSettingsInstance;
+                                    
+                                    XElement asnElement = bgpSettingsElement.Element(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                                    if (asnElement != null)
+                                    {
+                                        uint asnInstance = uint.Parse(asnElement.Value, CultureInfo.InvariantCulture);
+                                        bgpSettingsInstance.Asn = asnInstance;
+                                    }
+                                    
+                                    XElement bgpPeeringAddressElement = bgpSettingsElement.Element(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                                    if (bgpPeeringAddressElement != null)
+                                    {
+                                        string bgpPeeringAddressInstance = bgpPeeringAddressElement.Value;
+                                        bgpSettingsInstance.BgpPeeringAddress = bgpPeeringAddressInstance;
+                                    }
+                                    
+                                    XElement peerWeightElement = bgpSettingsElement.Element(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                                    if (peerWeightElement != null)
+                                    {
+                                        int peerWeightInstance = int.Parse(peerWeightElement.Value, CultureInfo.InvariantCulture);
+                                        bgpSettingsInstance.PeerWeight = peerWeightInstance;
+                                    }
+                                }
                             }
                         }
                         
@@ -8893,7 +9071,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -8987,7 +9165,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9089,7 +9267,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9187,7 +9365,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9281,7 +9459,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9375,7 +9553,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9469,7 +9647,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9564,7 +9742,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9663,7 +9841,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9762,7 +9940,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9864,7 +10042,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -9963,7 +10141,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -10058,7 +10236,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -10151,7 +10329,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -10594,7 +10772,7 @@ namespace Microsoft.WindowsAzure.Management.Network
             {
                 delayInSeconds = client.LongRunningOperationInitialTimeout;
             }
-            while ((result.Status != GatewayOperationStatus.InProgress) == false)
+            while (result.Status == GatewayOperationStatus.InProgress)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 await TaskEx.Delay(delayInSeconds * 1000, cancellationToken).ConfigureAwait(false);
@@ -10738,16 +10916,38 @@ namespace Microsoft.WindowsAzure.Management.Network
                     {
                         XNamespace defaultNs = "http://schemas.microsoft.com/windowsazure";
                         XNamespace array = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
-                        var addressSpaceSequenceElement = new XElement(defaultNs + "AddressSpace");
+                        XElement addressSpaceSequenceElement = new XElement(defaultNs + "AddressSpace");
                         addressSpaceSequenceElement.Add(new XAttribute(XNamespace.Xmlns + "a", array));
 
                         foreach (string addressSpaceItem in parameters.AddressSpace)
                         {
-                            var addressSpaceItemElement = new XElement(array + "string", addressSpaceItem);
+                            XElement addressSpaceItemElement = new XElement(array + "string", addressSpaceItem);
+                            addressSpaceItemElement.Value = addressSpaceItem;
                             addressSpaceSequenceElement.Add(addressSpaceItemElement);
                         }
                         updateLocalNetworkGatewayParametersElement.Add(addressSpaceSequenceElement);
                     }
+                }
+                
+                if (parameters.BgpSettings != null)
+                {
+                    XElement bgpSettingsElement = new XElement(XName.Get("BgpSettings", "http://schemas.microsoft.com/windowsazure"));
+                    updateLocalNetworkGatewayParametersElement.Add(bgpSettingsElement);
+                    
+                    XElement asnElement = new XElement(XName.Get("Asn", "http://schemas.microsoft.com/windowsazure"));
+                    asnElement.Value = parameters.BgpSettings.Asn.ToString();
+                    bgpSettingsElement.Add(asnElement);
+                    
+                    if (parameters.BgpSettings.BgpPeeringAddress != null)
+                    {
+                        XElement bgpPeeringAddressElement = new XElement(XName.Get("BgpPeeringAddress", "http://schemas.microsoft.com/windowsazure"));
+                        bgpPeeringAddressElement.Value = parameters.BgpSettings.BgpPeeringAddress;
+                        bgpSettingsElement.Add(bgpPeeringAddressElement);
+                    }
+                    
+                    XElement peerWeightElement = new XElement(XName.Get("PeerWeight", "http://schemas.microsoft.com/windowsazure"));
+                    peerWeightElement.Value = parameters.BgpSettings.PeerWeight.ToString();
+                    bgpSettingsElement.Add(peerWeightElement);
                 }
                 
                 requestContent = requestDoc.ToString();

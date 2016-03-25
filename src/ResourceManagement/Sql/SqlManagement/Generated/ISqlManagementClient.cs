@@ -107,7 +107,7 @@ namespace Microsoft.Azure.Management.Sql
         
         /// <summary>
         /// Represents all the operations for operating on Azure SQL Database
-        /// restore points. Contains operations to: List restore points.
+        /// database backups.
         /// </summary>
         IDatabaseBackupOperations DatabaseBackup
         {
@@ -212,6 +212,26 @@ namespace Microsoft.Azure.Management.Sql
         /// Administrators.
         /// </summary>
         IServerAdministratorOperations ServerAdministrators
+        {
+            get; 
+        }
+        
+        /// <summary>
+        /// Represents all the operations for operating on Azure SQL Server
+        /// communication links.  Contains operations to: Create, Retrieve,
+        /// Update, and Delete.
+        /// </summary>
+        IServerCommunicationLinkOperations CommunicationLinks
+        {
+            get; 
+        }
+        
+        /// <summary>
+        /// Represents all the operations for operating on Azure SQL Server
+        /// disaster recovery configurations.  Contains operations to: Create,
+        /// Retrieve, Update, and Delete.
+        /// </summary>
+        IServerDisasterRecoveryConfigurationOperations ServerDisasterRecoveryConfigurations
         {
             get; 
         }
