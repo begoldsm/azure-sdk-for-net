@@ -252,8 +252,11 @@ CREATE TABLE {0}.dbo.{1}
         ClickedUrls     string,
     INDEX idx1 //Name of index
     CLUSTERED (Region ASC) //Column to cluster by
-    PARTITIONED BY HASH (Region) //Column to partition by
+    PARTITIONED BY BUCKETS (UserId) HASH (Region) //Column to partition by
 );
+
+ALTER TABLE {0}.dbo.{1} ADD IF NOT EXISTS PARTITION (1);
+
 DROP FUNCTION IF EXISTS {0}.dbo.{2};
 
 //create table weblogs on space-delimited website log data
@@ -344,12 +347,12 @@ END;", dbName, tableName, tvfName, viewName, procName);
                     Script = scriptToRun
                 }
             };
-            var jobCreateResponse = jobClient.Job.Create(jobIdToUse, createOrBuildParams, dataLakeAnalyticsAccountName);
+            var jobCreateResponse = jobClient.Job.Create(dataLakeAnalyticsAccountName, jobIdToUse, createOrBuildParams);
 
             Assert.NotNull(jobCreateResponse);
 
             // Poll the job until it finishes
-            var getJobResponse = jobClient.Job.Get(jobCreateResponse.JobId.GetValueOrDefault(), dataLakeAnalyticsAccountName);
+            var getJobResponse = jobClient.Job.Get(dataLakeAnalyticsAccountName, jobCreateResponse.JobId.GetValueOrDefault());
             Assert.NotNull(getJobResponse);
 
             int maxWaitInSeconds = 180; // 3 minutes should be long enough
@@ -359,7 +362,7 @@ END;", dbName, tableName, tvfName, viewName, procName);
                 // wait 5 seconds before polling again
                 TestUtilities.Wait(5000);
                 curWaitInSeconds += 5;
-                getJobResponse = jobClient.Job.Get(jobCreateResponse.JobId.GetValueOrDefault(), dataLakeAnalyticsAccountName);
+                getJobResponse = jobClient.Job.Get(dataLakeAnalyticsAccountName, jobCreateResponse.JobId.GetValueOrDefault());
                 Assert.NotNull(getJobResponse);
             }
 
