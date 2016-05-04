@@ -38,8 +38,17 @@ namespace DataLakeAnalytics.Tests
         public string SecretName { get; set; }
         public string SecretPwd { get; set; }
         public string CredentialName { get; set; }
+        public string Metastore1Name { get; set; }
+        public string Metastore2Name { get; set; }
         public string HostUrl { get; set; }
-        public string Location = "East US 2";
+        public string Location = "Japan West";
+        public string Metastore1 = "metastoredb01";
+        public string Metastore2 = "metastoredb02";
+        public string MetastoreServer = "hivetestserver01.database.windows.net";
+        public string Login = "adlsvc01";
+        public string HivePwd = "dogmat1C";
+        public string MetastoreVersion = "1.2.1.0.0.0.0-0";
+
         public DataLakeAnalyticsManagementHelper DataLakeAnalyticsManagementHelper { get; set; }
         private MockContext context;
         public CommonTestFixture(MockContext contextToUse, bool createWasbAccount = false)
@@ -66,6 +75,8 @@ namespace DataLakeAnalytics.Tests
                 CredentialName = TestUtilities.GenerateName("testcred1");
                 SecretName = TestUtilities.GenerateName("testsecret1");
                 SecretPwd = TestUtilities.GenerateName("testsecretpwd1");
+                Metastore1Name = TestUtilities.GenerateName("testmetastore1");
+                Metastore2Name = TestUtilities.GenerateName("testmetastore2");
                 DataLakeAnalyticsManagementHelper.TryCreateResourceGroup(ResourceGroupName, Location);
                 if (createWasbAccount)
                 {

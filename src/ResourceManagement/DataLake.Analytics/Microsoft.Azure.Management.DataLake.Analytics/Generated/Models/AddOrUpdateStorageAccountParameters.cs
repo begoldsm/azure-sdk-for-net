@@ -17,29 +17,31 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Data Lake Store add parameters.
+    /// Azure Storage account add or update parameters.
     /// </summary>
-    public partial class AddDataLakeStoreParameters
+    public partial class AddOrUpdateStorageAccountParameters
     {
         /// <summary>
-        /// Initializes a new instance of the AddDataLakeStoreParameters class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateStorageAccountParameters class.
         /// </summary>
-        public AddDataLakeStoreParameters() { }
+        public AddOrUpdateStorageAccountParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the AddDataLakeStoreParameters class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateStorageAccountParameters class.
         /// </summary>
-        public AddDataLakeStoreParameters(DataLakeStoreAccountInfoProperties properties)
+        public AddOrUpdateStorageAccountParameters(StorageAccountProperties properties)
         {
             Properties = properties;
         }
 
         /// <summary>
-        /// Gets or sets the properties for the Data Lake Store account being
-        /// added.
+        /// Gets or sets the properties for the Azure Storage account being
+        /// added or updated
         /// </summary>
         [JsonProperty(PropertyName = "properties")]
-        public DataLakeStoreAccountInfoProperties Properties { get; set; }
+        public StorageAccountProperties Properties { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ValidationException if validation fails.
@@ -49,6 +51,10 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             if (Properties == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Properties");
+            }
+            if (this.Properties != null)
+            {
+                this.Properties.Validate();
             }
         }
     }

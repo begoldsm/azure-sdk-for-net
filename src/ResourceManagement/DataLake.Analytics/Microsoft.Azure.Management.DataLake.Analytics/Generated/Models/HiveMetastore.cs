@@ -17,37 +17,45 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Additional Azure Storage account parameters.
+    /// Hive metastore information.
     /// </summary>
-    public partial class AddStorageAccountParameters
+    public partial class HiveMetastore
     {
         /// <summary>
-        /// Initializes a new instance of the AddStorageAccountParameters
-        /// class.
+        /// Initializes a new instance of the HiveMetastore class.
         /// </summary>
-        public AddStorageAccountParameters() { }
+        public HiveMetastore() { }
 
         /// <summary>
-        /// Initializes a new instance of the AddStorageAccountParameters
-        /// class.
+        /// Initializes a new instance of the HiveMetastore class.
         /// </summary>
-        public AddStorageAccountParameters(StorageAccountProperties properties)
+        public HiveMetastore(string name, HiveMetaStoreProperties properties)
         {
+            Name = name;
             Properties = properties;
         }
 
         /// <summary>
-        /// Gets or sets the properties for the Azure Storage account being
-        /// added.
+        /// Gets or sets the Hive metastore name.
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the properties associated with this Hive metastore.
         /// </summary>
         [JsonProperty(PropertyName = "properties")]
-        public StorageAccountProperties Properties { get; set; }
+        public HiveMetaStoreProperties Properties { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ValidationException if validation fails.
         /// </summary>
         public virtual void Validate()
         {
+            if (Name == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
+            }
             if (Properties == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Properties");

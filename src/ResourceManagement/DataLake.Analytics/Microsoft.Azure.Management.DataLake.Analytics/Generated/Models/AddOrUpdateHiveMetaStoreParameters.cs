@@ -17,29 +17,31 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Data Lake Store add parameters.
+    /// Hive metastore add or update parameters.
     /// </summary>
-    public partial class AddDataLakeStoreParameters
+    public partial class AddOrUpdateHiveMetaStoreParameters
     {
         /// <summary>
-        /// Initializes a new instance of the AddDataLakeStoreParameters class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateHiveMetaStoreParameters class.
         /// </summary>
-        public AddDataLakeStoreParameters() { }
+        public AddOrUpdateHiveMetaStoreParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the AddDataLakeStoreParameters class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateHiveMetaStoreParameters class.
         /// </summary>
-        public AddDataLakeStoreParameters(DataLakeStoreAccountInfoProperties properties)
+        public AddOrUpdateHiveMetaStoreParameters(HiveMetaStoreProperties properties)
         {
             Properties = properties;
         }
 
         /// <summary>
-        /// Gets or sets the properties for the Data Lake Store account being
-        /// added.
+        /// Gets or sets the properties for the Hive metastore being added or
+        /// updated.
         /// </summary>
         [JsonProperty(PropertyName = "properties")]
-        public DataLakeStoreAccountInfoProperties Properties { get; set; }
+        public HiveMetaStoreProperties Properties { get; set; }
 
         /// <summary>
         /// Validate the object. Throws ValidationException if validation fails.
@@ -49,6 +51,10 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             if (Properties == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Properties");
+            }
+            if (this.Properties != null)
+            {
+                this.Properties.Validate();
             }
         }
     }
