@@ -55,7 +55,13 @@ namespace DataLakeAnalytics.Tests
                         // TODO: figure out why this is no longer showing up as a property
                         // Type = JobType.USql, 
                         Script = "DROP DATABASE IF EXISTS testdb; CREATE DATABASE testdb;"
-                    }
+                    }/*,
+                    LogFolder = string.Format("adl://{0}.{1}/some/log/path/", commonData.DataLakeAnalyticsAccountName, clientToUse.AdlaJobDnsSuffix),
+                    LogFilePatterns = new List<string>
+                    {
+                         "*.log",
+                         "*.txt"
+                    }*/
                 };
 
                 var jobCreateResponse = clientToUse.Job.Create(commonData.SecondDataLakeAnalyticsAccountName, jobId, jobToSubmit);
