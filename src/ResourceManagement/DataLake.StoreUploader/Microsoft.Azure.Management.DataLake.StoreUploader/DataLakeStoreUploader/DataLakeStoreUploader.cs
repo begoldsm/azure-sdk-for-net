@@ -167,8 +167,16 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                                     UploadFile(file, segmentProgressTracker);
                                 }
 
-                                // delete the temp metadata created if it exists.
-                                file.DeleteFile();
+                                // attempt to save the metadata
+                                try
+                                {
+                                    metadata.Save();
+                                    // delete the temp metadata created if it exists.
+                                    file.DeleteFile();
+                                }
+                                catch { } // if we can't save the metadata or delete a temp file we shouldn't fail out.
+
+                                
                             }
                         );
 
@@ -176,8 +184,12 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                     }
                     catch
                     {
-                        // if anything went wrong, make sure that we save the current state of the folder metadata
-                        metadata.Save();
+                        try
+                        {
+                            // if anything went wrong, make sure that we attempt to save the current state of the folder metadata
+                            metadata.Save();
+                        }
+                        catch { } // saving the metadata is a best effort, we will not fail out for this reason and we want to ensure the root exception is preserved.
                         throw;
                     }
                 }
