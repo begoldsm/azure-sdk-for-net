@@ -32,7 +32,7 @@ namespace DataLakeAnalytics.Tests
         {
             using (var context = MockContext.Start(this.GetType().FullName))
             {
-                commonData = new CommonTestFixture(context, false);
+                commonData = new CommonTestFixture(context, true);
                 var clientToUse = this.GetDataLakeAnalyticsAccountManagementClient(context);
 
                 // Create a test account
@@ -46,6 +46,7 @@ namespace DataLakeAnalytics.Tests
                             {
                                 DefaultDataLakeStoreAccount = commonData.DataLakeStoreAccountName,
                                 ActiveHiveMetastore = commonData.Metastore1Name,
+                                /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
                                 HiveMetastores = new List<HiveMetastore>
                                 {
                                     new HiveMetastore
@@ -61,7 +62,7 @@ namespace DataLakeAnalytics.Tests
                                         }
 
                                     }
-                                },
+                                }, */
                                 DataLakeStoreAccounts = new List<DataLakeStoreAccountInfo>
                                 {
                                     new DataLakeStoreAccountInfo
@@ -94,8 +95,11 @@ namespace DataLakeAnalytics.Tests
 
                 Assert.True(responseGet.Properties.DataLakeStoreAccounts.Count == 1);
                 Assert.True(responseGet.Properties.DataLakeStoreAccounts.ToList()[0].Name.Equals(commonData.DataLakeStoreAccountName));
+
+                /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
                 Assert.True(responseGet.Properties.HiveMetastores.ToList()[0].Name.Equals(commonData.Metastore1Name));
                 Assert.True(responseGet.Properties.HiveMetastores.Count == 1);
+                */
 
                 // wait for provisioning state to be Succeeded
                 // we will wait a maximum of 15 minutes for this to happen and then report failures
@@ -120,7 +124,7 @@ namespace DataLakeAnalytics.Tests
                 };
 
                 // reset the hive PWD for the patch operation
-                newAccount.Properties.HiveMetastores[0].Properties.Password = commonData.HivePwd;
+                // newAccount.Properties.HiveMetastores[0].Properties.Password = commonData.HivePwd;
 
                 // need to null out deep properties to prevent an error
                 newAccount.Properties.DataLakeStoreAccounts = null;
@@ -143,15 +147,18 @@ namespace DataLakeAnalytics.Tests
                 Assert.True(updateResponseGet.Tags.SequenceEqual(newAccount.Tags));
                 Assert.True(updateResponseGet.Properties.DataLakeStoreAccounts.Count == 1);
                 Assert.True(updateResponseGet.Properties.DataLakeStoreAccounts.ToList()[0].Name.Equals(firstStorageAccountName));
+                
+                /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
                 Assert.True(updateResponseGet.Properties.HiveMetastores.ToList()[0].Name.Equals(commonData.Metastore1Name));
                 Assert.True(updateResponseGet.Properties.HiveMetastores.Count == 1);
+                */
 
                 // Create another account and ensure that list account returns both
                 responseGet = clientToUse.Account.Get(commonData.ResourceGroupName, commonData.DataLakeAnalyticsAccountName);
                 var accountToChange = responseGet;
                 accountToChange.Name = accountToChange.Name + "secondacct";
-                accountToChange.Properties.ActiveHiveMetastore = null; // no metastores for the new account.
-                accountToChange.Properties.HiveMetastores = null; // no metastores for the new account.
+                // accountToChange.Properties.ActiveHiveMetastore = null; // no metastores for the new account.
+                // accountToChange.Properties.HiveMetastores = null; // no metastores for the new account.
 
                 clientToUse.Account.Create(commonData.ResourceGroupName, accountToChange.Name, accountToChange);
 
@@ -197,8 +204,9 @@ namespace DataLakeAnalytics.Tests
                         commonData.DataLakeAnalyticsAccountName, null);
 
                 Assert.Equal(1, getDataSourceResponse.Count());
- 
+
                 // Add, get, list and remove a metastore.
+                /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
                 clientToUse.Account.AddHiveMetastore(commonData.ResourceGroupName,
                     commonData.DataLakeAnalyticsAccountName, commonData.Metastore2Name, new AddOrUpdateHiveMetaStoreParameters
                     {
@@ -237,8 +245,8 @@ namespace DataLakeAnalytics.Tests
                         commonData.DataLakeAnalyticsAccountName, null);
 
                 Assert.Equal(1, getMetastoreResponse.Count());
+                */
 
-                /*
                 // Add, list and remove an azure blob source to the first account
                 clientToUse.Account.AddStorageAccount(commonData.ResourceGroupName,
                     commonData.DataLakeAnalyticsAccountName, commonData.StorageAccountName, new AddOrUpdateStorageAccountParameters {
@@ -274,7 +282,6 @@ namespace DataLakeAnalytics.Tests
                         commonData.DataLakeAnalyticsAccountName, null);
 
                 Assert.Equal(0, getDataSourceBlobResponse.Count());
-                */
 
                 // Delete the account and confirm that it is deleted.
                 clientToUse.Account.Delete(commonData.ResourceGroupName, newAccount.Name);

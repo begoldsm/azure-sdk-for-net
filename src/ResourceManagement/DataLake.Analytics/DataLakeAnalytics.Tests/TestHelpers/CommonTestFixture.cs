@@ -48,7 +48,7 @@ namespace DataLakeAnalytics.Tests
         public string Metastore2 = "metastoredb02";
         public string MetastoreServer = "hivetestserver01.database.windows.net";
         public string Login = "adlsvc01";
-        public string HivePwd = "dogmat1C";
+        
         public string MetastoreVersion = "1.2.1.0.0.0.0-0";
 
         public DataLakeAnalyticsManagementHelper DataLakeAnalyticsManagementHelper { get; set; }
