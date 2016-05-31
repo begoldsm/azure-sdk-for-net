@@ -45,8 +45,8 @@ namespace DataLakeAnalytics.Tests
                             Properties = new DataLakeAnalyticsAccountProperties
                             {
                                 DefaultDataLakeStoreAccount = commonData.DataLakeStoreAccountName,
-                                ActiveHiveMetastore = commonData.Metastore1Name,
                                 /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
+                                ActiveHiveMetastore = commonData.Metastore1Name,
                                 HiveMetastores = new List<HiveMetastore>
                                 {
                                     new HiveMetastore
