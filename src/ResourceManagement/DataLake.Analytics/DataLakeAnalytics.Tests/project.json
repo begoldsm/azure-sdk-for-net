@@ -37,8 +37,8 @@
     "Microsoft.Rest.ClientRuntime": "[3.0.2,4.0.0)",
     "Microsoft.Azure.Management.Storage": "[5.0.1-preview)",
     "Microsoft.Azure.Management.ResourceManager": "[1.1.2-preview)",
-    "Microsoft.Azure.Management.DataLake.Analytics": "[0.11.4-preview)",
-    "Microsoft.Azure.Management.DataLake.Store": "[0.12.1-preview)",
+    "Microsoft.Azure.Management.DataLake.Analytics": "[0.11.6-preview)",
+    "Microsoft.Azure.Management.DataLake.Store": "[0.12.2-preview)",
     "xunit": "2.1.0",
     "dotnet-test-xunit": "1.0.0-rc2-build10015"
   }

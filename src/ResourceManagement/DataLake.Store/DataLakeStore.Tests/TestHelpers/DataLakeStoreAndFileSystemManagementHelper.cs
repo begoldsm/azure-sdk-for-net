@@ -14,8 +14,8 @@ using Microsoft.Azure.Management.DataLake.Store.Models;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-using Microsoft.Azure.Management.Resources;
-using Microsoft.Azure.Management.Resources.Models;
+using Microsoft.Azure.Management.ResourceManager;
+using Microsoft.Azure.Management.ResourceManager.Models;
 using Microsoft.Azure.Test;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
 using System;

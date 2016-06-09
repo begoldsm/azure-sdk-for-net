@@ -9,7 +9,7 @@
     "tags": [ "Microsoft Azure Data Lake Store management", "DataLakeStore", "Data Lake Store management", "REST HTTP client", "windowsazureofficial" ],
     "projectUrl": "https://github.com/Azure/azure-sdk-for-net",
     "licenseUrl": "https://raw.githubusercontent.com/Microsoft/dotnet/master/LICENSE",
-    "requireLicenseAcceptance":  true,
+    "requireLicenseAcceptance":  true
   },
 
   "buildOptions": {

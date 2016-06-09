@@ -79,8 +79,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         public string ActiveHiveMetastore { get; set; }
 
         /// <summary>
-        /// Gets or sets gets or sets the maximum supported degree of
-        /// parallelism for this acocunt.
+        /// Gets or sets the maximum supported degree of parallelism for this
+        /// acocunt.
         /// </summary>
         [JsonProperty(PropertyName = "maxDegreeOfParallelism")]
         public int? MaxDegreeOfParallelism { get; set; }
@@ -114,7 +114,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         public IList<HiveMetastore> HiveMetastores { get; set; }
 
         /// <summary>
-        /// Gets gets or sets the account creation time.
+        /// Gets the account creation time.
         /// </summary>
         [JsonProperty(PropertyName = "creationTime")]
         public DateTime? CreationTime { get; private set; }
