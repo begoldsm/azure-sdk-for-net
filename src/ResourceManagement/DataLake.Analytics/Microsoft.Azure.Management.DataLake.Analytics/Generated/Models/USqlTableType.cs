@@ -29,18 +29,17 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the USqlTableType class.
         /// </summary>
-        public USqlTableType(string computeAccountName = default(string), Guid? version = default(Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), string typeFamily = default(string), string cSharpName = default(string), string fullCSharpName = default(string), int? systemTypeId = default(int?), int? userTypeId = default(int?), int? schemaId = default(int?), int? principalId = default(int?), bool? isNullable = default(bool?), bool? isUserDefined = default(bool?), bool? isAssemblyType = default(bool?), bool? isTableType = default(bool?), bool? isComplexType = default(bool?), TypeFieldInfo columns = default(TypeFieldInfo))
+        public USqlTableType(string computeAccountName = default(string), Guid? version = default(Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), string typeFamily = default(string), string cSharpName = default(string), string fullCSharpName = default(string), int? systemTypeId = default(int?), int? userTypeId = default(int?), int? schemaId = default(int?), int? principalId = default(int?), bool? isNullable = default(bool?), bool? isUserDefined = default(bool?), bool? isAssemblyType = default(bool?), bool? isTableType = default(bool?), bool? isComplexType = default(bool?), IList<TypeFieldInfo> columns = default(IList<TypeFieldInfo>))
             : base(computeAccountName, version, databaseName, schemaName, name, typeFamily, cSharpName, fullCSharpName, systemTypeId, userTypeId, schemaId, principalId, isNullable, isUserDefined, isAssemblyType, isTableType, isComplexType)
         {
             Columns = columns;
         }
 
         /// <summary>
-        /// Gets or sets the type field information associated with this table
-        /// type.
+        /// Gets the type field information associated with this table type.
         /// </summary>
         [JsonProperty(PropertyName = "columns")]
-        public TypeFieldInfo Columns { get; set; }
+        public IList<TypeFieldInfo> Columns { get; private set; }
 
     }
 }
