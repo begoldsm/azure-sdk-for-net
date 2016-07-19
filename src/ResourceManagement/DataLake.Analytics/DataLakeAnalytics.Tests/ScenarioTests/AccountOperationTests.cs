@@ -136,6 +136,9 @@ namespace DataLakeAnalytics.Tests
                 newAccount.Properties.DataLakeStoreAccounts = null;
                 newAccount.Properties.StorageAccounts = null;
 
+                // completely clear the hive metastore for now until enabled
+                newAccount.Properties.HiveMetastores = null;
+
                 var updateResponse = clientToUse.Account.Update(commonData.ResourceGroupName, commonData.DataLakeAnalyticsAccountName, newAccount);
 
                 Assert.Equal(DataLakeAnalyticsAccountStatus.Succeeded, updateResponse.Properties.ProvisioningState);
@@ -163,6 +166,9 @@ namespace DataLakeAnalytics.Tests
                 responseGet = clientToUse.Account.Get(commonData.ResourceGroupName, commonData.DataLakeAnalyticsAccountName);
                 var accountToChange = responseGet;
                 accountToChange.Name = accountToChange.Name + "secondacct";
+
+                // TODO: until hive is enabled null out metastores
+                accountToChange.Properties.HiveMetastores = null;
                 // accountToChange.Properties.ActiveHiveMetastore = null; // no metastores for the new account.
                 // accountToChange.Properties.HiveMetastores = null; // no metastores for the new account.
 
