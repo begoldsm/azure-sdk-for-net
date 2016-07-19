@@ -29,6 +29,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the HiveMetastore class.
         /// </summary>
+        /// <param name="name">Gets or sets the Hive metastore name.</param>
+        /// <param name="properties">Gets or sets the properties associated
+        /// with this Hive metastore.</param>
         public HiveMetastore(string name, HiveMetaStoreProperties properties)
         {
             Name = name;
@@ -36,14 +39,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         }
 
         /// <summary>
-        /// Gets or sets gets or sets the Hive metastore name.
+        /// Gets or sets the Hive metastore name.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets gets or sets the properties associated with this Hive
-        /// metastore.
+        /// Gets or sets the properties associated with this Hive metastore.
         /// </summary>
         [JsonProperty(PropertyName = "properties")]
         public HiveMetaStoreProperties Properties { get; set; }

@@ -31,14 +31,16 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Initializes a new instance of the
         /// AddOrUpdateHiveMetaStoreParameters class.
         /// </summary>
+        /// <param name="properties">Gets or sets the properties for the Hive
+        /// metastore being added or updated.</param>
         public AddOrUpdateHiveMetaStoreParameters(HiveMetaStoreProperties properties)
         {
             Properties = properties;
         }
 
         /// <summary>
-        /// Gets or sets gets or sets the properties for the Hive metastore
-        /// being added or updated.
+        /// Gets or sets the properties for the Hive metastore being added or
+        /// updated.
         /// </summary>
         [JsonProperty(PropertyName = "properties")]
         public HiveMetaStoreProperties Properties { get; set; }

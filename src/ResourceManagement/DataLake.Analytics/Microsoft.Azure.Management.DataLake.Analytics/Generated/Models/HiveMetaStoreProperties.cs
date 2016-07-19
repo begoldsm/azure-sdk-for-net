@@ -29,6 +29,17 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the HiveMetaStoreProperties class.
         /// </summary>
+        /// <param name="serverUri">Gets or sets URL of the server to connect
+        /// to. For example: myserver.database.windows.net,
+        /// myserver.cloudapp.net</param>
+        /// <param name="databaseName">Gets or sets the name of the database
+        /// to connect to.</param>
+        /// <param name="runtimeVersion">Gets or sets the Hive version
+        /// associated with the metastore. Format: 1.2.3.4</param>
+        /// <param name="userName">Sets the user name for the
+        /// connection.</param>
+        /// <param name="password">Sets the password for the
+        /// connection.</param>
         public HiveMetaStoreProperties(string serverUri, string databaseName, string runtimeVersion, string userName, string password)
         {
             ServerUri = serverUri;
@@ -39,21 +50,21 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         }
 
         /// <summary>
-        /// Gets or sets gets or sets URL of the server to connect to. For
-        /// example: myserver.database.windows.net, myserver.cloudapp.net
+        /// Gets or sets URL of the server to connect to. For example:
+        /// myserver.database.windows.net, myserver.cloudapp.net
         /// </summary>
         [JsonProperty(PropertyName = "serverUri")]
         public string ServerUri { get; set; }
 
         /// <summary>
-        /// Gets or sets gets or sets the name of the database to connect to.
+        /// Gets or sets the name of the database to connect to.
         /// </summary>
         [JsonProperty(PropertyName = "databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
-        /// Gets or sets gets or sets the Hive version associated with the
-        /// metastore. Format: 1.2.3.4
+        /// Gets or sets the Hive version associated with the metastore.
+        /// Format: 1.2.3.4
         /// </summary>
         [JsonProperty(PropertyName = "runtimeVersion")]
         public string RuntimeVersion { get; set; }
