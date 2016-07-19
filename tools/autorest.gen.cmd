@@ -12,7 +12,7 @@ set source=-Source https://www.myget.org/F/autorest/api/v2
 set repoRoot=%~dp0..
 set autoRestExe=%repoRoot%\packages\autorest.%autoRestVersion%\tools\AutoRest.exe
 
-%repoRoot%\tools\nuget.exe install autorest %source% -Version %autoRestVersion% -o %repoRoot%\packages -verbosity quiet
+%repoRoot%\tools\nuget.exe install AutoRest %source% -Version %autoRestVersion% -o %repoRoot%\packages -verbosity quiet
 
 @echo on
 %autoRestExe% -Modeler Swagger -CodeGenerator Azure.CSharp -Namespace %namespace% -Input %specFile% -outputDirectory %generateFolder% -Header %header% %~6
