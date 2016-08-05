@@ -583,70 +583,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             }
 
             /// <summary>
-            /// Retrieves the list of credentials from the Data Lake Analytics catalog.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
-            /// </param>
-            /// <param name='databaseName'>
-            /// The name of the database containing the schema.
-            /// </param>
-            /// <param name='odataQuery'>
-            /// OData parameters to apply to the operation.
-            /// </param>
-            /// <param name='select'>
-            /// OData Select statement. Limits the properties on each entry to just those
-            /// requested, e.g. Categories?$select=CategoryName,Description. Optional.
-            /// </param>
-            /// <param name='count'>
-            /// The Boolean value of true or false to request a count of the matching
-            /// resources included with the resources in the response, e.g.
-            /// Categories?$count=true. Optional.
-            /// </param>
-            public static IPage<USqlCredential> ListCredentials(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlCredential> odataQuery = default(ODataQuery<USqlCredential>), string select = default(string), bool? count = default(bool?))
-            {
-                return Task.Factory.StartNew(s => ((ICatalogOperations)s).ListCredentialsAsync(accountName, databaseName, odataQuery, select, count), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Retrieves the list of credentials from the Data Lake Analytics catalog.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
-            /// </param>
-            /// <param name='databaseName'>
-            /// The name of the database containing the schema.
-            /// </param>
-            /// <param name='odataQuery'>
-            /// OData parameters to apply to the operation.
-            /// </param>
-            /// <param name='select'>
-            /// OData Select statement. Limits the properties on each entry to just those
-            /// requested, e.g. Categories?$select=CategoryName,Description. Optional.
-            /// </param>
-            /// <param name='count'>
-            /// The Boolean value of true or false to request a count of the matching
-            /// resources included with the resources in the response, e.g.
-            /// Categories?$count=true. Optional.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IPage<USqlCredential>> ListCredentialsAsync(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlCredential> odataQuery = default(ODataQuery<USqlCredential>), string select = default(string), bool? count = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.ListCredentialsWithHttpMessagesAsync(accountName, databaseName, odataQuery, select, count, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <summary>
             /// Retrieves the specified procedure from the Data Lake Analytics catalog.
             /// </summary>
             /// <param name='operations'>
@@ -1957,40 +1893,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             public static async Task<IPage<USqlExternalDataSource>> ListExternalDataSourcesNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.ListExternalDataSourcesNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
-            }
-
-            /// <summary>
-            /// Retrieves the list of credentials from the Data Lake Analytics catalog.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            public static IPage<USqlCredential> ListCredentialsNext(this ICatalogOperations operations, string nextPageLink)
-            {
-                return Task.Factory.StartNew(s => ((ICatalogOperations)s).ListCredentialsNextAsync(nextPageLink), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
-            }
-
-            /// <summary>
-            /// Retrieves the list of credentials from the Data Lake Analytics catalog.
-            /// </summary>
-            /// <param name='operations'>
-            /// The operations group for this extension method.
-            /// </param>
-            /// <param name='nextPageLink'>
-            /// The NextLink from the previous successful call to List operation.
-            /// </param>
-            /// <param name='cancellationToken'>
-            /// The cancellation token.
-            /// </param>
-            public static async Task<IPage<USqlCredential>> ListCredentialsNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
-            {
-                using (var _result = await operations.ListCredentialsNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
