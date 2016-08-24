@@ -5,12 +5,11 @@
 
 @echo off
 setlocal
-set autoRestVersion=0.17.0-Nightly20160731
+set autoRestVersion=0.17.0-Nightly20160822
 set source=-Source https://www.myget.org/F/autorest/api/v2
 
-set accountSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/master/arm-datalake-analytics/account/2015-10-01-preview/swagger/account.json"
-set jobSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/master/arm-datalake-analytics/job/2016-03-20-preview/swagger/job.json"
-set catalogSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/master/arm-datalake-analytics/catalog/2015-10-01-preview/swagger/catalog.json"
+set accountSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/usqlcredentials/arm-datalake-analytics/account/2015-10-01-preview/swagger/account.json"
+set jobSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/usqlcredentials/arm-datalake-analytics/job/2016-03-20-preview/swagger/job.json"
 
 set repoRoot=%~dp0..\..\..\..
 set generateFolder=%~dp0Generated
