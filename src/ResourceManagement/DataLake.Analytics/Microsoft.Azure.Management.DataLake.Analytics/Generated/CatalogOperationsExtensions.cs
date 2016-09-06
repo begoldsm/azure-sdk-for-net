@@ -290,9 +290,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='parameters'>
             /// The parameters required to create the credential (name and password)
             /// </param>
-            public static USqlCredential CreateCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialCreateParameters parameters)
+            public static void CreateCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialCreateParameters parameters)
             {
-                return Task.Factory.StartNew(s => ((ICatalogOperations)s).CreateCredentialAsync(accountName, databaseName, credentialName, parameters), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                Task.Factory.StartNew(s => ((ICatalogOperations)s).CreateCredentialAsync(accountName, databaseName, credentialName, parameters), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -317,12 +317,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<USqlCredential> CreateCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialCreateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task CreateCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialCreateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CreateCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                await operations.CreateCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -344,9 +341,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='parameters'>
             /// The parameters required to modify the credential (name and password)
             /// </param>
-            public static USqlCredential UpdateCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialUpdateParameters parameters)
+            public static void UpdateCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialUpdateParameters parameters)
             {
-                return Task.Factory.StartNew(s => ((ICatalogOperations)s).UpdateCredentialAsync(accountName, databaseName, credentialName, parameters), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                Task.Factory.StartNew(s => ((ICatalogOperations)s).UpdateCredentialAsync(accountName, databaseName, credentialName, parameters), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -371,12 +368,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<USqlCredential> UpdateCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialUpdateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task UpdateCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialUpdateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.UpdateCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                await operations.UpdateCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -440,9 +434,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='credentialName'>
             /// The name of the credential to delete
             /// </param>
-            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName)
+            /// <param name='parameters'>
+            /// The parameters to delete a credential if the current user is not the
+            /// account owner.
+            /// </param>
+            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters)
             {
-                Task.Factory.StartNew(s => ((ICatalogOperations)s).DeleteCredentialAsync(accountName, databaseName, credentialName), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                Task.Factory.StartNew(s => ((ICatalogOperations)s).DeleteCredentialAsync(accountName, databaseName, credentialName, parameters), operations, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -460,12 +458,16 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='credentialName'>
             /// The name of the credential to delete
             /// </param>
+            /// <param name='parameters'>
+            /// The parameters to delete a credential if the current user is not the
+            /// account owner.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                await operations.DeleteCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, null, cancellationToken).ConfigureAwait(false);
+                await operations.DeleteCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
