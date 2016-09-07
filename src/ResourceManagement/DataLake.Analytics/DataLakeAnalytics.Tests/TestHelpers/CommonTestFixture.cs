@@ -43,7 +43,7 @@ namespace DataLakeAnalytics.Tests
         public string Metastore1Name { get; set; }
         public string Metastore2Name { get; set; }
         public string HostUrl { get; set; }
-        public string Location = "East US 2";
+        public string Location = "West US";
         public string Metastore1 = "metastoredb01";
         public string Metastore2 = "metastoredb02";
         public string MetastoreServer = "hivetestserver01.database.windows.net";
