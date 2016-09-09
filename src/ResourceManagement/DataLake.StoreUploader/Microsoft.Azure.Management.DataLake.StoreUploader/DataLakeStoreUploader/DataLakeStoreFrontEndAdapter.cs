@@ -43,7 +43,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
 
         private readonly CancellationToken _token;
 
-        private const int PerRequestTimeoutMs = 30000; // 30 seconds and we timeout the request
+        private const int PerRequestTimeoutMs = 60000; // 60 seconds and we timeout the request
 
         #endregion
 
@@ -341,7 +341,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                     {
                         using (var inputStream = File.OpenRead(inputPath))
                         {
-                            inputStream.CopyTo(targetStream);
+                            inputStream.CopyTo(targetStream, Math.Min(int.MaxValue - 1, (int)inputStream.Length));
                         }
                     }
                 }
