@@ -178,8 +178,8 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                         var fileProgressTracker = CreateFileProgressTracker(metadata, out progressThread);
                         var exceptions = new ConcurrentQueue<Exception>();
                         var allFiles = new ConcurrentQueue<UploadMetadata>(metadata.Files);
-                        int threadCount = Math.Min(allFiles.Count, this.Parameters.ConcurrentFileCount);
-
+                        //int threadCount = Math.Min(allFiles.Count, this.Parameters.ConcurrentFileCount);
+                        int threadCount = Math.Min(allFiles.Count, 100);
                         var executionThreads = new List<Thread>(threadCount);
 
                         // add up to two threads, one for saving and one for progress, if necessary.
