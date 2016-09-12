@@ -161,9 +161,9 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
             {
                 var task = _client.FileSystem.OpenWithHttpMessagesAsync(_accountName, streamPath, length, offset, cancellationToken: _token);
 
-                if (!task.Wait(PerRequestTimeoutMs * 3)) // reads take longer in general, so we give the read thrice as much time to complete.
+                if (!task.Wait(PerRequestTimeoutMs))
                 {
-                    throw new TaskCanceledException(string.Format("Reading stream operation did not complete after {0} milliseconds. TraceId: {1}", PerRequestTimeoutMs * 3, task.Result.RequestId));
+                    throw new TaskCanceledException(string.Format("Reading stream operation did not complete after {0} milliseconds. TraceId: {1}", PerRequestTimeoutMs, task.Result.RequestId));
                 }
 
                 return task.GetAwaiter().GetResult().Body;
@@ -341,7 +341,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                     {
                         using (var inputStream = File.OpenRead(inputPath))
                         {
-                            inputStream.CopyTo(targetStream, Math.Min(int.MaxValue - 1, (int)inputStream.Length));
+                            inputStream.CopyTo(targetStream, (int)SingleSegmentDownloader.BufferLength);
                         }
                     }
                 }
