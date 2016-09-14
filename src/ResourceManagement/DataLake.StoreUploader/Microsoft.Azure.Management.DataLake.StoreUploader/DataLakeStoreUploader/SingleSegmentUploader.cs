@@ -295,13 +295,13 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     //if we tried more than the number of times we were allowed to, give up and throw the exception
                     if (attemptCount >= MaxBufferUploadAttemptCount)
                     {
                         ReportProgress(targetStreamOffset, true);
-                        throw;
+                        throw ex;
                     }
                     else
                     {
