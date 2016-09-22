@@ -18,10 +18,13 @@ namespace Microsoft.Azure.Management.DataLake.Store
     {
         /// <summary>
         /// Appends to the specified file. This method supports multiple
-        /// concurrent appends to the file. NOTE: Concurrent append and
-        /// normal (serial) append CANNOT be used interchangeably. Once a
-        /// file has been appended to using either append option, it can only
-        /// be appended to using that append option.
+        /// concurrent appends to the file. NOTE: ConcurrentAppend and normal
+        /// (serial) Append CANNOT be used interchangeably; once a file has
+        /// been appended to using either of these append options, it can
+        /// only be appended to using that append option. ConcurrentAppend
+        /// DOES NOT guarantee order and can result in duplicated data
+        /// landing in the target file. In order to close a file after using
+        /// ConcurrentAppend, call the Flush method.
         /// </summary>
         /// <param name='accountName'>
         /// The Azure Data Lake Store account to execute filesystem operations
@@ -318,6 +321,33 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// Thrown when a required parameter is null
         /// </exception>
         System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse<FileStatusResult>> GetFileStatusWithHttpMessagesAsync(string accountName, string getFilePath, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Flushes the specified file to the store. This forces an update to
+        /// the metadata of the file (returned from GetFileStatus), and is
+        /// required by ConcurrentAppend once the file is done to populate
+        /// finalized metadata.
+        /// </summary>
+        /// <param name='accountName'>
+        /// The Azure Data Lake Store account to execute filesystem operations
+        /// on.
+        /// </param>
+        /// <param name='flushFilePath'>
+        /// The Data Lake Store path (starting with '/') of the file to which
+        /// to flush.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="AdlsErrorException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse> FlushWithHttpMessagesAsync(string accountName, string flushFilePath, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Appends to the specified file. This method does not support
         /// multiple concurrent appends to the file. NOTE: Concurrent append

@@ -19,9 +19,12 @@ namespace Microsoft.Azure.Management.DataLake.Store
     {
             /// <summary>
             /// Appends to the specified file. This method supports multiple concurrent
-            /// appends to the file. NOTE: Concurrent append and normal (serial) append
-            /// CANNOT be used interchangeably. Once a file has been appended to using
-            /// either append option, it can only be appended to using that append option.
+            /// appends to the file. NOTE: ConcurrentAppend and normal (serial) Append
+            /// CANNOT be used interchangeably; once a file has been appended to using
+            /// either of these append options, it can only be appended to using that
+            /// append option. ConcurrentAppend DOES NOT guarantee order and can result
+            /// in duplicated data landing in the target file. In order to close a file
+            /// after using ConcurrentAppend, call the Flush method.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -48,9 +51,12 @@ namespace Microsoft.Azure.Management.DataLake.Store
 
             /// <summary>
             /// Appends to the specified file. This method supports multiple concurrent
-            /// appends to the file. NOTE: Concurrent append and normal (serial) append
-            /// CANNOT be used interchangeably. Once a file has been appended to using
-            /// either append option, it can only be appended to using that append option.
+            /// appends to the file. NOTE: ConcurrentAppend and normal (serial) Append
+            /// CANNOT be used interchangeably; once a file has been appended to using
+            /// either of these append options, it can only be appended to using that
+            /// append option. ConcurrentAppend DOES NOT guarantee order and can result
+            /// in duplicated data landing in the target file. In order to close a file
+            /// after using ConcurrentAppend, call the Flush method.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -508,6 +514,47 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 {
                     return _result.Body;
                 }
+            }
+
+            /// <summary>
+            /// Flushes the specified file to the store. This forces an update to the
+            /// metadata of the file (returned from GetFileStatus), and is required by
+            /// ConcurrentAppend once the file is done to populate finalized metadata.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='accountName'>
+            /// The Azure Data Lake Store account to execute filesystem operations on.
+            /// </param>
+            /// <param name='flushFilePath'>
+            /// The Data Lake Store path (starting with '/') of the file to which to flush.
+            /// </param>
+            public static void Flush(this IFileSystemOperations operations, string accountName, string flushFilePath)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(s => ((IFileSystemOperations)s).FlushAsync(accountName, flushFilePath), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Flushes the specified file to the store. This forces an update to the
+            /// metadata of the file (returned from GetFileStatus), and is required by
+            /// ConcurrentAppend once the file is done to populate finalized metadata.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='accountName'>
+            /// The Azure Data Lake Store account to execute filesystem operations on.
+            /// </param>
+            /// <param name='flushFilePath'>
+            /// The Data Lake Store path (starting with '/') of the file to which to flush.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async System.Threading.Tasks.Task FlushAsync(this IFileSystemOperations operations, string accountName, string flushFilePath, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                await operations.FlushWithHttpMessagesAsync(accountName, flushFilePath, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
