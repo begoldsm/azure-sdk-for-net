@@ -35,6 +35,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="defaultDataLakeStoreAccount">the default data lake
         /// storage account associated with this Data Lake Analytics
         /// account.</param>
+        /// <param name="activeHiveMetastore">Gets or sets the currently
+        /// active Hive metastore associated with this Data Lake Analytics
+        /// account.</param>
         /// <param name="maxDegreeOfParallelism">the maximum supported degree
         /// of parallelism for this account.</param>
         /// <param name="maxJobCount">the maximum supported jobs running under
@@ -43,20 +46,24 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// accounts associated with this account.</param>
         /// <param name="storageAccounts">the list of Azure Blob storage
         /// accounts associated with this account.</param>
+        /// <param name="hiveMetastores">Gets or sets the list of Hive
+        /// metastores associated with this account.</param>
         /// <param name="creationTime">the account creation time.</param>
         /// <param name="lastModifiedTime">the account last modified
         /// time.</param>
         /// <param name="endpoint">the full CName endpoint for this
         /// account.</param>
-        public DataLakeAnalyticsAccountProperties(DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string defaultDataLakeStoreAccount = default(string), int? maxDegreeOfParallelism = default(int?), int? maxJobCount = default(int?), System.Collections.Generic.IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts = default(System.Collections.Generic.IList<DataLakeStoreAccountInfo>), System.Collections.Generic.IList<StorageAccountInfo> storageAccounts = default(System.Collections.Generic.IList<StorageAccountInfo>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string))
+        public DataLakeAnalyticsAccountProperties(DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string defaultDataLakeStoreAccount = default(string), string activeHiveMetastore = default(string), int? maxDegreeOfParallelism = default(int?), int? maxJobCount = default(int?), System.Collections.Generic.IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts = default(System.Collections.Generic.IList<DataLakeStoreAccountInfo>), System.Collections.Generic.IList<StorageAccountInfo> storageAccounts = default(System.Collections.Generic.IList<StorageAccountInfo>), System.Collections.Generic.IList<HiveMetastore> hiveMetastores = default(System.Collections.Generic.IList<HiveMetastore>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string))
         {
             ProvisioningState = provisioningState;
             State = state;
             DefaultDataLakeStoreAccount = defaultDataLakeStoreAccount;
+            ActiveHiveMetastore = activeHiveMetastore;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
             MaxJobCount = maxJobCount;
             DataLakeStoreAccounts = dataLakeStoreAccounts;
             StorageAccounts = storageAccounts;
+            HiveMetastores = hiveMetastores;
             CreationTime = creationTime;
             LastModifiedTime = lastModifiedTime;
             Endpoint = endpoint;
@@ -86,6 +93,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         public string DefaultDataLakeStoreAccount { get; set; }
 
         /// <summary>
+        /// Gets or sets the currently active Hive metastore associated with
+        /// this Data Lake Analytics account.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "activeHiveMetastore")]
+        public string ActiveHiveMetastore { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
         /// account.
         /// </summary>
@@ -112,6 +126,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [Newtonsoft.Json.JsonProperty(PropertyName = "storageAccounts")]
         public System.Collections.Generic.IList<StorageAccountInfo> StorageAccounts { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of Hive metastores associated with this
+        /// account.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "hiveMetastores")]
+        public System.Collections.Generic.IList<HiveMetastore> HiveMetastores { get; set; }
 
         /// <summary>
         /// Gets the account creation time.

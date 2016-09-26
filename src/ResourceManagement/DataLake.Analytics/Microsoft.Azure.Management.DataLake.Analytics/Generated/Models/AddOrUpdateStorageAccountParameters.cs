@@ -11,30 +11,30 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using System.Linq;
 
     /// <summary>
-    /// Additional Azure Storage account parameters.
+    /// Azure Storage account add or update parameters.
     /// </summary>
-    public partial class AddStorageAccountParameters
+    public partial class AddOrUpdateStorageAccountParameters
     {
         /// <summary>
-        /// Initializes a new instance of the AddStorageAccountParameters
-        /// class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateStorageAccountParameters class.
         /// </summary>
-        public AddStorageAccountParameters() { }
+        public AddOrUpdateStorageAccountParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the AddStorageAccountParameters
-        /// class.
+        /// Initializes a new instance of the
+        /// AddOrUpdateStorageAccountParameters class.
         /// </summary>
         /// <param name="properties">the properties for the Azure Storage
-        /// account being added.</param>
-        public AddStorageAccountParameters(StorageAccountProperties properties)
+        /// account being added or updated.</param>
+        public AddOrUpdateStorageAccountParameters(StorageAccountProperties properties)
         {
             Properties = properties;
         }
 
         /// <summary>
         /// Gets or sets the properties for the Azure Storage account being
-        /// added.
+        /// added or updated.
         /// </summary>
         [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
         public StorageAccountProperties Properties { get; set; }

@@ -18,6 +18,211 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
     public static partial class AccountOperationsExtensions
     {
             /// <summary>
+            /// Gets the specified Hive metastore linked to the given Data Lake Analytics
+            /// account.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account from which to retrieve Hive
+            /// metastore details.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore for which to retrieve the details.
+            /// </param>
+            public static HiveMetastore GetHiveMetastore(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName)
+            {
+                return System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).GetHiveMetastoreAsync(resourceGroupName, accountName, hiveMetastoreName), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the specified Hive metastore linked to the given Data Lake Analytics
+            /// account.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account from which to retrieve Hive
+            /// metastore details.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore for which to retrieve the details.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async System.Threading.Tasks.Task<HiveMetastore> GetHiveMetastoreAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                using (var _result = await operations.GetHiveMetastoreWithHttpMessagesAsync(resourceGroupName, accountName, hiveMetastoreName, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates the specified Data Lake Analytics account to remove the specified
+            /// Hive metastore.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account from which to remove the Hive
+            /// metastore.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore to remove
+            /// </param>
+            public static void DeleteHiveMetastore(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).DeleteHiveMetastoreAsync(resourceGroupName, accountName, hiveMetastoreName), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates the specified Data Lake Analytics account to remove the specified
+            /// Hive metastore.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account from which to remove the Hive
+            /// metastore.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore to remove
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async System.Threading.Tasks.Task DeleteHiveMetastoreAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                await operations.DeleteHiveMetastoreWithHttpMessagesAsync(resourceGroupName, accountName, hiveMetastoreName, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Updates the Data Lake Analytics account to replace Hive metastore details
+            /// with updated ones, such as an updated password.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account to modify Hive metastores in
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The Hive metastore to modify
+            /// </param>
+            /// <param name='parameters'>
+            /// The parameters containing Hive metastore properties to update.
+            /// </param>
+            public static void UpdateHiveMetaStore(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, AddOrUpdateHiveMetaStoreParameters parameters)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateHiveMetaStoreAsync(resourceGroupName, accountName, hiveMetastoreName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates the Data Lake Analytics account to replace Hive metastore details
+            /// with updated ones, such as an updated password.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account to modify Hive metastores in
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The Hive metastore to modify
+            /// </param>
+            /// <param name='parameters'>
+            /// The parameters containing Hive metastore properties to update.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async System.Threading.Tasks.Task UpdateHiveMetaStoreAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, AddOrUpdateHiveMetaStoreParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                await operations.UpdateHiveMetaStoreWithHttpMessagesAsync(resourceGroupName, accountName, hiveMetastoreName, parameters, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Updates the specified Data Lake Analytics account to add a Hive metastore.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account to which to add Hive metastore.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore to add
+            /// </param>
+            /// <param name='parameters'>
+            /// The parameters containing properties for the Hive metastore to add.
+            /// </param>
+            public static void AddHiveMetastore(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, AddOrUpdateHiveMetaStoreParameters parameters)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).AddHiveMetastoreAsync(resourceGroupName, accountName, hiveMetastoreName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates the specified Data Lake Analytics account to add a Hive metastore.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account to which to add Hive metastore.
+            /// </param>
+            /// <param name='hiveMetastoreName'>
+            /// The name of the Hive metastore to add
+            /// </param>
+            /// <param name='parameters'>
+            /// The parameters containing properties for the Hive metastore to add.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async System.Threading.Tasks.Task AddHiveMetastoreAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string hiveMetastoreName, AddOrUpdateHiveMetaStoreParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                await operations.AddHiveMetastoreWithHttpMessagesAsync(resourceGroupName, accountName, hiveMetastoreName, parameters, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
             /// Gets the specified Azure Storage account linked to the given Data Lake
             /// Analytics account.
             /// </summary>
@@ -139,7 +344,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The parameters containing the access key and suffix to update the storage
             /// account with.
             /// </param>
-            public static void UpdateStorageAccount(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddStorageAccountParameters parameters)
+            public static void UpdateStorageAccount(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddOrUpdateStorageAccountParameters parameters)
             {
                 System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).UpdateStorageAccountAsync(resourceGroupName, accountName, storageAccountName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -168,7 +373,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async System.Threading.Tasks.Task UpdateStorageAccountAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddStorageAccountParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            public static async System.Threading.Tasks.Task UpdateStorageAccountAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddOrUpdateStorageAccountParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
                 await operations.UpdateStorageAccountWithHttpMessagesAsync(resourceGroupName, accountName, storageAccountName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
@@ -195,7 +400,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The parameters containing the access key and optional suffix for the Azure
             /// Storage Account.
             /// </param>
-            public static void AddStorageAccount(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddStorageAccountParameters parameters)
+            public static void AddStorageAccount(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddOrUpdateStorageAccountParameters parameters)
             {
                 System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).AddStorageAccountAsync(resourceGroupName, accountName, storageAccountName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -225,7 +430,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async System.Threading.Tasks.Task AddStorageAccountAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddStorageAccountParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            public static async System.Threading.Tasks.Task AddStorageAccountAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string storageAccountName, AddOrUpdateStorageAccountParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
                 await operations.AddStorageAccountWithHttpMessagesAsync(resourceGroupName, accountName, storageAccountName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
@@ -560,6 +765,98 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             public static async System.Threading.Tasks.Task AddDataLakeStoreAccountAsync(this IAccountOperations operations, string resourceGroupName, string accountName, string dataLakeStoreAccountName, AddDataLakeStoreParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
                 await operations.AddDataLakeStoreAccountWithHttpMessagesAsync(resourceGroupName, accountName, dataLakeStoreAccountName, parameters, null, cancellationToken).ConfigureAwait(false);
+            }
+
+            /// <summary>
+            /// Gets the first page of the Hive metastores, if any, linked to the
+            /// specified Data Lake Analytics account. The response includes a link to
+            /// the next page, if any.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account for which to list Hive
+            /// metastores.
+            /// </param>
+            /// <param name='odataQuery'>
+            /// OData parameters to apply to the operation.
+            /// </param>
+            /// <param name='select'>
+            /// OData Select statement. Limits the properties on each entry to just those
+            /// requested, e.g. Categories?$select=CategoryName,Description. Optional.
+            /// </param>
+            /// <param name='count'>
+            /// The Boolean value of true or false to request a count of the matching
+            /// resources included with the resources in the response, e.g.
+            /// Categories?$count=true. Optional.
+            /// </param>
+            /// <param name='search'>
+            /// A free form search. A free-text search expression to match for whether a
+            /// particular entry should be included in the feed, e.g.
+            /// Categories?$search=blue OR green. Optional.
+            /// </param>
+            /// <param name='format'>
+            /// The desired return format. Return the response in particular formatxii
+            /// without access to request headers for standard content-type negotiation
+            /// (e.g Orders?$format=json). Optional.
+            /// </param>
+            public static Microsoft.Rest.Azure.IPage<HiveMetastore> ListHiveMetastores(this IAccountOperations operations, string resourceGroupName, string accountName, Microsoft.Rest.Azure.OData.ODataQuery<HiveMetastore> odataQuery = default(Microsoft.Rest.Azure.OData.ODataQuery<HiveMetastore>), string select = default(string), bool? count = default(bool?), string search = default(string), string format = default(string))
+            {
+                return System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).ListHiveMetastoresAsync(resourceGroupName, accountName, odataQuery, select, count, search, format), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the first page of the Hive metastores, if any, linked to the
+            /// specified Data Lake Analytics account. The response includes a link to
+            /// the next page, if any.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='resourceGroupName'>
+            /// The name of the Azure resource group that contains the Data Lake Analytics
+            /// account.
+            /// </param>
+            /// <param name='accountName'>
+            /// The name of the Data Lake Analytics account for which to list Hive
+            /// metastores.
+            /// </param>
+            /// <param name='odataQuery'>
+            /// OData parameters to apply to the operation.
+            /// </param>
+            /// <param name='select'>
+            /// OData Select statement. Limits the properties on each entry to just those
+            /// requested, e.g. Categories?$select=CategoryName,Description. Optional.
+            /// </param>
+            /// <param name='count'>
+            /// The Boolean value of true or false to request a count of the matching
+            /// resources included with the resources in the response, e.g.
+            /// Categories?$count=true. Optional.
+            /// </param>
+            /// <param name='search'>
+            /// A free form search. A free-text search expression to match for whether a
+            /// particular entry should be included in the feed, e.g.
+            /// Categories?$search=blue OR green. Optional.
+            /// </param>
+            /// <param name='format'>
+            /// The desired return format. Return the response in particular formatxii
+            /// without access to request headers for standard content-type negotiation
+            /// (e.g Orders?$format=json). Optional.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<Microsoft.Rest.Azure.IPage<HiveMetastore>> ListHiveMetastoresAsync(this IAccountOperations operations, string resourceGroupName, string accountName, Microsoft.Rest.Azure.OData.ODataQuery<HiveMetastore> odataQuery = default(Microsoft.Rest.Azure.OData.ODataQuery<HiveMetastore>), string select = default(string), bool? count = default(bool?), string search = default(string), string format = default(string), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                using (var _result = await operations.ListHiveMetastoresWithHttpMessagesAsync(resourceGroupName, accountName, odataQuery, select, count, search, format, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
             }
 
             /// <summary>
@@ -1295,6 +1592,44 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             public static async Task<Microsoft.Rest.Azure.IPage<SasTokenInfo>> ListSasTokensNextAsync(this IAccountOperations operations, string nextPageLink, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
                 using (var _result = await operations.ListSasTokensNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the first page of the Hive metastores, if any, linked to the
+            /// specified Data Lake Analytics account. The response includes a link to
+            /// the next page, if any.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='nextPageLink'>
+            /// The NextLink from the previous successful call to List operation.
+            /// </param>
+            public static Microsoft.Rest.Azure.IPage<HiveMetastore> ListHiveMetastoresNext(this IAccountOperations operations, string nextPageLink)
+            {
+                return System.Threading.Tasks.Task.Factory.StartNew(s => ((IAccountOperations)s).ListHiveMetastoresNextAsync(nextPageLink), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None, System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the first page of the Hive metastores, if any, linked to the
+            /// specified Data Lake Analytics account. The response includes a link to
+            /// the next page, if any.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='nextPageLink'>
+            /// The NextLink from the previous successful call to List operation.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<Microsoft.Rest.Azure.IPage<HiveMetastore>> ListHiveMetastoresNextAsync(this IAccountOperations operations, string nextPageLink, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            {
+                using (var _result = await operations.ListHiveMetastoresNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Hive metastore properties information.
@@ -53,61 +47,61 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets URL of the server to connect to. For example:
         /// myserver.database.windows.net, myserver.cloudapp.net
         /// </summary>
-        [JsonProperty(PropertyName = "serverUri")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "serverUri")]
         public string ServerUri { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the database to connect to.
         /// </summary>
-        [JsonProperty(PropertyName = "databaseName")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the Hive version associated with the metastore.
         /// Format: 1.2.3.4
         /// </summary>
-        [JsonProperty(PropertyName = "runtimeVersion")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "runtimeVersion")]
         public string RuntimeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets sets the user name for the connection.
         /// </summary>
-        [JsonProperty(PropertyName = "userName")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "userName")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets sets the password for the connection.
         /// </summary>
-        [JsonProperty(PropertyName = "password")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="ValidationException">
+        /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (ServerUri == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "ServerUri");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "ServerUri");
             }
             if (DatabaseName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "DatabaseName");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "DatabaseName");
             }
             if (RuntimeVersion == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "RuntimeVersion");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "RuntimeVersion");
             }
             if (UserName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "UserName");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "UserName");
             }
             if (Password == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Password");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Password");
             }
         }
     }
