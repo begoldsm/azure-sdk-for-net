@@ -8,54 +8,48 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
-    /// Azure Storage account add or update parameters.
+    /// Additional Azure Storage account parameters.
     /// </summary>
-    public partial class AddOrUpdateStorageAccountParameters
+    public partial class AddStorageAccountParameters
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// AddOrUpdateStorageAccountParameters class.
+        /// Initializes a new instance of the AddStorageAccountParameters
+        /// class.
         /// </summary>
-        public AddOrUpdateStorageAccountParameters() { }
+        public AddStorageAccountParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// AddOrUpdateStorageAccountParameters class.
+        /// Initializes a new instance of the AddStorageAccountParameters
+        /// class.
         /// </summary>
         /// <param name="properties">the properties for the Azure Storage
-        /// account being added or updated.</param>
-        public AddOrUpdateStorageAccountParameters(StorageAccountProperties properties)
+        /// account being added.</param>
+        public AddStorageAccountParameters(StorageAccountProperties properties)
         {
             Properties = properties;
         }
 
         /// <summary>
         /// Gets or sets the properties for the Azure Storage account being
-        /// added or updated.
+        /// added.
         /// </summary>
-        [JsonProperty(PropertyName = "properties")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
         public StorageAccountProperties Properties { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="ValidationException">
+        /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (Properties == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Properties");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Properties");
             }
             if (this.Properties != null)
             {

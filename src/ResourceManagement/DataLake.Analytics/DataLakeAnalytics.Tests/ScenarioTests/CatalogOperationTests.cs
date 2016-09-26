@@ -133,7 +133,7 @@ namespace DataLakeAnalytics.Tests
                     Assert.True(partitionList.Count() >= 1);
 
                     var specificPartition = partitionList.First();
-                    
+
                     // Get the specific partition as well
                     var partitionGetResponse = clientToUse.Catalog.GetTablePartition(
                         commonData.SecondDataLakeAnalyticsAccountName,
@@ -153,7 +153,7 @@ namespace DataLakeAnalytics.Tests
                     // Get all the types that are not complex
                     typeGetResponse = clientToUse.Catalog.ListTypes(
                         commonData.SecondDataLakeAnalyticsAccountName,
-                        commonData.DatabaseName, CommonTestFixture.SchemaName, new Microsoft.Rest.Azure.OData.ODataQuery<USqlType>{Filter = "isComplexType eq false"});
+                        commonData.DatabaseName, CommonTestFixture.SchemaName, new Microsoft.Rest.Azure.OData.ODataQuery<USqlType> { Filter = "isComplexType eq false" });
 
 
                     Assert.NotNull(typeGetResponse);
@@ -314,17 +314,21 @@ namespace DataLakeAnalytics.Tests
                             string.Format(
                                 @"USE {0}; CREATE CREDENTIAL {1} WITH USER_NAME = ""scope@rkm4grspxa"", IDENTITY = ""{2}"";",
                                 commonData.DatabaseName, commonData.CredentialName, commonData.SecretName);
-                        commonData.DataLakeAnalyticsManagementHelper.RunJobToCompletion(jobClient, 
+                        commonData.DataLakeAnalyticsManagementHelper.RunJobToCompletion(jobClient,
                             commonData.SecondDataLakeAnalyticsAccountName, TestUtilities.GenerateGuid(),
                             credentialCreationScript);
                         /* TODO: add support back once this is implemented for the new credential types
                          * 
                         // Get the Credential list
+                        // This funcitonality is removed in this release
+                        // since listing credentials in the new model is not ready yet.
+                        // all of this test functionality will be removed in a future release
+                        // so commenting this out for now with this note as an FYI.
+                        /*
                         var credListResponse = clientToUse.Catalog.ListCredentials(
                             commonData.SecondDataLakeAnalyticsAccountName,
                             commonData.DatabaseName);
                         Assert.True(credListResponse.Count() >= 1);
-
                         // look for the credential we created
                         Assert.True(credListResponse.Any(cred => cred.Name.Equals(commonData.CredentialName)));
                         */
@@ -339,7 +343,7 @@ namespace DataLakeAnalytics.Tests
                         var credentialDropScript =
                             string.Format(
                                 @"USE {0}; DROP CREDENTIAL {1};", commonData.DatabaseName, commonData.CredentialName);
-                        commonData.DataLakeAnalyticsManagementHelper.RunJobToCompletion(jobClient, 
+                        commonData.DataLakeAnalyticsManagementHelper.RunJobToCompletion(jobClient,
                             commonData.SecondDataLakeAnalyticsAccountName, TestUtilities.GenerateGuid(),
                             credentialDropScript);
 

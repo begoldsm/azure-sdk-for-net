@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Analytics catalog credential creation parameters.
@@ -48,7 +42,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets the password for the credential and user with access
         /// to the data source.
         /// </summary>
-        [JsonProperty(PropertyName = "password")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
         /// <summary>
@@ -56,35 +50,35 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// credential can connect to in the format
         /// &lt;hostname&gt;:&lt;port&gt;
         /// </summary>
-        [JsonProperty(PropertyName = "uri")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "uri")]
         public string Uri { get; set; }
 
         /// <summary>
         /// Gets or sets the object identifier for the user associated with
         /// this credential with access to the data source.
         /// </summary>
-        [JsonProperty(PropertyName = "userId")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "userId")]
         public string UserId { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="ValidationException">
+        /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (Password == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Password");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Password");
             }
             if (Uri == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Uri");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Uri");
             }
             if (UserId == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "UserId");
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "UserId");
             }
         }
     }

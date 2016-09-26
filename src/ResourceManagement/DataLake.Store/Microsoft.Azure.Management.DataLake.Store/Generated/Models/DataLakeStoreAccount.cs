@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store account information
@@ -33,15 +27,18 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <param name="name">the account name.</param>
         /// <param name="type">the namespace and type of the account.</param>
         /// <param name="id">the account subscription ID.</param>
+        /// <param name="identity">The Key vault encryption identity, if
+        /// any.</param>
         /// <param name="tags">the value of custom properties.</param>
         /// <param name="properties">the Data Lake Store account
         /// properties.</param>
-        public DataLakeStoreAccount(string location = default(string), string name = default(string), string type = default(string), string id = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeStoreAccountProperties properties = default(DataLakeStoreAccountProperties))
+        public DataLakeStoreAccount(string location = default(string), string name = default(string), string type = default(string), string id = default(string), EncryptionIdentity identity = default(EncryptionIdentity), System.Collections.Generic.IDictionary<string, string> tags = default(System.Collections.Generic.IDictionary<string, string>), DataLakeStoreAccountProperties properties = default(DataLakeStoreAccountProperties))
         {
             Location = location;
             Name = name;
             Type = type;
             Id = id;
+            Identity = identity;
             Tags = tags;
             Properties = properties;
         }
@@ -49,37 +46,43 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets or sets the account regional location.
         /// </summary>
-        [JsonProperty(PropertyName = "location")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "location")]
         public string Location { get; set; }
 
         /// <summary>
         /// Gets or sets the account name.
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets the namespace and type of the account.
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
         public string Type { get; private set; }
 
         /// <summary>
         /// Gets the account subscription ID.
         /// </summary>
-        [JsonProperty(PropertyName = "id")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "id")]
         public string Id { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the Key vault encryption identity, if any.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "identity")]
+        public EncryptionIdentity Identity { get; set; }
 
         /// <summary>
         /// Gets or sets the value of custom properties.
         /// </summary>
-        [JsonProperty(PropertyName = "tags")]
-        public IDictionary<string, string> Tags { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "tags")]
+        public System.Collections.Generic.IDictionary<string, string> Tags { get; set; }
 
         /// <summary>
         /// Gets or sets the Data Lake Store account properties.
         /// </summary>
-        [JsonProperty(PropertyName = "properties")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
         public DataLakeStoreAccountProperties Properties { get; set; }
 
     }

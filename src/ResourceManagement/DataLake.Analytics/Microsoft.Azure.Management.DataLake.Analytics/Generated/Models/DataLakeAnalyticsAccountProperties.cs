@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The account specific properties that are associated with an underlying
@@ -41,9 +35,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="defaultDataLakeStoreAccount">the default data lake
         /// storage account associated with this Data Lake Analytics
         /// account.</param>
-        /// <param name="activeHiveMetastore">Gets or sets the currently
-        /// active Hive metastore associated with this Data Lake Analytics
-        /// account.</param>
         /// <param name="maxDegreeOfParallelism">the maximum supported degree
         /// of parallelism for this account.</param>
         /// <param name="maxJobCount">the maximum supported jobs running under
@@ -52,24 +43,20 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// accounts associated with this account.</param>
         /// <param name="storageAccounts">the list of Azure Blob storage
         /// accounts associated with this account.</param>
-        /// <param name="hiveMetastores">Gets or sets the list of Hive
-        /// metastores associated with this account.</param>
         /// <param name="creationTime">the account creation time.</param>
         /// <param name="lastModifiedTime">the account last modified
         /// time.</param>
         /// <param name="endpoint">the full CName endpoint for this
         /// account.</param>
-        public DataLakeAnalyticsAccountProperties(DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string defaultDataLakeStoreAccount = default(string), string activeHiveMetastore = default(string), int? maxDegreeOfParallelism = default(int?), int? maxJobCount = default(int?), IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts = default(IList<DataLakeStoreAccountInfo>), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), IList<HiveMetastore> hiveMetastores = default(IList<HiveMetastore>), DateTime? creationTime = default(DateTime?), DateTime? lastModifiedTime = default(DateTime?), string endpoint = default(string))
+        public DataLakeAnalyticsAccountProperties(DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string defaultDataLakeStoreAccount = default(string), int? maxDegreeOfParallelism = default(int?), int? maxJobCount = default(int?), System.Collections.Generic.IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts = default(System.Collections.Generic.IList<DataLakeStoreAccountInfo>), System.Collections.Generic.IList<StorageAccountInfo> storageAccounts = default(System.Collections.Generic.IList<StorageAccountInfo>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string))
         {
             ProvisioningState = provisioningState;
             State = state;
             DefaultDataLakeStoreAccount = defaultDataLakeStoreAccount;
-            ActiveHiveMetastore = activeHiveMetastore;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
             MaxJobCount = maxJobCount;
             DataLakeStoreAccounts = dataLakeStoreAccounts;
             StorageAccounts = storageAccounts;
-            HiveMetastores = hiveMetastores;
             CreationTime = creationTime;
             LastModifiedTime = lastModifiedTime;
             Endpoint = endpoint;
@@ -81,81 +68,67 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Succeeded', 'Patching', 'Suspending', 'Resuming', 'Deleting',
         /// 'Deleted'
         /// </summary>
-        [JsonProperty(PropertyName = "provisioningState")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "provisioningState")]
         public DataLakeAnalyticsAccountStatus? ProvisioningState { get; private set; }
 
         /// <summary>
         /// Gets the state of the Data Lake Analytics account. Possible values
         /// include: 'active', 'suspended'
         /// </summary>
-        [JsonProperty(PropertyName = "state")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "state")]
         public DataLakeAnalyticsAccountState? State { get; private set; }
 
         /// <summary>
         /// Gets or sets the default data lake storage account associated with
         /// this Data Lake Analytics account.
         /// </summary>
-        [JsonProperty(PropertyName = "defaultDataLakeStoreAccount")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "defaultDataLakeStoreAccount")]
         public string DefaultDataLakeStoreAccount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the currently active Hive metastore associated with
-        /// this Data Lake Analytics account.
-        /// </summary>
-        [JsonProperty(PropertyName = "activeHiveMetastore")]
-        public string ActiveHiveMetastore { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
         /// account.
         /// </summary>
-        [JsonProperty(PropertyName = "maxDegreeOfParallelism")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "maxDegreeOfParallelism")]
         public int? MaxDegreeOfParallelism { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported jobs running under the account
         /// at the same time.
         /// </summary>
-        [JsonProperty(PropertyName = "maxJobCount")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "maxJobCount")]
         public int? MaxJobCount { get; set; }
 
         /// <summary>
         /// Gets or sets the list of Data Lake storage accounts associated
         /// with this account.
         /// </summary>
-        [JsonProperty(PropertyName = "dataLakeStoreAccounts")]
-        public IList<DataLakeStoreAccountInfo> DataLakeStoreAccounts { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "dataLakeStoreAccounts")]
+        public System.Collections.Generic.IList<DataLakeStoreAccountInfo> DataLakeStoreAccounts { get; set; }
 
         /// <summary>
         /// Gets or sets the list of Azure Blob storage accounts associated
         /// with this account.
         /// </summary>
-        [JsonProperty(PropertyName = "storageAccounts")]
-        public IList<StorageAccountInfo> StorageAccounts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of Hive metastores associated with this
-        /// account.
-        /// </summary>
-        [JsonProperty(PropertyName = "hiveMetastores")]
-        public IList<HiveMetastore> HiveMetastores { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "storageAccounts")]
+        public System.Collections.Generic.IList<StorageAccountInfo> StorageAccounts { get; set; }
 
         /// <summary>
         /// Gets the account creation time.
         /// </summary>
-        [JsonProperty(PropertyName = "creationTime")]
-        public DateTime? CreationTime { get; private set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "creationTime")]
+        public System.DateTime? CreationTime { get; private set; }
 
         /// <summary>
         /// Gets the account last modified time.
         /// </summary>
-        [JsonProperty(PropertyName = "lastModifiedTime")]
-        public DateTime? LastModifiedTime { get; private set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "lastModifiedTime")]
+        public System.DateTime? LastModifiedTime { get; private set; }
 
         /// <summary>
         /// Gets the full CName endpoint for this account.
         /// </summary>
-        [JsonProperty(PropertyName = "endpoint")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "endpoint")]
         public string Endpoint { get; private set; }
 
     }

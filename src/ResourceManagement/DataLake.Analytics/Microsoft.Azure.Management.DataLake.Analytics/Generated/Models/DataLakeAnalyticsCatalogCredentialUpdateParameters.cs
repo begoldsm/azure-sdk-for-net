@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Analytics catalog credential update parameters.
@@ -53,14 +47,14 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// access to the data source. This is required if the requester is
         /// not the account owner.
         /// </summary>
-        [JsonProperty(PropertyName = "password")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
         /// <summary>
         /// Gets or sets the new password for the credential and user with
         /// access to the data source.
         /// </summary>
-        [JsonProperty(PropertyName = "newPassword")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "newPassword")]
         public string NewPassword { get; set; }
 
         /// <summary>
@@ -68,14 +62,14 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// credential can connect to in the format
         /// &lt;hostname&gt;:&lt;port&gt;
         /// </summary>
-        [JsonProperty(PropertyName = "uri")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "uri")]
         public string Uri { get; set; }
 
         /// <summary>
         /// Gets or sets the object identifier for the user associated with
         /// this credential with access to the data source.
         /// </summary>
-        [JsonProperty(PropertyName = "userId")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "userId")]
         public string UserId { get; set; }
 
     }

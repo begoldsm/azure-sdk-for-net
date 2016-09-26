@@ -8,13 +8,7 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
-    using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
-    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store file or directory information.
@@ -34,6 +28,9 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <param name="blockSize">the block size for the file.</param>
         /// <param name="childrenNum">the number of children in the
         /// directory.</param>
+        /// <param name="expirationTime">Gets the expiration time, if any, as
+        /// ticks since the epoch. If this is set to 0 or DateTime.MaxValue
+        /// there is no expiration.</param>
         /// <param name="group">the group owner.</param>
         /// <param name="length">the number of bytes in a file.</param>
         /// <param name="modificationTime">the modification time as ticks
@@ -44,11 +41,12 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// string.</param>
         /// <param name="type">the type of the path object. Possible values
         /// include: 'FILE', 'DIRECTORY'</param>
-        public FileStatusProperties(long? accessTime = default(long?), long? blockSize = default(long?), long? childrenNum = default(long?), string group = default(string), long? length = default(long?), long? modificationTime = default(long?), string owner = default(string), string pathSuffix = default(string), string permission = default(string), FileType? type = default(FileType?))
+        public FileStatusProperties(long? accessTime = default(long?), long? blockSize = default(long?), long? childrenNum = default(long?), long? expirationTime = default(long?), string group = default(string), long? length = default(long?), long? modificationTime = default(long?), string owner = default(string), string pathSuffix = default(string), string permission = default(string), FileType? type = default(FileType?))
         {
             AccessTime = accessTime;
             BlockSize = blockSize;
             ChildrenNum = childrenNum;
+            ExpirationTime = expirationTime;
             Group = group;
             Length = length;
             ModificationTime = modificationTime;
@@ -61,62 +59,69 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets the last access time as ticks since the epoch.
         /// </summary>
-        [JsonProperty(PropertyName = "accessTime")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "accessTime")]
         public long? AccessTime { get; private set; }
 
         /// <summary>
         /// Gets the block size for the file.
         /// </summary>
-        [JsonProperty(PropertyName = "blockSize")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "blockSize")]
         public long? BlockSize { get; private set; }
 
         /// <summary>
         /// Gets the number of children in the directory.
         /// </summary>
-        [JsonProperty(PropertyName = "childrenNum")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "childrenNum")]
         public long? ChildrenNum { get; private set; }
+
+        /// <summary>
+        /// Gets the expiration time, if any, as ticks since the epoch. If
+        /// this is set to 0 or DateTime.MaxValue there is no expiration.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "expirationTime")]
+        public long? ExpirationTime { get; private set; }
 
         /// <summary>
         /// Gets the group owner.
         /// </summary>
-        [JsonProperty(PropertyName = "group")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "group")]
         public string Group { get; private set; }
 
         /// <summary>
         /// Gets the number of bytes in a file.
         /// </summary>
-        [JsonProperty(PropertyName = "length")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "length")]
         public long? Length { get; private set; }
 
         /// <summary>
         /// Gets the modification time as ticks since the epoch.
         /// </summary>
-        [JsonProperty(PropertyName = "modificationTime")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "modificationTime")]
         public long? ModificationTime { get; private set; }
 
         /// <summary>
         /// Gets the user who is the owner.
         /// </summary>
-        [JsonProperty(PropertyName = "owner")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "owner")]
         public string Owner { get; private set; }
 
         /// <summary>
         /// Gets the path suffix.
         /// </summary>
-        [JsonProperty(PropertyName = "pathSuffix")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "pathSuffix")]
         public string PathSuffix { get; private set; }
 
         /// <summary>
         /// Gets the permission represented as an string.
         /// </summary>
-        [JsonProperty(PropertyName = "permission")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "permission")]
         public string Permission { get; private set; }
 
         /// <summary>
         /// Gets the type of the path object. Possible values include: 'FILE',
         /// 'DIRECTORY'
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
         public FileType? Type { get; private set; }
 
     }

@@ -30,7 +30,9 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         
         #region Private
         private List<UploadProgress> _fileProgress;
+
         private ConcurrentQueue<UploadProgress> _progressBacklog;
+
         #endregion
 
         #region Constructor
@@ -57,13 +59,19 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
 
             foreach (var fileMetadata in metadata.Files)
             {
+                var toAdd = new UploadProgress(fileMetadata);
                 if (fileMetadata.Status == SegmentUploadStatus.Complete)
                 {
                     this.UploadedByteCount += fileMetadata.FileLength;
                     this.UploadedFileCount++;
+                    toAdd.UploadedByteCount = toAdd.TotalFileLength;
+                    foreach(var segment in toAdd._segmentProgress)
+                    {
+                        segment.UploadedByteCount = segment.Length;
+                    }
                 }
 
-                _fileProgress.Add(new UploadProgress(fileMetadata));
+                _fileProgress.Add(toAdd);
             }
         }
 
@@ -120,6 +128,14 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         public long UploadedFileCount { get; private set; }
 
         /// <summary>
+        /// Gets the count of files that failed.
+        /// </summary>
+        /// <value>
+        /// The failed file count.
+        /// </value>
+        public long FailedFileCount { get; private set; }
+
+        /// <summary>
         /// Gets the upload progress for a particular file.
         /// </summary>
         /// <param name="segmentNumber">The sequence number of the file to retrieve information for</param>
@@ -135,12 +151,33 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         }
 
         /// <summary>
+        /// Updates the progress to indicate that a file failed
+        /// </summary>
+        internal void OnFileUploadThreadAborted(UploadMetadata failedFile)
+        {
+            ++this.FailedFileCount;
+            
+            var previousProgress = _fileProgress.Where(p => p.UploadId.Equals(failedFile.UploadId, StringComparison.InvariantCultureIgnoreCase)).First();
+            foreach (var segment in previousProgress._segmentProgress)
+            {
+                // only fail out segments that haven't been completed.
+                if (segment.Length != segment.UploadedByteCount)
+                {
+                    segment.IsFailed = true;
+                }
+
+                previousProgress.SetSegmentProgress(segment);
+            }
+            
+        }
+
+        /// <summary>
         /// Updates the progress while there is still progress to update.
         /// </summary>
         private void SetSegmentProgress(CancellationToken token)
         {
             UploadProgress segmentProgress;
-            while (this.UploadedFileCount != this.TotalFileCount)
+            while (this.UploadedFileCount + this.FailedFileCount < this.TotalFileCount)
             {
                 token.ThrowIfCancellationRequested();
                 if(_progressBacklog.TryDequeue(out segmentProgress))
@@ -154,7 +191,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                     // check to see if this upload is complete and that we haven't already marked it as complete
                     if (segmentProgress.UploadedByteCount == segmentProgress.TotalFileLength && deltaLength > 0)
                     {
-                        this.UploadedFileCount++;
+                        ++this.UploadedFileCount;
                     }
 
                     // Iterate through all the segments inside this upload we are setting to get them up-to-date
