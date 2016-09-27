@@ -291,6 +291,46 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// </exception>
         System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse> DeleteCredentialWithHttpMessagesAsync(string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Retrieves the list of credentials from the Data Lake Analytics
+        /// catalog.
+        /// </summary>
+        /// <param name='accountName'>
+        /// The Azure Data Lake Analytics account to execute catalog
+        /// operations on.
+        /// </param>
+        /// <param name='databaseName'>
+        /// The name of the database containing the schema.
+        /// </param>
+        /// <param name='odataQuery'>
+        /// OData parameters to apply to the operation.
+        /// </param>
+        /// <param name='select'>
+        /// OData Select statement. Limits the properties on each entry to
+        /// just those requested, e.g.
+        /// Categories?$select=CategoryName,Description. Optional.
+        /// </param>
+        /// <param name='count'>
+        /// The Boolean value of true or false to request a count of the
+        /// matching resources included with the resources in the response,
+        /// e.g. Categories?$count=true. Optional.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.Azure.CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse<Microsoft.Rest.Azure.IPage<USqlCredential>>> ListCredentialsWithHttpMessagesAsync(string accountName, string databaseName, Microsoft.Rest.Azure.OData.ODataQuery<USqlCredential> odataQuery = default(Microsoft.Rest.Azure.OData.ODataQuery<USqlCredential>), string select = default(string), bool? count = default(bool?), System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Retrieves the specified external data source from the Data Lake
         /// Analytics catalog.
         /// </summary>
@@ -1146,6 +1186,29 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// Thrown when a required parameter is null
         /// </exception>
         System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse<Microsoft.Rest.Azure.IPage<USqlDatabase>>> ListDatabasesWithHttpMessagesAsync(string accountName, Microsoft.Rest.Azure.OData.ODataQuery<USqlDatabase> odataQuery = default(Microsoft.Rest.Azure.OData.ODataQuery<USqlDatabase>), string select = default(string), bool? count = default(bool?), System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Retrieves the list of credentials from the Data Lake Analytics
+        /// catalog.
+        /// </summary>
+        /// <param name='nextPageLink'>
+        /// The NextLink from the previous successful call to List operation.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.Azure.CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        System.Threading.Tasks.Task<Microsoft.Rest.Azure.AzureOperationResponse<Microsoft.Rest.Azure.IPage<USqlCredential>>> ListCredentialsNextWithHttpMessagesAsync(string nextPageLink, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>> customHeaders = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Retrieves the list of external data sources from the Data Lake
         /// Analytics catalog.
