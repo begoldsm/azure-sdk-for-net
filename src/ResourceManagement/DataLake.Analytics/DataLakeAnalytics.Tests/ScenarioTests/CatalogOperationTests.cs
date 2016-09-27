@@ -221,15 +221,13 @@ namespace DataLakeAnalytics.Tests
                     Assert.NotNull(secretGetResponse.Name);
 
                     // Get the Credential list
-                    // TODO: enable when list support exists.
-                    /*
                     var credListResponse = clientToUse.Catalog.ListCredentials(
                         commonData.SecondDataLakeAnalyticsAccountName,
                         commonData.DatabaseName);
                     Assert.True(credListResponse.Count() >= 1);
                     // look for the credential we created
                     Assert.True(credListResponse.Any(cred => cred.Name.Equals(commonData.CredentialName)));
-                    */
+                    
 
                     // Get the specific credential as well
                     var credGetResponse = clientToUse.Catalog.GetCredential(
