@@ -432,7 +432,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The parameters to delete a credential if the current user is not the
             /// account owner.
             /// </param>
-            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters)
+            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters))
             {
                 System.Threading.Tasks.Task.Factory.StartNew(s => ((ICatalogOperations)s).DeleteCredentialAsync(accountName, databaseName, credentialName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
@@ -459,7 +459,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async System.Threading.Tasks.Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            public static async System.Threading.Tasks.Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
                 await operations.DeleteCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
