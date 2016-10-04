@@ -32,13 +32,23 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// run based on the script</param>
         /// <param name="executedStatementCount">the number of statements that
         /// have been run based on the script</param>
-        public HiveJobProperties(string script, string runtimeVersion = default(string), string logsLocation = default(string), string outputLocation = default(string), int? statementCount = default(int?), int? executedStatementCount = default(int?))
+        /// <param name="configurations">the value of custom
+        /// configurations.</param>
+        /// <param name="sessionHandle">GUID string, used to locate the
+        /// aggregated yarn logs, including HiveServer2 and HiveMetastore
+        /// logs and Tez AM logs.</param>
+        /// <param name="tezApplicationId">Tez application Id, the client can
+        /// use ATS API to get DAG info</param>
+        public HiveJobProperties(string script, string runtimeVersion = default(string), string logsLocation = default(string), string outputLocation = default(string), int? statementCount = default(int?), int? executedStatementCount = default(int?), System.Collections.Generic.IDictionary<string, string> configurations = default(System.Collections.Generic.IDictionary<string, string>), string sessionHandle = default(string), string tezApplicationId = default(string))
             : base(script, runtimeVersion)
         {
             LogsLocation = logsLocation;
             OutputLocation = outputLocation;
             StatementCount = statementCount;
             ExecutedStatementCount = executedStatementCount;
+            Configurations = configurations;
+            SessionHandle = sessionHandle;
+            TezApplicationId = tezApplicationId;
         }
 
         /// <summary>
@@ -66,6 +76,25 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [Newtonsoft.Json.JsonProperty(PropertyName = "executedStatementCount")]
         public int? ExecutedStatementCount { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the value of custom configurations.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "configurations")]
+        public System.Collections.Generic.IDictionary<string, string> Configurations { get; set; }
+
+        /// <summary>
+        /// Gets GUID string, used to locate the aggregated yarn logs,
+        /// including HiveServer2 and HiveMetastore logs and Tez AM logs.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "sessionHandle")]
+        public string SessionHandle { get; private set; }
+
+        /// <summary>
+        /// Gets tez application Id, the client can use ATS API to get DAG info
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "tezApplicationId")]
+        public string TezApplicationId { get; private set; }
 
         /// <summary>
         /// Validate the object.

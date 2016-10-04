@@ -9,7 +9,7 @@ set autoRestVersion=0.17.0-Nightly20160912
 set source=-Source https://www.myget.org/F/autorest/api/v2
 
 set accountSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/hive/arm-datalake-analytics/account/2016-11-01/swagger/account.json"
-set jobSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/master/arm-datalake-analytics/job/2016-11-01/swagger/job.json"
+set jobSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/hive/arm-datalake-analytics/job/2016-11-01/swagger/job.json"
 set catalogSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/master/arm-datalake-analytics/catalog/2016-11-01/swagger/catalog.json"
 
 set repoRoot=%~dp0..\..\..\..
