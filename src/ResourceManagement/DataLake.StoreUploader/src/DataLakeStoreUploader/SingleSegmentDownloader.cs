@@ -189,17 +189,15 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                                 lengthToDownload = lengthRemaining;
                             }
 
-                            // we need to validate how many bytes have actually been copied to the read stream
-                            var preCopyOffset = outputStream.Position;
-
                             using (var readStream = _frontEnd.ReadStream(_metadata.InputFilePath, curOffset, lengthToDownload, _metadata.IsDownload))
                             {
                                 readStream.CopyTo(outputStream, (int)lengthToDownload);
                             }
 
-                            if (outputStream.Position - preCopyOffset != lengthToDownload)
+                            // we need to validate how many bytes have actually been copied to the read stream
+                            if (outputStream.Position - curOffset != lengthToDownload)
                             {
-                                throw new UploadFailedException(string.Format("Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}", lengthToDownload, outputStream.Position - preCopyOffset));
+                                throw new UploadFailedException(string.Format("Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}", lengthToDownload, outputStream.Position - curOffset));
                             }
 
                             downloadCompleted = true;
