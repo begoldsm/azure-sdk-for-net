@@ -950,6 +950,9 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
             {
                 segmentProgressTracker = segmentProgressTracker ?? CreateSegmentProgressTracker(metadata);
 
+                // ensure the full folder to the target file exists before attempting to create the target file.
+                Directory.CreateDirectory(Path.GetDirectoryName(metadata.TargetStreamPath));
+
                 if (metadata.SegmentCount == 0)
                 {
                     // simply create the target stream, overwriting existing streams if they exist
