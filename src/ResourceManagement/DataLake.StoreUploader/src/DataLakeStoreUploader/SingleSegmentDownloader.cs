@@ -197,7 +197,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                             // we need to validate how many bytes have actually been copied to the read stream
                             if (outputStream.Position - curOffset != lengthToDownload)
                             {
-                                throw new UploadFailedException(string.Format("Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}", lengthToDownload, outputStream.Position - curOffset));
+                                throw new UploadFailedException(string.Format("{4}: Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}. From offset: {2} in remote file: {3}", lengthToDownload, outputStream.Position - curOffset, curOffset, _metadata.InputFilePath, DateTime.Now.ToString()));
                             }
 
                             downloadCompleted = true;
