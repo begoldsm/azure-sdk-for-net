@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog U-SQL type item.
@@ -49,7 +55,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// is a table type.</param>
         /// <param name="isComplexType">the the switch indicating if this type
         /// is a complex type.</param>
-        public USqlType(string computeAccountName = default(string), System.Guid? version = default(System.Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), string typeFamily = default(string), string cSharpName = default(string), string fullCSharpName = default(string), int? systemTypeId = default(int?), int? userTypeId = default(int?), int? schemaId = default(int?), int? principalId = default(int?), bool? isNullable = default(bool?), bool? isUserDefined = default(bool?), bool? isAssemblyType = default(bool?), bool? isTableType = default(bool?), bool? isComplexType = default(bool?))
+        public USqlType(string computeAccountName = default(string), Guid? version = default(Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), string typeFamily = default(string), string cSharpName = default(string), string fullCSharpName = default(string), int? systemTypeId = default(int?), int? userTypeId = default(int?), int? schemaId = default(int?), int? principalId = default(int?), bool? isNullable = default(bool?), bool? isUserDefined = default(bool?), bool? isAssemblyType = default(bool?), bool? isTableType = default(bool?), bool? isComplexType = default(bool?))
             : base(computeAccountName, version)
         {
             DatabaseName = databaseName;
@@ -72,96 +78,96 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the database.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "databaseName")]
+        [JsonProperty(PropertyName = "databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the schema associated with this table and
         /// database.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "schemaName")]
+        [JsonProperty(PropertyName = "schemaName")]
         public string SchemaName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of type for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "typeName")]
+        [JsonProperty(PropertyName = "typeName")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the type family for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "typeFamily")]
+        [JsonProperty(PropertyName = "typeFamily")]
         public string TypeFamily { get; set; }
 
         /// <summary>
         /// Gets or sets the C# name for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "cSharpName")]
+        [JsonProperty(PropertyName = "cSharpName")]
         public string CSharpName { get; set; }
 
         /// <summary>
         /// Gets or sets the fully qualified C# name for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "fullCSharpName")]
+        [JsonProperty(PropertyName = "fullCSharpName")]
         public string FullCSharpName { get; set; }
 
         /// <summary>
         /// Gets or sets the system type ID for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "systemTypeId")]
+        [JsonProperty(PropertyName = "systemTypeId")]
         public int? SystemTypeId { get; set; }
 
         /// <summary>
         /// Gets or sets the user type ID for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "userTypeId")]
+        [JsonProperty(PropertyName = "userTypeId")]
         public int? UserTypeId { get; set; }
 
         /// <summary>
         /// Gets or sets the schema ID for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "schemaId")]
+        [JsonProperty(PropertyName = "schemaId")]
         public int? SchemaId { get; set; }
 
         /// <summary>
         /// Gets or sets the principal ID for this type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "principalId")]
+        [JsonProperty(PropertyName = "principalId")]
         public int? PrincipalId { get; set; }
 
         /// <summary>
         /// Gets or sets the the switch indicating if this type is nullable.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isNullable")]
+        [JsonProperty(PropertyName = "isNullable")]
         public bool? IsNullable { get; set; }
 
         /// <summary>
         /// Gets or sets the the switch indicating if this type is user
         /// defined.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isUserDefined")]
+        [JsonProperty(PropertyName = "isUserDefined")]
         public bool? IsUserDefined { get; set; }
 
         /// <summary>
         /// Gets or sets the the switch indicating if this type is an assembly
         /// type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isAssemblyType")]
+        [JsonProperty(PropertyName = "isAssemblyType")]
         public bool? IsAssemblyType { get; set; }
 
         /// <summary>
         /// Gets or sets the the switch indicating if this type is a table
         /// type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isTableType")]
+        [JsonProperty(PropertyName = "isTableType")]
         public bool? IsTableType { get; set; }
 
         /// <summary>
         /// Gets or sets the the switch indicating if this type is a complex
         /// type.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isComplexType")]
+        [JsonProperty(PropertyName = "isComplexType")]
         public bool? IsComplexType { get; set; }
 
     }

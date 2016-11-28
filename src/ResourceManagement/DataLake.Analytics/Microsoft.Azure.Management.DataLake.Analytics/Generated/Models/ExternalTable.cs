@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog external table item.
@@ -37,13 +43,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets the name of the table associated with this database
         /// and schema.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tableName")]
+        [JsonProperty(PropertyName = "tableName")]
         public string TableName { get; set; }
 
         /// <summary>
         /// Gets or sets the data source associated with this external table.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "dataSource")]
+        [JsonProperty(PropertyName = "dataSource")]
         public EntityId DataSource { get; set; }
 
     }

@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Error diagnostic information for failed jobs.
@@ -45,38 +51,38 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets the column where the error occured.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "columnNumber")]
+        [JsonProperty(PropertyName = "columnNumber")]
         public int? ColumnNumber { get; private set; }
 
         /// <summary>
         /// Gets the ending index of the error.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "end")]
+        [JsonProperty(PropertyName = "end")]
         public int? End { get; private set; }
 
         /// <summary>
         /// Gets the line number the error occured on.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "lineNumber")]
+        [JsonProperty(PropertyName = "lineNumber")]
         public int? LineNumber { get; private set; }
 
         /// <summary>
         /// Gets the error message.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+        [JsonProperty(PropertyName = "message")]
         public string Message { get; private set; }
 
         /// <summary>
         /// Gets the severity of the error. Possible values include:
         /// 'Warning', 'Error', 'Info'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "severity")]
+        [JsonProperty(PropertyName = "severity")]
         public SeverityTypes? Severity { get; private set; }
 
         /// <summary>
         /// Gets the starting index of the error.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "start")]
+        [JsonProperty(PropertyName = "start")]
         public int? Start { get; private set; }
 
     }

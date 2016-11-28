@@ -8,14 +8,20 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A WebHDFS exception thrown indicating that one more arguments is
     /// incorrect. Thrown when a 400 error response code is returned (bad
     /// request).
     /// </summary>
-    [Newtonsoft.Json.JsonObject("IllegalArgumentException")]
+    [JsonObject("IllegalArgumentException")]
     public partial class AdlsIllegalArgumentException : AdlsRemoteException
     {
         /// <summary>

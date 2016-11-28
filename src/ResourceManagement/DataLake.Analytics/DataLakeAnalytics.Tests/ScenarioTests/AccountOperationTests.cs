@@ -47,32 +47,26 @@ namespace DataLakeAnalytics.Tests
                             DefaultDataLakeStoreAccount = commonData.DataLakeStoreAccountName,
                             DataLakeStoreAccounts = new List<DataLakeStoreAccountInfo>
                             {
-                                DefaultDataLakeStoreAccount = commonData.DataLakeStoreAccountName,
-                                /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
-                                ActiveHiveMetastore = commonData.Metastore1Name,
-                                HiveMetastores = new List<HiveMetastore>
+                                new DataLakeStoreAccountInfo(commonData.DataLakeStoreAccountName)
+                            },
+                            /* TODO: re-add this when we can dynamically create a metastore instead of hardcoding one, with credentials.
+                            ActiveHiveMetastore = commonData.Metastore1Name,
+                            HiveMetastores = new List<HiveMetastore>
+                            {
+                                new HiveMetastore
                                 {
-                                    new HiveMetastore
+                                    Name = commonData.Metastore1Name,
+                                    Properties = new HiveMetaStoreProperties
                                     {
-                                        Name = commonData.Metastore1Name,
-                                        Properties = new HiveMetaStoreProperties
-                                        {
-                                            DatabaseName = commonData.Metastore1,
-                                            UserName = commonData.Login,
-                                            Password = commonData.HivePwd,
-                                            ServerUri = commonData.MetastoreServer,
-                                            RuntimeVersion = commonData.MetastoreVersion
-                                        }
-
+                                        DatabaseName = commonData.Metastore1,
+                                        UserName = commonData.Login,
+                                        Password = commonData.HivePwd,
+                                        ServerUri = commonData.MetastoreServer,
+                                        RuntimeVersion = commonData.MetastoreVersion
                                     }
-                                }, */
-                                DataLakeStoreAccounts = new List<DataLakeStoreAccountInfo>
-                                {
-                                    Name = commonData.DataLakeStoreAccountName,
-                                    Suffix = commonData.DataLakeStoreAccountSuffix
+
                                 }
-                            }
-                            ,
+                            }, */
                             Tags = new Dictionary<string, string>
                             {
                                 { "testkey","testvalue" }
@@ -183,8 +177,8 @@ namespace DataLakeAnalytics.Tests
                 clientToUse.DataLakeStoreAccounts.Add(
                     commonData.ResourceGroupName,
                     commonData.DataLakeAnalyticsAccountName,
-                    commonData.SecondDataLakeStoreAccountName, 
-                    new AddDataLakeStoreParameters {Suffix = commonData.DataLakeStoreAccountSuffix});
+                    commonData.SecondDataLakeStoreAccountName,
+                    new AddDataLakeStoreParameters(suffix: commonData.DataLakeStoreAccountSuffix));
 
                 // verify that the store account does exist now
                 Assert.True(clientToUse.Account.DataLakeStoreAccountExists(commonData.ResourceGroupName, commonData.DataLakeAnalyticsAccountName, commonData.SecondDataLakeStoreAccountName));

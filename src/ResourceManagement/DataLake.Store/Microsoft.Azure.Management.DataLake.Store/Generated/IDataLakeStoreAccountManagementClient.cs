@@ -8,6 +8,12 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
     using Microsoft.Rest;
     using Microsoft.Rest.Azure;
     using Models;
@@ -15,27 +21,27 @@ namespace Microsoft.Azure.Management.DataLake.Store
     /// <summary>
     /// Creates an Azure Data Lake Store account management client.
     /// </summary>
-    public partial interface IDataLakeStoreAccountManagementClient : System.IDisposable
+    public partial interface IDataLakeStoreAccountManagementClient : IDisposable
     {
         /// <summary>
         /// The base URI of the service.
         /// </summary>
-        System.Uri BaseUri { get; set; }
+        Uri BaseUri { get; set; }
 
         /// <summary>
         /// Gets or sets json serialization settings.
         /// </summary>
-        Newtonsoft.Json.JsonSerializerSettings SerializationSettings { get; }
+        JsonSerializerSettings SerializationSettings { get; }
 
         /// <summary>
         /// Gets or sets json deserialization settings.
         /// </summary>
-        Newtonsoft.Json.JsonSerializerSettings DeserializationSettings { get; }
+        JsonSerializerSettings DeserializationSettings { get; }
 
         /// <summary>
         /// Credentials needed for the client to connect to Azure.
         /// </summary>
-        Microsoft.Rest.ServiceClientCredentials Credentials { get; }
+        ServiceClientCredentials Credentials { get; }
 
         /// <summary>
         /// Gets subscription credentials which uniquely identify Microsoft

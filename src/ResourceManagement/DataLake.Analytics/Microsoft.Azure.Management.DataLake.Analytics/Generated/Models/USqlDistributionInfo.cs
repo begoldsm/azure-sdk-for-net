@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog U-SQL distribution information object.
@@ -30,7 +36,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// distribution.</param>
         /// <param name="dynamicCount">the dynamic count of indices using this
         /// distribution.</param>
-        public USqlDistributionInfo(int? type = default(int?), System.Collections.Generic.IList<USqlDirectedColumn> keys = default(System.Collections.Generic.IList<USqlDirectedColumn>), int? count = default(int?), int? dynamicCount = default(int?))
+        public USqlDistributionInfo(int? type = default(int?), IList<USqlDirectedColumn> keys = default(IList<USqlDirectedColumn>), int? count = default(int?), int? dynamicCount = default(int?))
         {
             Type = type;
             Keys = keys;
@@ -41,25 +47,25 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the type of this distribution.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public int? Type { get; set; }
 
         /// <summary>
         /// Gets or sets the list of directed columns in the distribution
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "keys")]
-        public System.Collections.Generic.IList<USqlDirectedColumn> Keys { get; set; }
+        [JsonProperty(PropertyName = "keys")]
+        public IList<USqlDirectedColumn> Keys { get; set; }
 
         /// <summary>
         /// Gets or sets the count of indices using this distribution.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "count")]
+        [JsonProperty(PropertyName = "count")]
         public int? Count { get; set; }
 
         /// <summary>
         /// Gets or sets the dynamic count of indices using this distribution.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "dynamicCount")]
+        [JsonProperty(PropertyName = "dynamicCount")]
         public int? DynamicCount { get; set; }
 
     }

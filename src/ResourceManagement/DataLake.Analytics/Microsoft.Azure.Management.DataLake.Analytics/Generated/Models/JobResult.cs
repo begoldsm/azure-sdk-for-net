@@ -8,20 +8,23 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for JobResult.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum JobResult
     {
-        [System.Runtime.Serialization.EnumMember(Value = "None")]
+        [EnumMember(Value = "None")]
         None,
-        [System.Runtime.Serialization.EnumMember(Value = "Succeeded")]
+        [EnumMember(Value = "Succeeded")]
         Succeeded,
-        [System.Runtime.Serialization.EnumMember(Value = "Cancelled")]
+        [EnumMember(Value = "Cancelled")]
         Cancelled,
-        [System.Runtime.Serialization.EnumMember(Value = "Failed")]
+        [EnumMember(Value = "Failed")]
         Failed
     }
 }

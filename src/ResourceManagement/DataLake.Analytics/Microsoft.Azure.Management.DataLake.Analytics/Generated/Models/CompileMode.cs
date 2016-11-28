@@ -8,18 +8,21 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for CompileMode.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum CompileMode
     {
-        [System.Runtime.Serialization.EnumMember(Value = "Semantic")]
+        [EnumMember(Value = "Semantic")]
         Semantic,
-        [System.Runtime.Serialization.EnumMember(Value = "Full")]
+        [EnumMember(Value = "Full")]
         Full,
-        [System.Runtime.Serialization.EnumMember(Value = "SingleBox")]
+        [EnumMember(Value = "SingleBox")]
         SingleBox
     }
 }

@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store filesystem exception based on the WebHDFS definition
@@ -40,14 +46,14 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// Gets the full class package name for the exception thrown, such as
         /// 'java.lang.IllegalArgumentException'.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "javaClassName")]
+        [JsonProperty(PropertyName = "javaClassName")]
         public string JavaClassName { get; private set; }
 
         /// <summary>
         /// Gets the message associated with the exception that was thrown,
         /// such as 'Invalid value for webhdfs parameter "permission":...'.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+        [JsonProperty(PropertyName = "message")]
         public string Message { get; private set; }
 
     }

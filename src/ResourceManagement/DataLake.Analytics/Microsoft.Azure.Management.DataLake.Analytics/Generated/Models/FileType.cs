@@ -8,16 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for FileType.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum FileType
     {
-        [System.Runtime.Serialization.EnumMember(Value = "Assembly")]
+        [EnumMember(Value = "Assembly")]
         Assembly,
-        [System.Runtime.Serialization.EnumMember(Value = "Resource")]
+        [EnumMember(Value = "Resource")]
         Resource
     }
 }

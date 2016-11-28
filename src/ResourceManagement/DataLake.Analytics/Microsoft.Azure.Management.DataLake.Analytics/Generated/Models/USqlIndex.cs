@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog U-SQL table index item.
@@ -41,7 +47,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// table.</param>
         /// <param name="isUnique">the switch indicating if this index is a
         /// unique index.</param>
-        public USqlIndex(string name = default(string), System.Collections.Generic.IList<USqlDirectedColumn> indexKeys = default(System.Collections.Generic.IList<USqlDirectedColumn>), System.Collections.Generic.IList<string> columns = default(System.Collections.Generic.IList<string>), USqlDistributionInfo distributionInfo = default(USqlDistributionInfo), System.Guid? partitionFunction = default(System.Guid?), System.Collections.Generic.IList<string> partitionKeyList = default(System.Collections.Generic.IList<string>), System.Collections.Generic.IList<string> streamNames = default(System.Collections.Generic.IList<string>), bool? isColumnstore = default(bool?), int? indexId = default(int?), bool? isUnique = default(bool?))
+        public USqlIndex(string name = default(string), IList<USqlDirectedColumn> indexKeys = default(IList<USqlDirectedColumn>), IList<string> columns = default(IList<string>), USqlDistributionInfo distributionInfo = default(USqlDistributionInfo), Guid? partitionFunction = default(Guid?), IList<string> partitionKeyList = default(IList<string>), IList<string> streamNames = default(IList<string>), bool? isColumnstore = default(bool?), int? indexId = default(int?), bool? isUnique = default(bool?))
         {
             Name = name;
             IndexKeys = indexKeys;
@@ -58,63 +64,63 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the index in the table.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the list of directed columns in the index
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "indexKeys")]
-        public System.Collections.Generic.IList<USqlDirectedColumn> IndexKeys { get; set; }
+        [JsonProperty(PropertyName = "indexKeys")]
+        public IList<USqlDirectedColumn> IndexKeys { get; set; }
 
         /// <summary>
         /// Gets or sets the list of columns in the index
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "columns")]
-        public System.Collections.Generic.IList<string> Columns { get; set; }
+        [JsonProperty(PropertyName = "columns")]
+        public IList<string> Columns { get; set; }
 
         /// <summary>
         /// Gets or sets the distributions info of the index
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "distributionInfo")]
+        [JsonProperty(PropertyName = "distributionInfo")]
         public USqlDistributionInfo DistributionInfo { get; set; }
 
         /// <summary>
         /// Gets or sets partition function ID for the index.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "partitionFunction")]
-        public System.Guid? PartitionFunction { get; set; }
+        [JsonProperty(PropertyName = "partitionFunction")]
+        public Guid? PartitionFunction { get; set; }
 
         /// <summary>
         /// Gets or sets the list of partion keys in the index
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "partitionKeyList")]
-        public System.Collections.Generic.IList<string> PartitionKeyList { get; set; }
+        [JsonProperty(PropertyName = "partitionKeyList")]
+        public IList<string> PartitionKeyList { get; set; }
 
         /// <summary>
         /// Gets or sets the list of full paths to the streams that contain
         /// this index in the DataLake account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "streamNames")]
-        public System.Collections.Generic.IList<string> StreamNames { get; set; }
+        [JsonProperty(PropertyName = "streamNames")]
+        public IList<string> StreamNames { get; set; }
 
         /// <summary>
         /// Gets or sets the switch indicating if this index is a columnstore
         /// index.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isColumnstore")]
+        [JsonProperty(PropertyName = "isColumnstore")]
         public bool? IsColumnstore { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of this index within the table.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "indexId")]
+        [JsonProperty(PropertyName = "indexId")]
         public int? IndexId { get; set; }
 
         /// <summary>
         /// Gets or sets the switch indicating if this index is a unique index.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "isUnique")]
+        [JsonProperty(PropertyName = "isUnique")]
         public bool? IsUnique { get; set; }
 
     }

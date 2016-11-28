@@ -8,18 +8,21 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for SeverityTypes.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SeverityTypes
     {
-        [System.Runtime.Serialization.EnumMember(Value = "Warning")]
+        [EnumMember(Value = "Warning")]
         Warning,
-        [System.Runtime.Serialization.EnumMember(Value = "Error")]
+        [EnumMember(Value = "Error")]
         Error,
-        [System.Runtime.Serialization.EnumMember(Value = "Info")]
+        [EnumMember(Value = "Info")]
         Info
     }
 }

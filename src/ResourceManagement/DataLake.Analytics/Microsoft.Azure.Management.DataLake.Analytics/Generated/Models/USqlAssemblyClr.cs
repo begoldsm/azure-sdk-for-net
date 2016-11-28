@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog U-SQL assembly CLR item.
@@ -29,7 +35,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="databaseName">the name of the database.</param>
         /// <param name="name">the name of the assembly.</param>
         /// <param name="clrName">the name of the CLR.</param>
-        public USqlAssemblyClr(string computeAccountName = default(string), System.Guid? version = default(System.Guid?), string databaseName = default(string), string name = default(string), string clrName = default(string))
+        public USqlAssemblyClr(string computeAccountName = default(string), Guid? version = default(Guid?), string databaseName = default(string), string name = default(string), string clrName = default(string))
             : base(computeAccountName, version)
         {
             DatabaseName = databaseName;
@@ -40,19 +46,19 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the database.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "databaseName")]
+        [JsonProperty(PropertyName = "databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the assembly.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "assemblyClrName")]
+        [JsonProperty(PropertyName = "assemblyClrName")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the CLR.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "clrName")]
+        [JsonProperty(PropertyName = "clrName")]
         public string ClrName { get; set; }
 
     }

@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog item.
@@ -26,7 +32,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="computeAccountName">the name of the Data Lake
         /// Analytics account.</param>
         /// <param name="version">the version of the catalog item.</param>
-        public CatalogItem(string computeAccountName = default(string), System.Guid? version = default(System.Guid?))
+        public CatalogItem(string computeAccountName = default(string), Guid? version = default(Guid?))
         {
             ComputeAccountName = computeAccountName;
             Version = version;
@@ -35,14 +41,14 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the Data Lake Analytics account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "computeAccountName")]
+        [JsonProperty(PropertyName = "computeAccountName")]
         public string ComputeAccountName { get; set; }
 
         /// <summary>
         /// Gets or sets the version of the catalog item.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "version")]
-        public System.Guid? Version { get; set; }
+        [JsonProperty(PropertyName = "version")]
+        public Guid? Version { get; set; }
 
     }
 }

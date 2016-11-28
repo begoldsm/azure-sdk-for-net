@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A WebHDFS exception thrown indicating the file or folder already
     /// exists. Thrown when a 403 error response code is returned (forbidden).
     /// </summary>
-    [Newtonsoft.Json.JsonObject("FileAlreadyExistsException")]
+    [JsonObject("FileAlreadyExistsException")]
     public partial class AdlsFileAlreadyExistsException : AdlsRemoteException
     {
         /// <summary>

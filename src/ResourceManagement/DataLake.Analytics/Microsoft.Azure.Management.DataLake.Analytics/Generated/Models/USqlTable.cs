@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics catalog U-SQL table item.
@@ -38,7 +44,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// table.</param>
         /// <param name="distributionInfo">the distributions info of the
         /// table</param>
-        public USqlTable(string computeAccountName = default(string), System.Guid? version = default(System.Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), System.Collections.Generic.IList<USqlTableColumn> columnList = default(System.Collections.Generic.IList<USqlTableColumn>), System.Collections.Generic.IList<USqlIndex> indexList = default(System.Collections.Generic.IList<USqlIndex>), System.Collections.Generic.IList<string> partitionKeyList = default(System.Collections.Generic.IList<string>), ExternalTable externalTable = default(ExternalTable), USqlDistributionInfo distributionInfo = default(USqlDistributionInfo))
+        public USqlTable(string computeAccountName = default(string), Guid? version = default(Guid?), string databaseName = default(string), string schemaName = default(string), string name = default(string), IList<USqlTableColumn> columnList = default(IList<USqlTableColumn>), IList<USqlIndex> indexList = default(IList<USqlIndex>), IList<string> partitionKeyList = default(IList<string>), ExternalTable externalTable = default(ExternalTable), USqlDistributionInfo distributionInfo = default(USqlDistributionInfo))
             : base(computeAccountName, version)
         {
             DatabaseName = databaseName;
@@ -54,50 +60,50 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the database.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "databaseName")]
+        [JsonProperty(PropertyName = "databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the schema associated with this table and
         /// database.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "schemaName")]
+        [JsonProperty(PropertyName = "schemaName")]
         public string SchemaName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tableName")]
+        [JsonProperty(PropertyName = "tableName")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the list of columns in this table
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "columnList")]
-        public System.Collections.Generic.IList<USqlTableColumn> ColumnList { get; set; }
+        [JsonProperty(PropertyName = "columnList")]
+        public IList<USqlTableColumn> ColumnList { get; set; }
 
         /// <summary>
         /// Gets or sets the list of indices in this table
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "indexList")]
-        public System.Collections.Generic.IList<USqlIndex> IndexList { get; set; }
+        [JsonProperty(PropertyName = "indexList")]
+        public IList<USqlIndex> IndexList { get; set; }
 
         /// <summary>
         /// Gets or sets the list of partition keys in the table
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "partitionKeyList")]
-        public System.Collections.Generic.IList<string> PartitionKeyList { get; set; }
+        [JsonProperty(PropertyName = "partitionKeyList")]
+        public IList<string> PartitionKeyList { get; set; }
 
         /// <summary>
         /// Gets or sets the external table associated with the table.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "externalTable")]
+        [JsonProperty(PropertyName = "externalTable")]
         public ExternalTable ExternalTable { get; set; }
 
         /// <summary>
         /// Gets or sets the distributions info of the table
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "distributionInfo")]
+        [JsonProperty(PropertyName = "distributionInfo")]
         public USqlDistributionInfo DistributionInfo { get; set; }
 
     }

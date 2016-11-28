@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The Data Lake Analytics job resources.
@@ -39,13 +45,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the name of the resource.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the path to the resource.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "resourcePath")]
+        [JsonProperty(PropertyName = "resourcePath")]
         public string ResourcePath { get; set; }
 
         /// <summary>
@@ -54,7 +60,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'VertexResourceInUserFolder', 'JobManagerResourceInUserFolder',
         /// 'StatisticsResourceInUserFolder'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public JobResourceType? Type { get; set; }
 
     }

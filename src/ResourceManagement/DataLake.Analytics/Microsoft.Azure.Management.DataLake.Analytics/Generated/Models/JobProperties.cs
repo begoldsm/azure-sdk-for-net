@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The common Data Lake Analytics job properties.
@@ -37,26 +43,26 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets the runtime version of the Data Lake Analytics engine
         /// to use for the specific type of job being run.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "runtimeVersion")]
+        [JsonProperty(PropertyName = "runtimeVersion")]
         public string RuntimeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the script to run
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "script")]
+        [JsonProperty(PropertyName = "script")]
         public string Script { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (Script == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Script");
+                throw new ValidationException(ValidationRules.CannotBeNull, "Script");
             }
         }
     }

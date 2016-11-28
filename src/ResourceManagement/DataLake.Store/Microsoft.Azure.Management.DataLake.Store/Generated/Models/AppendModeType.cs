@@ -8,14 +8,17 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for AppendModeType.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AppendModeType
     {
-        [System.Runtime.Serialization.EnumMember(Value = "autocreate")]
+        [EnumMember(Value = "autocreate")]
         Autocreate
     }
 }

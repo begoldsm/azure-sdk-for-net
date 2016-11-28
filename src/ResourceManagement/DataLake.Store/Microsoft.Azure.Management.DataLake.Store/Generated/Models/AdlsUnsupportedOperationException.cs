@@ -8,14 +8,20 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A WebHDFS exception thrown indicating that the requested operation is
     /// not supported. Thrown when a 400 error response code is returned (bad
     /// request).
     /// </summary>
-    [Newtonsoft.Json.JsonObject("UnsupportedOperationException")]
+    [JsonObject("UnsupportedOperationException")]
     public partial class AdlsUnsupportedOperationException : AdlsRemoteException
     {
         /// <summary>

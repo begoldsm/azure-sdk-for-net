@@ -8,16 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for EncryptionConfigType.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum EncryptionConfigType
     {
-        [System.Runtime.Serialization.EnumMember(Value = "UserManaged")]
+        [EnumMember(Value = "UserManaged")]
         UserManaged,
-        [System.Runtime.Serialization.EnumMember(Value = "ServiceManaged")]
+        [EnumMember(Value = "ServiceManaged")]
         ServiceManaged
     }
 }

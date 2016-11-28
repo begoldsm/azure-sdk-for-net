@@ -20,7 +20,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     /// Data Lake Store account information.
     /// </summary>
     [JsonTransformation]
-    public partial class DataLakeStoreAccountInfo
+    public partial class DataLakeStoreAccountInfo : SubResource
     {
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
@@ -30,22 +30,16 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
         /// </summary>
-        /// <param name="name">the account name of the Data Lake Store account
-        /// to add to the Data Lake Analytics account being created.</param>
+        /// <param name="name">Resource name</param>
+        /// <param name="id">Resource Id</param>
+        /// <param name="type">Resource type</param>
         /// <param name="suffix">the optional suffix for the Data Lake Store
         /// account.</param>
-        public DataLakeStoreAccountInfo(string name, string suffix = default(string))
+        public DataLakeStoreAccountInfo(string name, string id = default(string), string type = default(string), string suffix = default(string))
+            : base(name, id, type)
         {
-            Name = name;
             Suffix = suffix;
         }
-
-        /// <summary>
-        /// Gets or sets the account name of the Data Lake Store account to
-        /// add to the Data Lake Analytics account being created.
-        /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the optional suffix for the Data Lake Store account.
@@ -59,12 +53,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public virtual void Validate()
+        public override void Validate()
         {
-            if (Name == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
-            }
+            base.Validate();
         }
     }
 }

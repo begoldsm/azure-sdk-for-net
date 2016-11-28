@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Generic resource error details information.
@@ -39,20 +45,20 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets the HTTP status code or error code associated with this error
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "code")]
+        [JsonProperty(PropertyName = "code")]
         public string Code { get; private set; }
 
         /// <summary>
         /// Gets the error message localized based on Accept-Language
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "message")]
+        [JsonProperty(PropertyName = "message")]
         public string Message { get; private set; }
 
         /// <summary>
         /// Gets the target of the particular error (for example, the name of
         /// the property in error).
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "target")]
+        [JsonProperty(PropertyName = "target")]
         public string Target { get; private set; }
 
     }

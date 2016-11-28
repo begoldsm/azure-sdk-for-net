@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The Data Lake Analytics job execution statistics.
@@ -28,7 +34,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="finalizingTimeUtc">the job finalizing start
         /// time.</param>
         /// <param name="stages">the list of stages for the job.</param>
-        public JobStatistics(System.DateTimeOffset? lastUpdateTimeUtc = default(System.DateTimeOffset?), System.DateTimeOffset? finalizingTimeUtc = default(System.DateTimeOffset?), System.Collections.Generic.IList<JobStatisticsVertexStage> stages = default(System.Collections.Generic.IList<JobStatisticsVertexStage>))
+        public JobStatistics(DateTimeOffset? lastUpdateTimeUtc = default(DateTimeOffset?), DateTimeOffset? finalizingTimeUtc = default(DateTimeOffset?), IList<JobStatisticsVertexStage> stages = default(IList<JobStatisticsVertexStage>))
         {
             LastUpdateTimeUtc = lastUpdateTimeUtc;
             FinalizingTimeUtc = finalizingTimeUtc;
@@ -38,20 +44,20 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets the last update time for the statistics.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "lastUpdateTimeUtc")]
-        public System.DateTimeOffset? LastUpdateTimeUtc { get; private set; }
+        [JsonProperty(PropertyName = "lastUpdateTimeUtc")]
+        public DateTimeOffset? LastUpdateTimeUtc { get; private set; }
 
         /// <summary>
         /// Gets the job finalizing start time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "finalizingTimeUtc")]
-        public System.DateTimeOffset? FinalizingTimeUtc { get; private set; }
+        [JsonProperty(PropertyName = "finalizingTimeUtc")]
+        public DateTimeOffset? FinalizingTimeUtc { get; private set; }
 
         /// <summary>
         /// Gets the list of stages for the job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "stages")]
-        public System.Collections.Generic.IList<JobStatisticsVertexStage> Stages { get; private set; }
+        [JsonProperty(PropertyName = "stages")]
+        public IList<JobStatisticsVertexStage> Stages { get; private set; }
 
     }
 }

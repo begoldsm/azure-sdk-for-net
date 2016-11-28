@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store content summary information
@@ -40,25 +46,25 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets the number of directories.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "directoryCount")]
+        [JsonProperty(PropertyName = "directoryCount")]
         public long? DirectoryCount { get; private set; }
 
         /// <summary>
         /// Gets the number of files.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "fileCount")]
+        [JsonProperty(PropertyName = "fileCount")]
         public long? FileCount { get; private set; }
 
         /// <summary>
         /// Gets the number of bytes used by the content.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "length")]
+        [JsonProperty(PropertyName = "length")]
         public long? Length { get; private set; }
 
         /// <summary>
         /// Gets the disk space consumed by the content.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "spaceConsumed")]
+        [JsonProperty(PropertyName = "spaceConsumed")]
         public long? SpaceConsumed { get; private set; }
 
     }

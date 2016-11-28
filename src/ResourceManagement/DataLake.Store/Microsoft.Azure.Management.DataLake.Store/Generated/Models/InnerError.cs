@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store inner error information
@@ -34,13 +40,13 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets the stack trace for the error
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "trace")]
+        [JsonProperty(PropertyName = "trace")]
         public string Trace { get; private set; }
 
         /// <summary>
         /// Gets the context for the error message
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "context")]
+        [JsonProperty(PropertyName = "context")]
         public string Context { get; private set; }
 
     }
