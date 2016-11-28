@@ -8,16 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for DataLakeAnalyticsAccountState.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum DataLakeAnalyticsAccountState
     {
-        [System.Runtime.Serialization.EnumMember(Value = "Active")]
+        [EnumMember(Value = "Active")]
         Active,
-        [System.Runtime.Serialization.EnumMember(Value = "Suspended")]
+        [EnumMember(Value = "Suspended")]
         Suspended
     }
 }

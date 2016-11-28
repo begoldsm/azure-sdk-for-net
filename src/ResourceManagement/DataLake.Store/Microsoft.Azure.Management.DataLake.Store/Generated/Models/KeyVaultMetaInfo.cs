@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Metadata information used by account encryption.
@@ -40,40 +46,40 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// Gets or sets the resource identifier for the user managed Key
         /// Vault being used to encrypt.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "keyVaultResourceId")]
+        [JsonProperty(PropertyName = "keyVaultResourceId")]
         public string KeyVaultResourceId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the user managed encryption key.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "encryptionKeyName")]
+        [JsonProperty(PropertyName = "encryptionKeyName")]
         public string EncryptionKeyName { get; set; }
 
         /// <summary>
         /// Gets or sets the version of the user managed encryption key.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "encryptionKeyVersion")]
+        [JsonProperty(PropertyName = "encryptionKeyVersion")]
         public string EncryptionKeyVersion { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (KeyVaultResourceId == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "KeyVaultResourceId");
+                throw new ValidationException(ValidationRules.CannotBeNull, "KeyVaultResourceId");
             }
             if (EncryptionKeyName == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "EncryptionKeyName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "EncryptionKeyName");
             }
             if (EncryptionKeyVersion == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "EncryptionKeyVersion");
+                throw new ValidationException(ValidationRules.CannotBeNull, "EncryptionKeyVersion");
             }
         }
     }

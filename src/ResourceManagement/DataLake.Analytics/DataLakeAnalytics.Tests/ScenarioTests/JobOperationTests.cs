@@ -84,7 +84,6 @@ namespace DataLakeAnalytics.Tests
                 Assert.NotEmpty(getCancelledJobResponse.ErrorMessage);
 
                 // Resubmit the job
-                jobToSubmit.JobId = secondId;
                 jobCreateResponse = clientToUse.Job.Create(commonData.SecondDataLakeAnalyticsAccountName, secondId, jobToSubmit);
 
                 Assert.NotNull(jobCreateResponse);
@@ -118,7 +117,7 @@ namespace DataLakeAnalytics.Tests
                 Assert.True(listJobResponse.Any(job => job.JobId == getJobResponse.JobId));
 
                 // Just compile the job, which requires a jobId in the job object.
-                jobToSubmit.JobId = getJobResponse.JobId;
+                // jobToSubmit.JobId = getJobResponse.JobId;
                 var compileResponse = clientToUse.Job.Build(commonData.SecondDataLakeAnalyticsAccountName, jobToSubmit);
                 Assert.NotNull(compileResponse);
 

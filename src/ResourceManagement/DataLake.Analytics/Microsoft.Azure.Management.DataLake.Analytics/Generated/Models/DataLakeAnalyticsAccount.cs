@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// A Data Lake Analytics account object, containing all information
     /// associated with the named Data Lake Analytics account.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class DataLakeAnalyticsAccount : Resource
     {
         /// <summary>
@@ -41,9 +47,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Resuming', 'Deleting', 'Deleted'</param>
         /// <param name="state">the state of the Data Lake Analytics account.
         /// Possible values include: 'Active', 'Suspended'</param>
-        /// <param name="activeHiveMetastore">the currently active Hive
-        /// metastore associated with this Data Lake Analytics
-        /// account.</param>
         /// <param name="maxDegreeOfParallelism">the maximum supported degree
         /// of parallelism for this account.</param>
         /// <param name="queryStoreRetention">the number of days that job
@@ -60,20 +63,17 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// the account.</param>
         /// <param name="storageAccounts">the list of Azure Blob storage
         /// accounts associated with this account.</param>
-        /// <param name="hiveMetastores">the list of Hive metastores
-        /// associated with this account.</param>
         /// <param name="creationTime">the account creation time.</param>
         /// <param name="lastModifiedTime">the account last modified
         /// time.</param>
         /// <param name="endpoint">the full CName endpoint for this
         /// account.</param>
-        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, System.Collections.Generic.IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), System.Collections.Generic.IDictionary<string, string> tags = default(System.Collections.Generic.IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string activeHiveMetastore = default(string), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), System.Collections.Generic.IList<StorageAccountInfo> storageAccounts = default(System.Collections.Generic.IList<StorageAccountInfo>), System.Collections.Generic.IList<HiveMetastore> hiveMetastores = default(System.Collections.Generic.IList<HiveMetastore>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string))
+        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), DateTime? creationTime = default(DateTime?), DateTime? lastModifiedTime = default(DateTime?), string endpoint = default(string))
             : base(location, id, name, type, tags)
         {
             ProvisioningState = provisioningState;
             State = state;
             DefaultDataLakeStoreAccount = defaultDataLakeStoreAccount;
-            ActiveHiveMetastore = activeHiveMetastore;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
             QueryStoreRetention = queryStoreRetention;
             MaxJobCount = maxJobCount;
@@ -81,7 +81,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             SystemMaxJobCount = systemMaxJobCount;
             DataLakeStoreAccounts = dataLakeStoreAccounts;
             StorageAccounts = storageAccounts;
-            HiveMetastores = hiveMetastores;
             CreationTime = creationTime;
             LastModifiedTime = lastModifiedTime;
             Endpoint = endpoint;
@@ -93,48 +92,41 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Succeeded', 'Patching', 'Suspending', 'Resuming', 'Deleting',
         /// 'Deleted'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.provisioningState")]
+        [JsonProperty(PropertyName = "properties.provisioningState")]
         public DataLakeAnalyticsAccountStatus? ProvisioningState { get; private set; }
 
         /// <summary>
         /// Gets the state of the Data Lake Analytics account. Possible values
         /// include: 'Active', 'Suspended'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.state")]
+        [JsonProperty(PropertyName = "properties.state")]
         public DataLakeAnalyticsAccountState? State { get; private set; }
 
         /// <summary>
         /// Gets or sets the default data lake storage account associated with
         /// this Data Lake Analytics account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.defaultDataLakeStoreAccount")]
+        [JsonProperty(PropertyName = "properties.defaultDataLakeStoreAccount")]
         public string DefaultDataLakeStoreAccount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the currently active Hive metastore associated with
-        /// this Data Lake Analytics account.
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.activeHiveMetastore")]
-        public string ActiveHiveMetastore { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
         /// account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.maxDegreeOfParallelism")]
+        [JsonProperty(PropertyName = "properties.maxDegreeOfParallelism")]
         public int? MaxDegreeOfParallelism { get; set; }
 
         /// <summary>
         /// Gets or sets the number of days that job metadata is retained.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.queryStoreRetention")]
+        [JsonProperty(PropertyName = "properties.queryStoreRetention")]
         public int? QueryStoreRetention { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported jobs running under the account
         /// at the same time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.maxJobCount")]
+        [JsonProperty(PropertyName = "properties.maxJobCount")]
         public int? MaxJobCount { get; set; }
 
         /// <summary>
@@ -142,7 +134,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// for this account, which restricts the maximum value of
         /// parallelism the user can set for the account..
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.systemMaxDegreeOfParallelism")]
+        [JsonProperty(PropertyName = "properties.systemMaxDegreeOfParallelism")]
         public int? SystemMaxDegreeOfParallelism { get; private set; }
 
         /// <summary>
@@ -150,52 +142,45 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// account at the same time, which restricts the maximum number of
         /// running jobs the user can set for the account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.systemMaxJobCount")]
+        [JsonProperty(PropertyName = "properties.systemMaxJobCount")]
         public int? SystemMaxJobCount { get; private set; }
 
         /// <summary>
         /// Gets or sets the list of Data Lake storage accounts associated
         /// with this account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.dataLakeStoreAccounts")]
-        public System.Collections.Generic.IList<DataLakeStoreAccountInfo> DataLakeStoreAccounts { get; set; }
+        [JsonProperty(PropertyName = "properties.dataLakeStoreAccounts")]
+        public IList<DataLakeStoreAccountInfo> DataLakeStoreAccounts { get; set; }
 
         /// <summary>
         /// Gets or sets the list of Azure Blob storage accounts associated
         /// with this account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.storageAccounts")]
-        public System.Collections.Generic.IList<StorageAccountInfo> StorageAccounts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of Hive metastores associated with this
-        /// account.
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.hiveMetastores")]
-        public System.Collections.Generic.IList<HiveMetastore> HiveMetastores { get; set; }
+        [JsonProperty(PropertyName = "properties.storageAccounts")]
+        public IList<StorageAccountInfo> StorageAccounts { get; set; }
 
         /// <summary>
         /// Gets the account creation time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.creationTime")]
-        public System.DateTime? CreationTime { get; private set; }
+        [JsonProperty(PropertyName = "properties.creationTime")]
+        public DateTime? CreationTime { get; private set; }
 
         /// <summary>
         /// Gets the account last modified time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.lastModifiedTime")]
-        public System.DateTime? LastModifiedTime { get; private set; }
+        [JsonProperty(PropertyName = "properties.lastModifiedTime")]
+        public DateTime? LastModifiedTime { get; private set; }
 
         /// <summary>
         /// Gets the full CName endpoint for this account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.endpoint")]
+        [JsonProperty(PropertyName = "properties.endpoint")]
         public string Endpoint { get; private set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public override void Validate()
@@ -203,27 +188,27 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             base.Validate();
             if (DefaultDataLakeStoreAccount == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "DefaultDataLakeStoreAccount");
+                throw new ValidationException(ValidationRules.CannotBeNull, "DefaultDataLakeStoreAccount");
             }
             if (DataLakeStoreAccounts == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "DataLakeStoreAccounts");
+                throw new ValidationException(ValidationRules.CannotBeNull, "DataLakeStoreAccounts");
             }
             if (this.MaxDegreeOfParallelism < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "MaxDegreeOfParallelism", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "MaxDegreeOfParallelism", 1);
             }
             if (this.QueryStoreRetention > 180)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMaximum, "QueryStoreRetention", 180);
+                throw new ValidationException(ValidationRules.InclusiveMaximum, "QueryStoreRetention", 180);
             }
             if (this.QueryStoreRetention < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "QueryStoreRetention", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "QueryStoreRetention", 1);
             }
             if (this.MaxJobCount < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "MaxJobCount", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "MaxJobCount", 1);
             }
             if (this.DataLakeStoreAccounts != null)
             {
@@ -242,16 +227,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
                     if (element1 != null)
                     {
                         element1.Validate();
-                    }
-                }
-            }
-            if (this.HiveMetastores != null)
-            {
-                foreach (var element2 in this.HiveMetastores)
-                {
-                    if (element2 != null)
-                    {
-                        element2.Validate();
                     }
                 }
             }

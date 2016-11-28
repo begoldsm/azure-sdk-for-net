@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Hive job properties used when submitting and retrieving Hive jobs.
     /// </summary>
-    [Newtonsoft.Json.JsonObject("Hive")]
+    [JsonObject("Hive")]
     public partial class HiveJobProperties : JobProperties
     {
         /// <summary>
@@ -35,74 +41,45 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// run based on the script</param>
         /// <param name="executedStatementCount">the number of statements that
         /// have been run based on the script</param>
-        /// <param name="configurations">the value of custom
-        /// configurations.</param>
-        /// <param name="sessionHandle">GUID string, used to locate the
-        /// aggregated yarn logs, including HiveServer2 and HiveMetastore
-        /// logs and Tez AM logs.</param>
-        /// <param name="tezApplicationId">Tez application Id, the client can
-        /// use ATS API to get DAG info</param>
-        public HiveJobProperties(string script, string runtimeVersion = default(string), string logsLocation = default(string), string outputLocation = default(string), int? statementCount = default(int?), int? executedStatementCount = default(int?), System.Collections.Generic.IDictionary<string, string> configurations = default(System.Collections.Generic.IDictionary<string, string>), string sessionHandle = default(string), string tezApplicationId = default(string))
+        public HiveJobProperties(string script, string runtimeVersion = default(string), string logsLocation = default(string), string outputLocation = default(string), int? statementCount = default(int?), int? executedStatementCount = default(int?))
             : base(script, runtimeVersion)
         {
             LogsLocation = logsLocation;
             OutputLocation = outputLocation;
             StatementCount = statementCount;
             ExecutedStatementCount = executedStatementCount;
-            Configurations = configurations;
-            SessionHandle = sessionHandle;
-            TezApplicationId = tezApplicationId;
         }
 
         /// <summary>
         /// Gets the Hive logs location
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "logsLocation")]
+        [JsonProperty(PropertyName = "logsLocation")]
         public string LogsLocation { get; private set; }
 
         /// <summary>
         /// Gets the location of Hive job output files (both execution output
         /// and results)
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "outputLocation")]
+        [JsonProperty(PropertyName = "outputLocation")]
         public string OutputLocation { get; private set; }
 
         /// <summary>
         /// Gets the number of statements that will be run based on the script
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "statementCount")]
+        [JsonProperty(PropertyName = "statementCount")]
         public int? StatementCount { get; private set; }
 
         /// <summary>
         /// Gets the number of statements that have been run based on the
         /// script
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "executedStatementCount")]
+        [JsonProperty(PropertyName = "executedStatementCount")]
         public int? ExecutedStatementCount { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the value of custom configurations.
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "configurations")]
-        public System.Collections.Generic.IDictionary<string, string> Configurations { get; set; }
-
-        /// <summary>
-        /// Gets GUID string, used to locate the aggregated yarn logs,
-        /// including HiveServer2 and HiveMetastore logs and Tez AM logs.
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "sessionHandle")]
-        public string SessionHandle { get; private set; }
-
-        /// <summary>
-        /// Gets tez application Id, the client can use ATS API to get DAG info
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tezApplicationId")]
-        public string TezApplicationId { get; private set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public override void Validate()

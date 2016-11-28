@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Azure Storage account information.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
-    public partial class StorageAccountInfo : SubResource
+    [JsonTransformation]
+    public partial class StorageAccountInfo
     {
         /// <summary>
         /// Initializes a new instance of the StorageAccountInfo class.
@@ -24,45 +30,49 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the StorageAccountInfo class.
         /// </summary>
-        /// <param name="name">Resource name</param>
         /// <param name="accessKey">the access key associated with this Azure
         /// Storage account that will be used to connect to it.</param>
-        /// <param name="id">Resource Id</param>
-        /// <param name="type">Resource type</param>
+        /// <param name="name">the account name associated with the Azure
+        /// storage account.</param>
         /// <param name="suffix">the optional suffix for the storage
         /// account.</param>
-        public StorageAccountInfo(string name, string accessKey, string id = default(string), string type = default(string), string suffix = default(string))
-            : base(name, id, type)
+        public StorageAccountInfo(string accessKey, string name = default(string), string suffix = default(string))
         {
+            Name = name;
             AccessKey = accessKey;
             Suffix = suffix;
         }
 
         /// <summary>
+        /// Gets the account name associated with the Azure storage account.
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; private set; }
+
+        /// <summary>
         /// Gets or sets the access key associated with this Azure Storage
         /// account that will be used to connect to it.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.accessKey")]
+        [JsonProperty(PropertyName = "properties.accessKey")]
         public string AccessKey { get; set; }
 
         /// <summary>
         /// Gets or sets the optional suffix for the storage account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        [JsonProperty(PropertyName = "properties.suffix")]
         public string Suffix { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public override void Validate()
+        public virtual void Validate()
         {
-            base.Validate();
             if (AccessKey == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "AccessKey");
+                throw new ValidationException(ValidationRules.CannotBeNull, "AccessKey");
             }
         }
     }

@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Analytics catalog credential deletion parameters.
@@ -38,7 +44,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// access to the data source. This is required if the requester is
         /// not the account owner.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "password")]
+        [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
     }

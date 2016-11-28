@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Additional Data Lake Store parameters.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class AddDataLakeStoreParameters
     {
         /// <summary>
@@ -34,7 +40,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets the optional suffix for the Data Lake Store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        [JsonProperty(PropertyName = "properties.suffix")]
         public string Suffix { get; set; }
 
     }

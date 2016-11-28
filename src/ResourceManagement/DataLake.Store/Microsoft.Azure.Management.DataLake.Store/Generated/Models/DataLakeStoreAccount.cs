@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store account information
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class DataLakeStoreAccount : Resource
     {
         /// <summary>
@@ -64,7 +70,7 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <param name="endpoint">the gateway host.</param>
         /// <param name="defaultGroup">the default owner group for all new
         /// folders and files created in the Data Lake Store account.</param>
-        public DataLakeStoreAccount(string location, string id = default(string), string name = default(string), string type = default(string), System.Collections.Generic.IDictionary<string, string> tags = default(System.Collections.Generic.IDictionary<string, string>), EncryptionIdentity identity = default(EncryptionIdentity), DataLakeStoreAccountStatus? provisioningState = default(DataLakeStoreAccountStatus?), DataLakeStoreAccountState? state = default(DataLakeStoreAccountState?), System.DateTime? creationTime = default(System.DateTime?), EncryptionState? encryptionState = default(EncryptionState?), EncryptionProvisioningState? encryptionProvisioningState = default(EncryptionProvisioningState?), EncryptionConfig encryptionConfig = default(EncryptionConfig), FirewallState? firewallState = default(FirewallState?), System.Collections.Generic.IList<FirewallRule> firewallRules = default(System.Collections.Generic.IList<FirewallRule>), TrustedIdProviderState? trustedIdProviderState = default(TrustedIdProviderState?), System.Collections.Generic.IList<TrustedIdProvider> trustedIdProviders = default(System.Collections.Generic.IList<TrustedIdProvider>), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string), string defaultGroup = default(string))
+        public DataLakeStoreAccount(string location, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), EncryptionIdentity identity = default(EncryptionIdentity), DataLakeStoreAccountStatus? provisioningState = default(DataLakeStoreAccountStatus?), DataLakeStoreAccountState? state = default(DataLakeStoreAccountState?), DateTime? creationTime = default(DateTime?), EncryptionState? encryptionState = default(EncryptionState?), EncryptionProvisioningState? encryptionProvisioningState = default(EncryptionProvisioningState?), EncryptionConfig encryptionConfig = default(EncryptionConfig), FirewallState? firewallState = default(FirewallState?), IList<FirewallRule> firewallRules = default(IList<FirewallRule>), TrustedIdProviderState? trustedIdProviderState = default(TrustedIdProviderState?), IList<TrustedIdProvider> trustedIdProviders = default(IList<TrustedIdProvider>), DateTime? lastModifiedTime = default(DateTime?), string endpoint = default(string), string defaultGroup = default(string))
             : base(location, id, name, type, tags)
         {
             Identity = identity;
@@ -86,7 +92,7 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets or sets the Key vault encryption identity, if any.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "identity")]
+        [JsonProperty(PropertyName = "identity")]
         public EncryptionIdentity Identity { get; set; }
 
         /// <summary>
@@ -95,27 +101,27 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// 'Running', 'Succeeded', 'Patching', 'Suspending', 'Resuming',
         /// 'Deleting', 'Deleted'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.provisioningState")]
+        [JsonProperty(PropertyName = "properties.provisioningState")]
         public DataLakeStoreAccountStatus? ProvisioningState { get; private set; }
 
         /// <summary>
         /// Gets the status of the Data Lake Store account after provisioning
         /// has completed. Possible values include: 'Active', 'Suspended'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.state")]
+        [JsonProperty(PropertyName = "properties.state")]
         public DataLakeStoreAccountState? State { get; private set; }
 
         /// <summary>
         /// Gets the account creation time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.creationTime")]
-        public System.DateTime? CreationTime { get; private set; }
+        [JsonProperty(PropertyName = "properties.creationTime")]
+        public DateTime? CreationTime { get; private set; }
 
         /// <summary>
         /// Gets or sets the current state of encryption for this Data Lake
         /// store account. Possible values include: 'Enabled', 'Disabled'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.encryptionState")]
+        [JsonProperty(PropertyName = "properties.encryptionState")]
         public EncryptionState? EncryptionState { get; set; }
 
         /// <summary>
@@ -123,13 +129,13 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// Lake store account. Possible values include: 'Creating',
         /// 'Succeeded'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.encryptionProvisioningState")]
+        [JsonProperty(PropertyName = "properties.encryptionProvisioningState")]
         public EncryptionProvisioningState? EncryptionProvisioningState { get; private set; }
 
         /// <summary>
         /// Gets or sets the Key vault encryption configuration.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.encryptionConfig")]
+        [JsonProperty(PropertyName = "properties.encryptionConfig")]
         public EncryptionConfig EncryptionConfig { get; set; }
 
         /// <summary>
@@ -137,54 +143,54 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// Data Lake store account. Possible values include: 'Enabled',
         /// 'Disabled'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.firewallState")]
+        [JsonProperty(PropertyName = "properties.firewallState")]
         public FirewallState? FirewallState { get; set; }
 
         /// <summary>
         /// Gets or sets the list of firewall rules associated with this Data
         /// Lake store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.firewallRules")]
-        public System.Collections.Generic.IList<FirewallRule> FirewallRules { get; set; }
+        [JsonProperty(PropertyName = "properties.firewallRules")]
+        public IList<FirewallRule> FirewallRules { get; set; }
 
         /// <summary>
         /// Gets or sets the current state of the trusted identity provider
         /// feature for this Data Lake store account. Possible values
         /// include: 'Enabled', 'Disabled'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.trustedIdProviderState")]
+        [JsonProperty(PropertyName = "properties.trustedIdProviderState")]
         public TrustedIdProviderState? TrustedIdProviderState { get; set; }
 
         /// <summary>
         /// Gets or sets the list of trusted identity providers associated
         /// with this Data Lake store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.trustedIdProviders")]
-        public System.Collections.Generic.IList<TrustedIdProvider> TrustedIdProviders { get; set; }
+        [JsonProperty(PropertyName = "properties.trustedIdProviders")]
+        public IList<TrustedIdProvider> TrustedIdProviders { get; set; }
 
         /// <summary>
         /// Gets the account last modified time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.lastModifiedTime")]
-        public System.DateTime? LastModifiedTime { get; private set; }
+        [JsonProperty(PropertyName = "properties.lastModifiedTime")]
+        public DateTime? LastModifiedTime { get; private set; }
 
         /// <summary>
         /// Gets the gateway host.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.endpoint")]
+        [JsonProperty(PropertyName = "properties.endpoint")]
         public string Endpoint { get; private set; }
 
         /// <summary>
         /// Gets or sets the default owner group for all new folders and files
         /// created in the Data Lake Store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.defaultGroup")]
+        [JsonProperty(PropertyName = "properties.defaultGroup")]
         public string DefaultGroup { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public override void Validate()

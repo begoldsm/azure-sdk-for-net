@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The parameters that can be used to update an existing Data Lake
     /// Analytics account.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class DataLakeAnalyticsAccountUpdateParameters
     {
         /// <summary>
@@ -34,7 +40,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// metadata is retained.</param>
         /// <param name="maxJobCount">the maximum supported jobs running under
         /// the account at the same time.</param>
-        public DataLakeAnalyticsAccountUpdateParameters(System.Collections.Generic.IDictionary<string, string> tags = default(System.Collections.Generic.IDictionary<string, string>), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?))
+        public DataLakeAnalyticsAccountUpdateParameters(IDictionary<string, string> tags = default(IDictionary<string, string>), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?))
         {
             Tags = tags;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
@@ -45,52 +51,52 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets or sets resource tags
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tags")]
-        public System.Collections.Generic.IDictionary<string, string> Tags { get; set; }
+        [JsonProperty(PropertyName = "tags")]
+        public IDictionary<string, string> Tags { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
         /// account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.maxDegreeOfParallelism")]
+        [JsonProperty(PropertyName = "properties.maxDegreeOfParallelism")]
         public int? MaxDegreeOfParallelism { get; set; }
 
         /// <summary>
         /// Gets or sets the number of days that job metadata is retained.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.queryStoreRetention")]
+        [JsonProperty(PropertyName = "properties.queryStoreRetention")]
         public int? QueryStoreRetention { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported jobs running under the account
         /// at the same time.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.maxJobCount")]
+        [JsonProperty(PropertyName = "properties.maxJobCount")]
         public int? MaxJobCount { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (this.MaxDegreeOfParallelism < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "MaxDegreeOfParallelism", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "MaxDegreeOfParallelism", 1);
             }
             if (this.QueryStoreRetention > 180)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMaximum, "QueryStoreRetention", 180);
+                throw new ValidationException(ValidationRules.InclusiveMaximum, "QueryStoreRetention", 180);
             }
             if (this.QueryStoreRetention < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "QueryStoreRetention", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "QueryStoreRetention", 1);
             }
             if (this.MaxJobCount < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "MaxJobCount", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "MaxJobCount", 1);
             }
         }
     }

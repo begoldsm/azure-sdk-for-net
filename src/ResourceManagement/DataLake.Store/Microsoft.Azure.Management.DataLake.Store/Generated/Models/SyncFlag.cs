@@ -8,18 +8,21 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for SyncFlag.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SyncFlag
     {
-        [System.Runtime.Serialization.EnumMember(Value = "DATA")]
+        [EnumMember(Value = "DATA")]
         DATA,
-        [System.Runtime.Serialization.EnumMember(Value = "METADATA")]
+        [EnumMember(Value = "METADATA")]
         METADATA,
-        [System.Runtime.Serialization.EnumMember(Value = "CLOSE")]
+        [EnumMember(Value = "CLOSE")]
         CLOSE
     }
 }

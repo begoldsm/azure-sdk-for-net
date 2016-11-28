@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store firewall rule information
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class FirewallRule : SubResource
     {
         /// <summary>
@@ -41,30 +47,30 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets or sets the start IP address for the firewall rule.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.startIpAddress")]
+        [JsonProperty(PropertyName = "properties.startIpAddress")]
         public string StartIpAddress { get; set; }
 
         /// <summary>
         /// Gets or sets the end IP address for the firewall rule.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.endIpAddress")]
+        [JsonProperty(PropertyName = "properties.endIpAddress")]
         public string EndIpAddress { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (StartIpAddress == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "StartIpAddress");
+                throw new ValidationException(ValidationRules.CannotBeNull, "StartIpAddress");
             }
             if (EndIpAddress == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "EndIpAddress");
+                throw new ValidationException(ValidationRules.CannotBeNull, "EndIpAddress");
             }
         }
     }

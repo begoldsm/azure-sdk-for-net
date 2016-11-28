@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store account information.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
-    public partial class DataLakeStoreAccountInfo : SubResource
+    [JsonTransformation]
+    public partial class DataLakeStoreAccountInfo
     {
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
@@ -24,32 +30,41 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
         /// </summary>
-        /// <param name="name">Resource name</param>
-        /// <param name="id">Resource Id</param>
-        /// <param name="type">Resource type</param>
+        /// <param name="name">the account name of the Data Lake Store account
+        /// to add to the Data Lake Analytics account being created.</param>
         /// <param name="suffix">the optional suffix for the Data Lake Store
         /// account.</param>
-        public DataLakeStoreAccountInfo(string name, string id = default(string), string type = default(string), string suffix = default(string))
-            : base(name, id, type)
+        public DataLakeStoreAccountInfo(string name, string suffix = default(string))
         {
+            Name = name;
             Suffix = suffix;
         }
 
         /// <summary>
+        /// Gets or sets the account name of the Data Lake Store account to
+        /// add to the Data Lake Analytics account being created.
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or sets the optional suffix for the Data Lake Store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        [JsonProperty(PropertyName = "properties.suffix")]
         public string Suffix { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public override void Validate()
+        public virtual void Validate()
         {
-            base.Validate();
+            if (Name == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
+            }
         }
     }
 }

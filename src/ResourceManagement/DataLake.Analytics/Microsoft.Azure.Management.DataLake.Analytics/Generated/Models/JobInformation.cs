@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The common Data Lake Analytics job information properties.
@@ -58,7 +64,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="stateAuditRecords">the job state audit records,
         /// indicating when various operations have been performed on this
         /// job.</param>
-        public JobInformation(string name, JobType type, JobProperties properties, System.Guid? jobId = default(System.Guid?), string submitter = default(string), System.Collections.Generic.IList<JobErrorDetails> errorMessage = default(System.Collections.Generic.IList<JobErrorDetails>), int? degreeOfParallelism = default(int?), int? priority = default(int?), System.DateTimeOffset? submitTime = default(System.DateTimeOffset?), System.DateTimeOffset? startTime = default(System.DateTimeOffset?), System.DateTimeOffset? endTime = default(System.DateTimeOffset?), JobState? state = default(JobState?), JobResult? result = default(JobResult?), string logFolder = default(string), System.Collections.Generic.IList<string> logFilePatterns = default(System.Collections.Generic.IList<string>), System.Collections.Generic.IList<JobStateAuditRecord> stateAuditRecords = default(System.Collections.Generic.IList<JobStateAuditRecord>))
+        public JobInformation(string name, JobType type, JobProperties properties, Guid? jobId = default(Guid?), string submitter = default(string), IList<JobErrorDetails> errorMessage = default(IList<JobErrorDetails>), int? degreeOfParallelism = default(int?), int? priority = default(int?), DateTimeOffset? submitTime = default(DateTimeOffset?), DateTimeOffset? startTime = default(DateTimeOffset?), DateTimeOffset? endTime = default(DateTimeOffset?), JobState? state = default(JobState?), JobResult? result = default(JobResult?), string logFolder = default(string), IList<string> logFilePatterns = default(IList<string>), IList<JobStateAuditRecord> stateAuditRecords = default(IList<JobStateAuditRecord>))
         {
             JobId = jobId;
             Name = name;
@@ -81,39 +87,39 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets the job's unique identifier (a GUID).
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "jobId")]
-        public System.Guid? JobId { get; private set; }
+        [JsonProperty(PropertyName = "jobId")]
+        public Guid? JobId { get; private set; }
 
         /// <summary>
         /// Gets or sets the friendly name of the job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the job type of the current job (Hive or USql).
         /// Possible values include: 'USql', 'Hive'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public JobType Type { get; set; }
 
         /// <summary>
         /// Gets the user or account that submitted the job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "submitter")]
+        [JsonProperty(PropertyName = "submitter")]
         public string Submitter { get; private set; }
 
         /// <summary>
         /// Gets the error message details for the job, if the job failed.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "errorMessage")]
-        public System.Collections.Generic.IList<JobErrorDetails> ErrorMessage { get; private set; }
+        [JsonProperty(PropertyName = "errorMessage")]
+        public IList<JobErrorDetails> ErrorMessage { get; private set; }
 
         /// <summary>
         /// Gets or sets the degree of parallelism used for this job. This
         /// must be greater than 0.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "degreeOfParallelism")]
+        [JsonProperty(PropertyName = "degreeOfParallelism")]
         public int? DegreeOfParallelism { get; set; }
 
         /// <summary>
@@ -121,26 +127,26 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// have a higher priority. By default, a job has a priority of 1000.
         /// This must be greater than 0.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "priority")]
+        [JsonProperty(PropertyName = "priority")]
         public int? Priority { get; set; }
 
         /// <summary>
         /// Gets the time the job was submitted to the service.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "submitTime")]
-        public System.DateTimeOffset? SubmitTime { get; private set; }
+        [JsonProperty(PropertyName = "submitTime")]
+        public DateTimeOffset? SubmitTime { get; private set; }
 
         /// <summary>
         /// Gets the start time of the job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "startTime")]
-        public System.DateTimeOffset? StartTime { get; private set; }
+        [JsonProperty(PropertyName = "startTime")]
+        public DateTimeOffset? StartTime { get; private set; }
 
         /// <summary>
         /// Gets the completion time of the job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "endTime")]
-        public System.DateTimeOffset? EndTime { get; private set; }
+        [JsonProperty(PropertyName = "endTime")]
+        public DateTimeOffset? EndTime { get; private set; }
 
         /// <summary>
         /// Gets the job state. When the job is in the Ended state, refer to
@@ -148,7 +154,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Accepted', 'Compiling', 'Ended', 'New', 'Queued', 'Running',
         /// 'Scheduling', 'Starting', 'Paused', 'WaitingForCapacity'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "state")]
+        [JsonProperty(PropertyName = "state")]
         public JobState? State { get; private set; }
 
         /// <summary>
@@ -156,14 +162,14 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// running job. Possible values include: 'None', 'Succeeded',
         /// 'Cancelled', 'Failed'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "result")]
+        [JsonProperty(PropertyName = "result")]
         public JobResult? Result { get; private set; }
 
         /// <summary>
         /// Gets the log folder path to use in the following format:
         /// adl://&lt;accountName&gt;.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/logs/.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "logFolder")]
+        [JsonProperty(PropertyName = "logFolder")]
         public string LogFolder { get; private set; }
 
         /// <summary>
@@ -171,41 +177,41 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// logFolder. '*' is the only matching character allowed. Example
         /// format: jobExecution*.log or *mylog*.txt
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "logFilePatterns")]
-        public System.Collections.Generic.IList<string> LogFilePatterns { get; set; }
+        [JsonProperty(PropertyName = "logFilePatterns")]
+        public IList<string> LogFilePatterns { get; set; }
 
         /// <summary>
         /// Gets the job state audit records, indicating when various
         /// operations have been performed on this job.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "stateAuditRecords")]
-        public System.Collections.Generic.IList<JobStateAuditRecord> StateAuditRecords { get; private set; }
+        [JsonProperty(PropertyName = "stateAuditRecords")]
+        public IList<JobStateAuditRecord> StateAuditRecords { get; private set; }
 
         /// <summary>
         /// Gets or sets the job specific properties.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
+        [JsonProperty(PropertyName = "properties")]
         public JobProperties Properties { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (Name == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Name");
+                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
             }
             if (Properties == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Properties");
+                throw new ValidationException(ValidationRules.CannotBeNull, "Properties");
             }
             if (this.DegreeOfParallelism < 1)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.InclusiveMinimum, "DegreeOfParallelism", 1);
+                throw new ValidationException(ValidationRules.InclusiveMinimum, "DegreeOfParallelism", 1);
             }
             if (this.Properties != null)
             {

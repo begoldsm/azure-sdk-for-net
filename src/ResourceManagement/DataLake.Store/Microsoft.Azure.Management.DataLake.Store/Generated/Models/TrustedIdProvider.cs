@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store firewall rule information
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class TrustedIdProvider : SubResource
     {
         /// <summary>
@@ -38,20 +44,20 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets or sets the URL of this trusted identity provider
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.idProvider")]
+        [JsonProperty(PropertyName = "properties.idProvider")]
         public string IdProvider { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
             if (IdProvider == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "IdProvider");
+                throw new ValidationException(ValidationRules.CannotBeNull, "IdProvider");
             }
         }
     }

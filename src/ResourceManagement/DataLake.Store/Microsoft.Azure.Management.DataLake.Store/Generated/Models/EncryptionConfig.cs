@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The encryption configuration for the account.
@@ -41,20 +47,20 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// 'ServiceManaged'. Possible values include: 'UserManaged',
         /// 'ServiceManaged'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public EncryptionConfigType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the Key vault information for connecting to user
         /// managed encryption keys.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "keyVaultMetaInfo")]
+        [JsonProperty(PropertyName = "keyVaultMetaInfo")]
         public KeyVaultMetaInfo KeyVaultMetaInfo { get; set; }
 
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()

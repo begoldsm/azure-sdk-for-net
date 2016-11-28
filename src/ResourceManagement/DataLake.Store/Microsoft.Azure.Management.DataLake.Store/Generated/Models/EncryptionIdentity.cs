@@ -8,7 +8,13 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// The encryption identity properties.
@@ -27,7 +33,7 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// the encryption.</param>
         /// <param name="tenantId">The tenant identifier associated with the
         /// encryption.</param>
-        public EncryptionIdentity(System.Guid? principalId = default(System.Guid?), System.Guid? tenantId = default(System.Guid?))
+        public EncryptionIdentity(Guid? principalId = default(Guid?), Guid? tenantId = default(Guid?))
         {
             PrincipalId = principalId;
             TenantId = tenantId;
@@ -43,20 +49,20 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets the principal identifier associated with the encryption.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "principalId")]
-        public System.Guid? PrincipalId { get; private set; }
+        [JsonProperty(PropertyName = "principalId")]
+        public Guid? PrincipalId { get; private set; }
 
         /// <summary>
         /// Gets the tenant identifier associated with the encryption.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tenantId")]
-        public System.Guid? TenantId { get; private set; }
+        [JsonProperty(PropertyName = "tenantId")]
+        public Guid? TenantId { get; private set; }
 
         /// <summary>
         /// The type of encryption being used. Currently the only supported
         /// type is 'SystemAssigned'.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public static string Type { get; private set; }
 
     }

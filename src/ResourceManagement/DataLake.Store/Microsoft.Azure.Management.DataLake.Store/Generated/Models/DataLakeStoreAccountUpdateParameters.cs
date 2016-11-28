@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Data Lake Store account information to update
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class DataLakeStoreAccountUpdateParameters
     {
         /// <summary>
@@ -40,7 +46,7 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// 'Disabled'</param>
         /// <param name="defaultGroup">the default owner group for all new
         /// folders and files created in the Data Lake Store account.</param>
-        public DataLakeStoreAccountUpdateParameters(System.Collections.Generic.IDictionary<string, string> tags = default(System.Collections.Generic.IDictionary<string, string>), FirewallState? firewallState = default(FirewallState?), TrustedIdProviderState? trustedIdProviderState = default(TrustedIdProviderState?), string defaultGroup = default(string))
+        public DataLakeStoreAccountUpdateParameters(IDictionary<string, string> tags = default(IDictionary<string, string>), FirewallState? firewallState = default(FirewallState?), TrustedIdProviderState? trustedIdProviderState = default(TrustedIdProviderState?), string defaultGroup = default(string))
         {
             Tags = tags;
             FirewallState = firewallState;
@@ -51,8 +57,8 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Gets or sets resource tags
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "tags")]
-        public System.Collections.Generic.IDictionary<string, string> Tags { get; set; }
+        [JsonProperty(PropertyName = "tags")]
+        public IDictionary<string, string> Tags { get; set; }
 
         /// <summary>
         /// Gets or sets the current state of the IP address firewall for this
@@ -60,7 +66,7 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// existing rules, they will just be ignored until the firewall is
         /// re-enabled. Possible values include: 'Enabled', 'Disabled'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.firewallState")]
+        [JsonProperty(PropertyName = "properties.firewallState")]
         public FirewallState? FirewallState { get; set; }
 
         /// <summary>
@@ -70,14 +76,14 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// they will just be ignored until this feature is re-enabled.
         /// Possible values include: 'Enabled', 'Disabled'
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.trustedIdProviderState")]
+        [JsonProperty(PropertyName = "properties.trustedIdProviderState")]
         public TrustedIdProviderState? TrustedIdProviderState { get; set; }
 
         /// <summary>
         /// Gets or sets the default owner group for all new folders and files
         /// created in the Data Lake Store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.defaultGroup")]
+        [JsonProperty(PropertyName = "properties.defaultGroup")]
         public string DefaultGroup { get; set; }
 
     }

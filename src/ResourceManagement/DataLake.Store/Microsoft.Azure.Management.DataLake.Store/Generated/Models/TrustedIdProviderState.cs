@@ -8,16 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// Defines values for TrustedIdProviderState.
     /// </summary>
-    [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum TrustedIdProviderState
     {
-        [System.Runtime.Serialization.EnumMember(Value = "Enabled")]
+        [EnumMember(Value = "Enabled")]
         Enabled,
-        [System.Runtime.Serialization.EnumMember(Value = "Disabled")]
+        [EnumMember(Value = "Disabled")]
         Disabled
     }
 }

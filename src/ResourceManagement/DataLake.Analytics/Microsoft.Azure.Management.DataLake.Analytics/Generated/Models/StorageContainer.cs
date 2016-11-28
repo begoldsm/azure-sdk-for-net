@@ -8,12 +8,18 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Azure Storage blob container information.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class StorageContainer
     {
         /// <summary>
@@ -30,7 +36,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="type">the type of the blob container.</param>
         /// <param name="lastModifiedTime">the last modified time of the blob
         /// container.</param>
-        public StorageContainer(string name = default(string), string id = default(string), string type = default(string), System.DateTime? lastModifiedTime = default(System.DateTime?))
+        public StorageContainer(string name = default(string), string id = default(string), string type = default(string), DateTime? lastModifiedTime = default(DateTime?))
         {
             Name = name;
             Id = id;
@@ -41,26 +47,26 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Gets the name of the blob container.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; private set; }
 
         /// <summary>
         /// Gets the unique identifier of the blob container.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; private set; }
 
         /// <summary>
         /// Gets the type of the blob container.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        [JsonProperty(PropertyName = "type")]
         public string Type { get; private set; }
 
         /// <summary>
         /// Gets the last modified time of the blob container.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.lastModifiedTime")]
-        public System.DateTime? LastModifiedTime { get; private set; }
+        [JsonProperty(PropertyName = "properties.lastModifiedTime")]
+        public DateTime? LastModifiedTime { get; private set; }
 
     }
 }

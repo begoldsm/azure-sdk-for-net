@@ -8,13 +8,19 @@
 
 namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Microsoft.Rest;
+    using Microsoft.Rest.Serialization;
+    using Microsoft.Rest.Azure;
 
     /// <summary>
     /// Storage account parameters for a storage account being updated in a
     /// Data Lake Analytics account.
     /// </summary>
-    [Microsoft.Rest.Serialization.JsonTransformation]
+    [JsonTransformation]
     public partial class UpdateStorageAccountParameters
     {
         /// <summary>
@@ -42,13 +48,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets the updated access key associated with this Azure
         /// Storage account that will be used to connect to it.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.accessKey")]
+        [JsonProperty(PropertyName = "properties.accessKey")]
         public string AccessKey { get; set; }
 
         /// <summary>
         /// Gets or sets the optional suffix for the storage account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        [JsonProperty(PropertyName = "properties.suffix")]
         public string Suffix { get; set; }
 
     }
