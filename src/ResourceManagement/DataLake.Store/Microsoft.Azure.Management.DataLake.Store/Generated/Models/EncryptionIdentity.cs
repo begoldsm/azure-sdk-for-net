@@ -10,6 +10,9 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
     using System.Linq;
 
+    /// <summary>
+    /// The encryption identity properties.
+    /// </summary>
     public partial class EncryptionIdentity
     {
         /// <summary>
@@ -20,27 +23,22 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// <summary>
         /// Initializes a new instance of the EncryptionIdentity class.
         /// </summary>
-        /// <param name="type">The type of encryption being used. Currently
-        /// the only supported type is 'SystemAssigned'. Possible values
-        /// include: 'SystemAssigned'</param>
         /// <param name="principalId">The principal identifier associated with
         /// the encryption.</param>
         /// <param name="tenantId">The tenant identifier associated with the
         /// encryption.</param>
-        public EncryptionIdentity(EncryptionIdentityType? type = default(EncryptionIdentityType?), System.Guid? principalId = default(System.Guid?), System.Guid? tenantId = default(System.Guid?))
+        public EncryptionIdentity(System.Guid? principalId = default(System.Guid?), System.Guid? tenantId = default(System.Guid?))
         {
-            Type = type;
             PrincipalId = principalId;
             TenantId = tenantId;
         }
-
         /// <summary>
-        /// Gets or sets the type of encryption being used. Currently the only
-        /// supported type is 'SystemAssigned'. Possible values include:
-        /// 'SystemAssigned'
+        /// Static constructor for EncryptionIdentity class.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
-        public EncryptionIdentityType? Type { get; set; }
+        static EncryptionIdentity()
+        {
+            Type = "SystemAssigned";
+        }
 
         /// <summary>
         /// Gets the principal identifier associated with the encryption.
@@ -53,6 +51,13 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
         /// </summary>
         [Newtonsoft.Json.JsonProperty(PropertyName = "tenantId")]
         public System.Guid? TenantId { get; private set; }
+
+        /// <summary>
+        /// The type of encryption being used. Currently the only supported
+        /// type is 'SystemAssigned'.
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty(PropertyName = "type")]
+        public static string Type { get; private set; }
 
     }
 }

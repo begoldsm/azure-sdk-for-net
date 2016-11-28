@@ -11,17 +11,18 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using System.Linq;
 
     /// <summary>
-    /// Hive metastore properties information.
+    /// Hive metastore add or update parameters.
     /// </summary>
-    public partial class HiveMetaStoreProperties
+    [Microsoft.Rest.Serialization.JsonTransformation]
+    public partial class AddHiveMetaStoreParameters
     {
         /// <summary>
-        /// Initializes a new instance of the HiveMetaStoreProperties class.
+        /// Initializes a new instance of the AddHiveMetaStoreParameters class.
         /// </summary>
-        public HiveMetaStoreProperties() { }
+        public AddHiveMetaStoreParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the HiveMetaStoreProperties class.
+        /// Initializes a new instance of the AddHiveMetaStoreParameters class.
         /// </summary>
         /// <param name="serverUri">Gets or sets URL of the server to connect
         /// to. For example: myserver.database.windows.net,
@@ -34,7 +35,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// connection.</param>
         /// <param name="password">Sets the password for the
         /// connection.</param>
-        public HiveMetaStoreProperties(string serverUri, string databaseName, string runtimeVersion, string userName, string password)
+        public AddHiveMetaStoreParameters(string serverUri, string databaseName, string runtimeVersion, string userName, string password)
         {
             ServerUri = serverUri;
             DatabaseName = databaseName;
@@ -47,32 +48,32 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets URL of the server to connect to. For example:
         /// myserver.database.windows.net, myserver.cloudapp.net
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "serverUri")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.serverUri")]
         public string ServerUri { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the database to connect to.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "databaseName")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.databaseName")]
         public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets or sets the Hive version associated with the metastore.
         /// Format: 1.2.3.4
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "runtimeVersion")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.runtimeVersion")]
         public string RuntimeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets sets the user name for the connection.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "userName")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.userName")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Gets or sets sets the password for the connection.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "password")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.password")]
         public string Password { get; set; }
 
         /// <summary>

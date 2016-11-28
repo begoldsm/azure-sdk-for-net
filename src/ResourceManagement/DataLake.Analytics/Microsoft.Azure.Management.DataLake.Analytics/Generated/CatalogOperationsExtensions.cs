@@ -26,7 +26,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database in which to create the secret.
@@ -51,7 +52,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database in which to create the secret.
@@ -82,7 +84,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -107,7 +110,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -137,7 +141,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -158,7 +163,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -186,7 +192,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -208,7 +215,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -233,7 +241,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -252,7 +261,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the secret.
@@ -273,7 +283,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database in which to create the credential.
@@ -297,7 +308,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database in which to create the credential.
@@ -324,7 +336,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the credential.
@@ -348,7 +361,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the credential.
@@ -374,7 +388,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -394,7 +409,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -420,7 +436,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the credential.
@@ -432,9 +449,14 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The parameters to delete a credential if the current user is not the
             /// account owner.
             /// </param>
-            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters))
+            /// <param name='cascade'>
+            /// Indicates if the delete should be a cascading delete (which deletes all
+            /// resources dependent on the credential as well as the credential) or not.
+            /// If false will fail if there are any resources relying on the credential.
+            /// </param>
+            public static void DeleteCredential(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters), bool? cascade = false)
             {
-                System.Threading.Tasks.Task.Factory.StartNew(s => ((ICatalogOperations)s).DeleteCredentialAsync(accountName, databaseName, credentialName, parameters), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
+                System.Threading.Tasks.Task.Factory.StartNew(s => ((ICatalogOperations)s).DeleteCredentialAsync(accountName, databaseName, credentialName, parameters, cascade), operations, System.Threading.CancellationToken.None, System.Threading.Tasks.TaskCreationOptions.None,  System.Threading.Tasks.TaskScheduler.Default).Unwrap().GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -444,7 +466,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the credential.
@@ -456,12 +479,17 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The parameters to delete a credential if the current user is not the
             /// account owner.
             /// </param>
+            /// <param name='cascade'>
+            /// Indicates if the delete should be a cascading delete (which deletes all
+            /// resources dependent on the credential as well as the credential) or not.
+            /// If false will fail if there are any resources relying on the credential.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async System.Threading.Tasks.Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+            public static async System.Threading.Tasks.Task DeleteCredentialAsync(this ICatalogOperations operations, string accountName, string databaseName, string credentialName, DataLakeAnalyticsCatalogCredentialDeleteParameters parameters = default(DataLakeAnalyticsCatalogCredentialDeleteParameters), bool? cascade = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
             {
-                await operations.DeleteCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, null, cancellationToken).ConfigureAwait(false);
+                await operations.DeleteCredentialWithHttpMessagesAsync(accountName, databaseName, credentialName, parameters, cascade, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
@@ -471,7 +499,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -500,7 +529,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -536,7 +566,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the external data source.
@@ -557,7 +588,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the external data source.
@@ -584,7 +616,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the external data sources.
@@ -614,7 +647,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the external data sources.
@@ -649,7 +683,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the procedure.
@@ -672,7 +707,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the procedure.
@@ -701,7 +737,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the procedures.
@@ -733,7 +770,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the procedures.
@@ -771,7 +809,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table.
@@ -794,7 +833,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table.
@@ -823,7 +863,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the tables.
@@ -855,7 +896,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the tables.
@@ -893,7 +935,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table type.
@@ -916,7 +959,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table type.
@@ -945,7 +989,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table types.
@@ -977,7 +1022,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table types.
@@ -1015,7 +1061,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the view.
@@ -1038,7 +1085,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the view.
@@ -1067,7 +1115,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the views.
@@ -1099,7 +1148,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the views.
@@ -1138,7 +1188,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the statistics.
@@ -1165,7 +1216,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the statistics.
@@ -1198,7 +1250,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the statistics.
@@ -1234,7 +1287,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the statistics.
@@ -1276,7 +1330,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the partition.
@@ -1303,7 +1358,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the partition.
@@ -1336,7 +1392,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the partitions.
@@ -1372,7 +1429,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the partitions.
@@ -1414,7 +1472,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the types.
@@ -1447,7 +1506,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the types.
@@ -1486,7 +1546,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table valued function.
@@ -1510,7 +1571,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table valued function.
@@ -1540,7 +1602,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table valued functions.
@@ -1573,7 +1636,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the table valued functions.
@@ -1611,7 +1675,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the assembly.
@@ -1631,7 +1696,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the assembly.
@@ -1657,7 +1723,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the assembly.
@@ -1686,7 +1753,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the assembly.
@@ -1721,7 +1789,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -1741,7 +1810,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -1767,7 +1837,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -1796,7 +1867,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database containing the schema.
@@ -1831,7 +1903,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database.
@@ -1848,7 +1921,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='databaseName'>
             /// The name of the database.
@@ -1871,7 +1945,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='odataQuery'>
             /// OData parameters to apply to the operation.
@@ -1897,7 +1972,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// The operations group for this extension method.
             /// </param>
             /// <param name='accountName'>
-            /// The Azure Data Lake Analytics account to execute catalog operations on.
+            /// The Azure Data Lake Analytics account upon which to execute catalog
+            /// operations.
             /// </param>
             /// <param name='odataQuery'>
             /// OData parameters to apply to the operation.

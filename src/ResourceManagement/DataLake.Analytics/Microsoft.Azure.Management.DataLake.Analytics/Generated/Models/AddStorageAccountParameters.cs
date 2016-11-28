@@ -11,23 +11,27 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using System.Linq;
 
     /// <summary>
-    /// Azure Storage account properties information.
+    /// Storage account parameters for a storage account being added to a Data
+    /// Lake Analytics account.
     /// </summary>
-    public partial class StorageAccountProperties
+    [Microsoft.Rest.Serialization.JsonTransformation]
+    public partial class AddStorageAccountParameters
     {
         /// <summary>
-        /// Initializes a new instance of the StorageAccountProperties class.
+        /// Initializes a new instance of the AddStorageAccountParameters
+        /// class.
         /// </summary>
-        public StorageAccountProperties() { }
+        public AddStorageAccountParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the StorageAccountProperties class.
+        /// Initializes a new instance of the AddStorageAccountParameters
+        /// class.
         /// </summary>
         /// <param name="accessKey">the access key associated with this Azure
         /// Storage account that will be used to connect to it.</param>
-        /// <param name="suffix">the optional suffix for the Data Lake
+        /// <param name="suffix">the optional suffix for the storage
         /// account.</param>
-        public StorageAccountProperties(string accessKey, string suffix = default(string))
+        public AddStorageAccountParameters(string accessKey, string suffix = default(string))
         {
             AccessKey = accessKey;
             Suffix = suffix;
@@ -37,13 +41,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// Gets or sets the access key associated with this Azure Storage
         /// account that will be used to connect to it.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "accessKey")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.accessKey")]
         public string AccessKey { get; set; }
 
         /// <summary>
-        /// Gets or sets the optional suffix for the Data Lake account.
+        /// Gets or sets the optional suffix for the storage account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "suffix")]
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
         public string Suffix { get; set; }
 
         /// <summary>

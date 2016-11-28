@@ -10,12 +10,14 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
 
     /// <summary>
-    /// Defines values for EncryptionIdentityType.
+    /// Defines values for FirewallState.
     /// </summary>
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum EncryptionIdentityType
+    public enum FirewallState
     {
-        [System.Runtime.Serialization.EnumMember(Value = "SystemAssigned")]
-        SystemAssigned
+        [System.Runtime.Serialization.EnumMember(Value = "Enabled")]
+        Enabled,
+        [System.Runtime.Serialization.EnumMember(Value = "Disabled")]
+        Disabled
     }
 }

@@ -68,6 +68,21 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         public bool? GenerateClientRequestId { get; set; }
 
         /// <summary>
+        /// Gets the IHiveMetastoresOperations.
+        /// </summary>
+        public virtual IHiveMetastoresOperations HiveMetastores { get; private set; }
+
+        /// <summary>
+        /// Gets the IStorageAccountsOperations.
+        /// </summary>
+        public virtual IStorageAccountsOperations StorageAccounts { get; private set; }
+
+        /// <summary>
+        /// Gets the IDataLakeStoreAccountsOperations.
+        /// </summary>
+        public virtual IDataLakeStoreAccountsOperations DataLakeStoreAccounts { get; private set; }
+
+        /// <summary>
         /// Gets the IAccountOperations.
         /// </summary>
         public virtual IAccountOperations Account { get; private set; }
@@ -273,6 +288,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// </summary>
         private void Initialize()
         {
+            this.HiveMetastores = new HiveMetastoresOperations(this);
+            this.StorageAccounts = new StorageAccountsOperations(this);
+            this.DataLakeStoreAccounts = new DataLakeStoreAccountsOperations(this);
             this.Account = new AccountOperations(this);
             this.BaseUri = new System.Uri("https://management.azure.com");
             this.ApiVersion = "2016-11-01";
@@ -292,6 +310,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                         new Microsoft.Rest.Serialization.Iso8601TimeSpanConverter()
                     }
             };
+            SerializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());
             DeserializationSettings = new Newtonsoft.Json.JsonSerializerSettings
             {
                 DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat,
@@ -305,6 +324,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                     }
             };
             CustomInitialize();
+            DeserializationSettings.Converters.Add(new Microsoft.Rest.Serialization.TransformationJsonConverter());
             DeserializationSettings.Converters.Add(new Microsoft.Rest.Azure.CloudErrorJsonConverter()); 
         }    
     }

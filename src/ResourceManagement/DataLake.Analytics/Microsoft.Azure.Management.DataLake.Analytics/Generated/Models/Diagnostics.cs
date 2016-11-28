@@ -10,6 +10,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
     using System.Linq;
 
+    /// <summary>
+    /// Error diagnostic information for failed jobs.
+    /// </summary>
     public partial class Diagnostics
     {
         /// <summary>

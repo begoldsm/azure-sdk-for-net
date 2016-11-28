@@ -13,7 +13,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     /// <summary>
     /// Azure Storage account information.
     /// </summary>
-    public partial class StorageAccountInfo
+    [Microsoft.Rest.Serialization.JsonTransformation]
+    public partial class StorageAccountInfo : SubResource
     {
         /// <summary>
         /// Initializes a new instance of the StorageAccountInfo class.
@@ -23,28 +24,32 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the StorageAccountInfo class.
         /// </summary>
-        /// <param name="name">the account name associated with the Azure
-        /// storage account.</param>
-        /// <param name="properties">the properties associated with this
-        /// storage account.</param>
-        public StorageAccountInfo(string name, StorageAccountProperties properties)
+        /// <param name="name">Resource name</param>
+        /// <param name="accessKey">the access key associated with this Azure
+        /// Storage account that will be used to connect to it.</param>
+        /// <param name="id">Resource Id</param>
+        /// <param name="type">Resource type</param>
+        /// <param name="suffix">the optional suffix for the storage
+        /// account.</param>
+        public StorageAccountInfo(string name, string accessKey, string id = default(string), string type = default(string), string suffix = default(string))
+            : base(name, id, type)
         {
-            Name = name;
-            Properties = properties;
+            AccessKey = accessKey;
+            Suffix = suffix;
         }
 
         /// <summary>
-        /// Gets or sets the account name associated with the Azure storage
-        /// account.
+        /// Gets or sets the access key associated with this Azure Storage
+        /// account that will be used to connect to it.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.accessKey")]
+        public string AccessKey { get; set; }
 
         /// <summary>
-        /// Gets or sets the properties associated with this storage account.
+        /// Gets or sets the optional suffix for the storage account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
-        public StorageAccountProperties Properties { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        public string Suffix { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -52,19 +57,12 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public virtual void Validate()
+        public override void Validate()
         {
-            if (Name == null)
+            base.Validate();
+            if (AccessKey == null)
             {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Name");
-            }
-            if (Properties == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Properties");
-            }
-            if (this.Properties != null)
-            {
-                this.Properties.Validate();
+                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "AccessKey");
             }
         }
     }

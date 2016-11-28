@@ -68,6 +68,21 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
 
 
         /// <summary>
+        /// Gets the IHiveMetastoresOperations.
+        /// </summary>
+        IHiveMetastoresOperations HiveMetastores { get; }
+
+        /// <summary>
+        /// Gets the IStorageAccountsOperations.
+        /// </summary>
+        IStorageAccountsOperations StorageAccounts { get; }
+
+        /// <summary>
+        /// Gets the IDataLakeStoreAccountsOperations.
+        /// </summary>
+        IDataLakeStoreAccountsOperations DataLakeStoreAccounts { get; }
+
+        /// <summary>
         /// Gets the IAccountOperations.
         /// </summary>
         IAccountOperations Account { get; }

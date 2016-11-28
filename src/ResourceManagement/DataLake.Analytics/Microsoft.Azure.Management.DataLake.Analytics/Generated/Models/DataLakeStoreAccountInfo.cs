@@ -13,7 +13,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     /// <summary>
     /// Data Lake Store account information.
     /// </summary>
-    public partial class DataLakeStoreAccountInfo
+    [Microsoft.Rest.Serialization.JsonTransformation]
+    public partial class DataLakeStoreAccountInfo : SubResource
     {
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
@@ -23,28 +24,22 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <summary>
         /// Initializes a new instance of the DataLakeStoreAccountInfo class.
         /// </summary>
-        /// <param name="name">the account name of the Data Lake Store
+        /// <param name="name">Resource name</param>
+        /// <param name="id">Resource Id</param>
+        /// <param name="type">Resource type</param>
+        /// <param name="suffix">the optional suffix for the Data Lake Store
         /// account.</param>
-        /// <param name="properties">the properties associated with this Data
-        /// Lake Store account.</param>
-        public DataLakeStoreAccountInfo(string name, DataLakeStoreAccountInfoProperties properties = default(DataLakeStoreAccountInfoProperties))
+        public DataLakeStoreAccountInfo(string name, string id = default(string), string type = default(string), string suffix = default(string))
+            : base(name, id, type)
         {
-            Name = name;
-            Properties = properties;
+            Suffix = suffix;
         }
 
         /// <summary>
-        /// Gets or sets the account name of the Data Lake Store account.
+        /// Gets or sets the optional suffix for the Data Lake Store account.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the properties associated with this Data Lake Store
-        /// account.
-        /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
-        public DataLakeStoreAccountInfoProperties Properties { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.suffix")]
+        public string Suffix { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -52,12 +47,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public virtual void Validate()
+        public override void Validate()
         {
-            if (Name == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Name");
-            }
+            base.Validate();
         }
     }
 }

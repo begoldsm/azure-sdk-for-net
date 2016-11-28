@@ -11,20 +11,21 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using System.Linq;
 
     /// <summary>
-    /// Hive metastore information.
+    /// Hive metastore add or update parameters.
     /// </summary>
     [Microsoft.Rest.Serialization.JsonTransformation]
-    public partial class HiveMetastore : SubResource
+    public partial class UpdateHiveMetaStoreParameters
     {
         /// <summary>
-        /// Initializes a new instance of the HiveMetastore class.
+        /// Initializes a new instance of the UpdateHiveMetaStoreParameters
+        /// class.
         /// </summary>
-        public HiveMetastore() { }
+        public UpdateHiveMetaStoreParameters() { }
 
         /// <summary>
-        /// Initializes a new instance of the HiveMetastore class.
+        /// Initializes a new instance of the UpdateHiveMetaStoreParameters
+        /// class.
         /// </summary>
-        /// <param name="name">Resource name</param>
         /// <param name="serverUri">Gets or sets URL of the server to connect
         /// to. For example: myserver.database.windows.net,
         /// myserver.cloudapp.net</param>
@@ -36,10 +37,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// connection.</param>
         /// <param name="password">Sets the password for the
         /// connection.</param>
-        /// <param name="id">Resource Id</param>
-        /// <param name="type">Resource type</param>
-        public HiveMetastore(string name, string serverUri, string databaseName, string runtimeVersion, string userName, string password, string id = default(string), string type = default(string))
-            : base(name, id, type)
+        public UpdateHiveMetaStoreParameters(string serverUri = default(string), string databaseName = default(string), string runtimeVersion = default(string), string userName = default(string), string password = default(string))
         {
             ServerUri = serverUri;
             DatabaseName = databaseName;
@@ -80,35 +78,5 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         [Newtonsoft.Json.JsonProperty(PropertyName = "properties.password")]
         public string Password { get; set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public override void Validate()
-        {
-            base.Validate();
-            if (ServerUri == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "ServerUri");
-            }
-            if (DatabaseName == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "DatabaseName");
-            }
-            if (RuntimeVersion == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "RuntimeVersion");
-            }
-            if (UserName == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "UserName");
-            }
-            if (Password == null)
-            {
-                throw new Microsoft.Rest.ValidationException(Microsoft.Rest.ValidationRules.CannotBeNull, "Password");
-            }
-        }
     }
 }

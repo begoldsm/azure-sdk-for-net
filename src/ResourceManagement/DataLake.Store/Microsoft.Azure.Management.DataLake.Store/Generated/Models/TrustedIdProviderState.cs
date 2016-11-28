@@ -6,20 +6,18 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.DataLake.Analytics.Models
+namespace Microsoft.Azure.Management.DataLake.Store.Models
 {
 
     /// <summary>
-    /// Defines values for OperationStatus.
+    /// Defines values for TrustedIdProviderState.
     /// </summary>
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-    public enum OperationStatus
+    public enum TrustedIdProviderState
     {
-        [System.Runtime.Serialization.EnumMember(Value = "InProgress")]
-        InProgress,
-        [System.Runtime.Serialization.EnumMember(Value = "Succeeded")]
-        Succeeded,
-        [System.Runtime.Serialization.EnumMember(Value = "Failed")]
-        Failed
+        [System.Runtime.Serialization.EnumMember(Value = "Enabled")]
+        Enabled,
+        [System.Runtime.Serialization.EnumMember(Value = "Disabled")]
+        Disabled
     }
 }

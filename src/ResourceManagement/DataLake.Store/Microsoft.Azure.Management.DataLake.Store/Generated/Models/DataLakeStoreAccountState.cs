@@ -15,9 +15,9 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
     [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum DataLakeStoreAccountState
     {
-        [System.Runtime.Serialization.EnumMember(Value = "active")]
+        [System.Runtime.Serialization.EnumMember(Value = "Active")]
         Active,
-        [System.Runtime.Serialization.EnumMember(Value = "suspended")]
+        [System.Runtime.Serialization.EnumMember(Value = "Suspended")]
         Suspended
     }
 }

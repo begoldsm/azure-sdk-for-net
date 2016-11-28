@@ -13,28 +13,29 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     /// <summary>
     /// Azure Storage blob container information.
     /// </summary>
-    public partial class BlobContainer
+    [Microsoft.Rest.Serialization.JsonTransformation]
+    public partial class StorageContainer
     {
         /// <summary>
-        /// Initializes a new instance of the BlobContainer class.
+        /// Initializes a new instance of the StorageContainer class.
         /// </summary>
-        public BlobContainer() { }
+        public StorageContainer() { }
 
         /// <summary>
-        /// Initializes a new instance of the BlobContainer class.
+        /// Initializes a new instance of the StorageContainer class.
         /// </summary>
         /// <param name="name">the name of the blob container.</param>
         /// <param name="id">the unique identifier of the blob
         /// container.</param>
         /// <param name="type">the type of the blob container.</param>
-        /// <param name="properties">the properties of the blob
+        /// <param name="lastModifiedTime">the last modified time of the blob
         /// container.</param>
-        public BlobContainer(string name = default(string), string id = default(string), string type = default(string), BlobContainerProperties properties = default(BlobContainerProperties))
+        public StorageContainer(string name = default(string), string id = default(string), string type = default(string), System.DateTime? lastModifiedTime = default(System.DateTime?))
         {
             Name = name;
             Id = id;
             Type = type;
-            Properties = properties;
+            LastModifiedTime = lastModifiedTime;
         }
 
         /// <summary>
@@ -56,10 +57,10 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         public string Type { get; private set; }
 
         /// <summary>
-        /// Gets the properties of the blob container.
+        /// Gets the last modified time of the blob container.
         /// </summary>
-        [Newtonsoft.Json.JsonProperty(PropertyName = "properties")]
-        public BlobContainerProperties Properties { get; private set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "properties.lastModifiedTime")]
+        public System.DateTime? LastModifiedTime { get; private set; }
 
     }
 }

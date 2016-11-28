@@ -10,6 +10,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
 {
     using System.Linq;
 
+    /// <summary>
+    /// Hive job properties used when submitting and retrieving Hive jobs.
+    /// </summary>
     [Newtonsoft.Json.JsonObject("Hive")]
     public partial class HiveJobProperties : JobProperties
     {
