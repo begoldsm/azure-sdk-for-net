@@ -5,7 +5,7 @@
 
 @echo off
 setlocal
-set autoRestVersion=0.17.0-Nightly20160731
+set autoRestVersion=1.0.0-Nightly20170104
 set source=-Source https://www.myget.org/F/autorest/api/v2
 
 set accountSpecFile="https://raw.githubusercontent.com/begoldsm/azure-rest-api-specs/hive/arm-datalake-analytics/account/2016-11-01/swagger/account.json"

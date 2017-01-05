@@ -14,6 +14,7 @@
 // limitations under the License.
 // 
 
+using Microsoft.Rest;
 using System;
 using System.IO;
 using System.Text;
@@ -39,7 +40,8 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         private readonly CancellationToken _token;
         private UploadSegmentMetadata _segmentMetadata;
         private UploadMetadata _metadata;
-
+        private readonly string _invocationId;
+        private readonly bool _shouldTrace;
         #endregion
 
         #region Constructor
@@ -66,6 +68,12 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         /// <param name="progressTracker">(Optional) A tracker to report progress on this segment.</param>
         public SingleSegmentDownloader(int segmentNumber, UploadMetadata downloadMetadata, IFrontEndAdapter frontEnd, CancellationToken token, IProgress<SegmentUploadProgress> progressTracker = null)
         {
+            _shouldTrace = ServiceClientTracing.IsEnabled;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+            }
+
             _metadata = downloadMetadata;
             _segmentMetadata = downloadMetadata.Segments[segmentNumber];
 
@@ -127,21 +135,40 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                     remoteLength = _frontEnd.GetStreamLength(_segmentMetadata.Path, _metadata.IsDownload);
                     break;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     _token.ThrowIfCancellationRequested();
                     if (retryCount >= MaxBufferDownloadAttemptCount)
                     {
-                        throw;
+                        if (_shouldTrace)
+                        {
+                            ServiceClientTracing.Error(_invocationId, e);
+                        }
+
+                        throw e;
                     }
 
-                    WaitForRetry(retryCount, this.UseBackOffRetryStrategy, _token);
+                    var waitTime = WaitForRetry(retryCount, this.UseBackOffRetryStrategy, _token);
+                    if (_shouldTrace)
+                    {
+                        ServiceClientTracing.Information("VerifyDownloadedStream: GetStreamLength at path:{0} failed on try: {1} with exception: {2}. Wait time in ms before retry: {3}",
+                             _segmentMetadata.Path,
+                             retryCount,
+                             e,
+                             waitTime);
+                    }
                 }
             }
 
             if (_segmentMetadata.Length != remoteLength)
             {
-                throw new UploadFailedException(string.Format("Post-download stream verification failed: target stream has a length of {0}, expected {1}", remoteLength, _segmentMetadata.Length));
+                var ex = new UploadFailedException(string.Format("Post-download stream verification failed: target stream has a length of {0}, expected {1}", remoteLength, _segmentMetadata.Length));
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+
+                throw ex;
             }
         }
 
@@ -211,7 +238,13 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                             // if we got more data than we asked for something went wrong and we should retry, since we can't trust the extra data
                             if(lengthReturned > lengthToDownload)
                             {
-                                throw new UploadFailedException(string.Format("{4}: Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}. From offset: {2} in remote file: {3}", lengthToDownload, outputStream.Position - curOffset, curOffset, _metadata.InputFilePath, DateTime.Now.ToString()));
+                                var ex = new UploadFailedException(string.Format("{4}: Did not download the expected amount of data in the request. Expected: {0}. Actual: {1}. From offset: {2} in remote file: {3}", lengthToDownload, outputStream.Position - curOffset, curOffset, _metadata.InputFilePath, DateTime.Now.ToString()));
+                                if (_shouldTrace)
+                                {
+                                    ServiceClientTracing.Error(_invocationId, ex);
+                                }
+
+                                throw ex;
                             }
 
                             // we need to validate how many bytes have actually been copied to the read stream
@@ -230,10 +263,25 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                                 // reduce the liklihood of additional failures.
                                 if(partialDataAttempts >= MaxBufferDownloadAttemptCount)
                                 {
-                                    throw new UploadFailedException(string.Format("Failed to retrieve the requested data after {0} attempts for file {1}. This usually indicates repeateded server-side throttling due to exceeding account bandwidth.", MaxBufferDownloadAttemptCount, _segmentMetadata.Path));
+                                    var ex = new UploadFailedException(string.Format("Failed to retrieve the requested data after {0} attempts for file {1}. This usually indicates repeateded server-side throttling due to exceeding account bandwidth.", MaxBufferDownloadAttemptCount, _segmentMetadata.Path));
+                                    if (_shouldTrace)
+                                    {
+                                        ServiceClientTracing.Error(_invocationId, ex);
+                                    }
+
+                                    throw ex;
                                 }
 
-                                WaitForRetry(partialDataAttempts, this.UseBackOffRetryStrategy, _token);
+                                var waitTime = WaitForRetry(partialDataAttempts, this.UseBackOffRetryStrategy, _token);
+                                if (_shouldTrace)
+                                {
+                                    ServiceClientTracing.Information("DownloadSegmentContents: ReadStream at path:{0} returned: {1} bytes. Expected: {2} bytes. Attempt: {3}. Wait time in ms before retry: {4}",
+                                        _metadata.InputFilePath,
+                                        lengthReturned,
+                                        lengthToDownload,
+                                        partialDataAttempts,
+                                        waitTime);
+                                }
                             }
                             else
                             {
@@ -254,11 +302,24 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                             if (attemptCount >= MaxBufferDownloadAttemptCount)
                             {
                                 ReportProgress(localOffset, true);
+                                if (_shouldTrace)
+                                {
+                                    ServiceClientTracing.Error(_invocationId, ex);
+                                }
+
                                 throw ex;
                             }
                             else
                             {
-                                WaitForRetry(attemptCount, this.UseBackOffRetryStrategy, _token);
+                                var waitTime = WaitForRetry(attemptCount, this.UseBackOffRetryStrategy, _token);
+                                if (_shouldTrace)
+                                {
+                                    ServiceClientTracing.Information("DownloadSegmentContents: ReadStream at path:{0} failed on try: {1} with exception: {2}. Wait time in ms before retry: {3}",
+                                    _metadata.InputFilePath,
+                                    attemptCount,
+                                    ex,
+                                    waitTime);
+                                }
 
                                 // forcibly put the stream back to where it should be based on where we think we are in the download.
                                 outputStream.Seek(curOffset, SeekOrigin.Begin);
@@ -270,7 +331,13 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
                 // full validation of the segment.
                 if(outputStream.Position - _segmentMetadata.Offset != _segmentMetadata.Length)
                 {
-                    throw new UploadFailedException(string.Format("Post-download stream segment verification failed for file {2}: target stream has a length of {0}, expected {1}. This usually indicates repeateded server-side throttling due to exceeding account bandwidth.", outputStream.Position - _segmentMetadata.Offset, _segmentMetadata.Length, _segmentMetadata.Path));
+                    var ex = new UploadFailedException(string.Format("Post-download stream segment verification failed for file {2}: target stream has a length of {0}, expected {1}. This usually indicates repeateded server-side throttling due to exceeding account bandwidth.", outputStream.Position - _segmentMetadata.Offset, _segmentMetadata.Length, _segmentMetadata.Path));
+                    if (_shouldTrace)
+                    {
+                        ServiceClientTracing.Error(_invocationId, ex);
+                    }
+
+                    throw ex;
                 }
             }
         }
@@ -279,13 +346,13 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
         /// Waits for retry.
         /// </summary>
         /// <param name="attemptCount">The attempt count.</param>
-        internal static void WaitForRetry(int attemptCount, bool useBackOffRetryStrategy, CancellationToken token)
+        internal static int WaitForRetry(int attemptCount, bool useBackOffRetryStrategy, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
             if (!useBackOffRetryStrategy)
             {
                 //no need to wait
-                return;
+                return -1;
             }
 
             int intervalMs = Math.Min(MaximumBackoffWaitSeconds, (int)Math.Pow(2, attemptCount)) * 1000;
@@ -294,6 +361,7 @@ namespace Microsoft.Azure.Management.DataLake.StoreUploader
             var randomMS = new Random();
             intervalMs += randomMS.Next((int)Math.Ceiling(intervalMs * .1));
             Thread.Sleep(TimeSpan.FromMilliseconds(intervalMs));
+            return intervalMs;
         }
 
         /// <summary>
