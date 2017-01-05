@@ -99,9 +99,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='parameters'>
             /// The parameters required to modify the secret (name and password)
             /// </param>
-            public static USqlSecret UpdateSecret(this ICatalogOperations operations, string accountName, string databaseName, string secretName, DataLakeAnalyticsCatalogSecretCreateOrUpdateParameters parameters)
+            public static void UpdateSecret(this ICatalogOperations operations, string accountName, string databaseName, string secretName, DataLakeAnalyticsCatalogSecretCreateOrUpdateParameters parameters)
             {
-                return operations.UpdateSecretAsync(accountName, databaseName, secretName, parameters).GetAwaiter().GetResult();
+                operations.UpdateSecretAsync(accountName, databaseName, secretName, parameters).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -128,12 +128,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<USqlSecret> UpdateSecretAsync(this ICatalogOperations operations, string accountName, string databaseName, string secretName, DataLakeAnalyticsCatalogSecretCreateOrUpdateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task UpdateSecretAsync(this ICatalogOperations operations, string accountName, string databaseName, string secretName, DataLakeAnalyticsCatalogSecretCreateOrUpdateParameters parameters, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.UpdateSecretWithHttpMessagesAsync(accountName, databaseName, secretName, parameters, null, cancellationToken).ConfigureAwait(false))
-                {
-                    return _result.Body;
-                }
+                await operations.UpdateSecretWithHttpMessagesAsync(accountName, databaseName, secretName, parameters, null, cancellationToken).ConfigureAwait(false);
             }
 
             /// <summary>
