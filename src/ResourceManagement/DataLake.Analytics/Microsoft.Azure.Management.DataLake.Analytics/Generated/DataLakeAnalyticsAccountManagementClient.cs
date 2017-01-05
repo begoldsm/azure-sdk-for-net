@@ -80,6 +80,11 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         public bool? GenerateClientRequestId { get; set; }
 
         /// <summary>
+        /// Gets the IHiveMetastoresOperations.
+        /// </summary>
+        public virtual IHiveMetastoresOperations HiveMetastores { get; private set; }
+
+        /// <summary>
         /// Gets the IStorageAccountsOperations.
         /// </summary>
         public virtual IStorageAccountsOperations StorageAccounts { get; private set; }
@@ -295,6 +300,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// </summary>
         private void Initialize()
         {
+            HiveMetastores = new HiveMetastoresOperations(this);
             StorageAccounts = new StorageAccountsOperations(this);
             DataLakeStoreAccounts = new DataLakeStoreAccountsOperations(this);
             Account = new AccountOperations(this);

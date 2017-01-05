@@ -17,6 +17,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
     using DataLake;
     using Analytics;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -47,8 +49,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// <param name="configurations">the value of custom
         /// configurations.</param>
         /// <param name="sessionHandle">GUID string, used to locate the
-        /// aggregated yarn logs, including HiveServer2 and HiveMetastore
-        /// logs and Tez AM logs.</param>
+        /// aggregated yarn logs, including HiveServer2 and HiveMetastore logs
+        /// and Tez AM logs.</param>
         /// <param name="tezApplicationId">Tez application Id, the client can
         /// use ATS API to get DAG info</param>
         public HiveJobProperties(string script, string runtimeVersion = default(string), string logsLocation = default(string), string outputLocation = default(string), int? statementCount = default(int?), int? executedStatementCount = default(int?), IDictionary<string, string> configurations = default(IDictionary<string, string>), string sessionHandle = default(string), string tezApplicationId = default(string))
@@ -100,13 +102,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// including HiveServer2 and HiveMetastore logs and Tez AM logs.
         /// </summary>
         [JsonProperty(PropertyName = "sessionHandle")]
-        public string SessionHandle { get; private set; }
+        public string SessionHandle { get; protected set; }
 
         /// <summary>
         /// Gets tez application Id, the client can use ATS API to get DAG info
         /// </summary>
         [JsonProperty(PropertyName = "tezApplicationId")]
-        public string TezApplicationId { get; private set; }
+        public string TezApplicationId { get; protected set; }
 
         /// <summary>
         /// Validate the object.
