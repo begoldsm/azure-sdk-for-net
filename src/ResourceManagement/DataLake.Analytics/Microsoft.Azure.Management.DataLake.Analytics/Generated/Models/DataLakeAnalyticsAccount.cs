@@ -54,8 +54,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Resuming', 'Deleting', 'Deleted'</param>
         /// <param name="state">the state of the Data Lake Analytics account.
         /// Possible values include: 'Active', 'Suspended'</param>
-        /// <param name="activeHiveMetastore">the currently active Hive
-        /// metastore associated with this Data Lake Analytics account.</param>
         /// <param name="maxDegreeOfParallelism">the maximum supported degree
         /// of parallelism for this account.</param>
         /// <param name="queryStoreRetention">the number of days that job
@@ -72,8 +70,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// the account.</param>
         /// <param name="storageAccounts">the list of Azure Blob storage
         /// accounts associated with this account.</param>
-        /// <param name="hiveMetastores">the list of Hive metastores associated
-        /// with this account.</param>
         /// <param name="creationTime">the account creation time.</param>
         /// <param name="lastModifiedTime">the account last modified
         /// time.</param>
@@ -91,13 +87,12 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Commitment_1000AUHours', 'Commitment_5000AUHours',
         /// 'Commitment_10000AUHours', 'Commitment_50000AUHours',
         /// 'Commitment_100000AUHours', 'Commitment_500000AUHours'</param>
-        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string activeHiveMetastore = default(string), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), IList<HiveMetastore> hiveMetastores = default(IList<HiveMetastore>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string), TierType? newTier = default(TierType?), TierType? currentTier = default(TierType?))
+        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string), TierType? newTier = default(TierType?), TierType? currentTier = default(TierType?))
             : base(location, id, name, type, tags)
         {
             ProvisioningState = provisioningState;
             State = state;
             DefaultDataLakeStoreAccount = defaultDataLakeStoreAccount;
-            ActiveHiveMetastore = activeHiveMetastore;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
             QueryStoreRetention = queryStoreRetention;
             MaxJobCount = maxJobCount;
@@ -105,7 +100,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             SystemMaxJobCount = systemMaxJobCount;
             DataLakeStoreAccounts = dataLakeStoreAccounts;
             StorageAccounts = storageAccounts;
-            HiveMetastores = hiveMetastores;
             CreationTime = creationTime;
             LastModifiedTime = lastModifiedTime;
             Endpoint = endpoint;
@@ -135,13 +129,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.defaultDataLakeStoreAccount")]
         public string DefaultDataLakeStoreAccount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the currently active Hive metastore associated with
-        /// this Data Lake Analytics account.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.activeHiveMetastore")]
-        public string ActiveHiveMetastore { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
@@ -192,13 +179,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.storageAccounts")]
         public IList<StorageAccountInfo> StorageAccounts { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list of Hive metastores associated with this
-        /// account.
-        /// </summary>
-        [JsonProperty(PropertyName = "properties.hiveMetastores")]
-        public IList<HiveMetastore> HiveMetastores { get; set; }
 
         /// <summary>
         /// Gets the account creation time.
@@ -290,16 +270,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
                     if (element1 != null)
                     {
                         element1.Validate();
-                    }
-                }
-            }
-            if (HiveMetastores != null)
-            {
-                foreach (var element2 in HiveMetastores)
-                {
-                    if (element2 != null)
-                    {
-                        element2.Validate();
                     }
                 }
             }
