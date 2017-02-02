@@ -54,6 +54,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Resuming', 'Deleting', 'Deleted'</param>
         /// <param name="state">the state of the Data Lake Analytics account.
         /// Possible values include: 'Active', 'Suspended'</param>
+        /// <param name="activeHiveMetastore">the currently active Hive
+        /// metastore associated with this Data Lake Analytics account.</param>
         /// <param name="maxDegreeOfParallelism">the maximum supported degree
         /// of parallelism for this account.</param>
         /// <param name="queryStoreRetention">the number of days that job
@@ -70,6 +72,8 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// the account.</param>
         /// <param name="storageAccounts">the list of Azure Blob storage
         /// accounts associated with this account.</param>
+        /// <param name="hiveMetastores">the list of Hive metastores associated
+        /// with this account.</param>
         /// <param name="creationTime">the account creation time.</param>
         /// <param name="lastModifiedTime">the account last modified
         /// time.</param>
@@ -87,12 +91,22 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// 'Commitment_1000AUHours', 'Commitment_5000AUHours',
         /// 'Commitment_10000AUHours', 'Commitment_50000AUHours',
         /// 'Commitment_100000AUHours', 'Commitment_500000AUHours'</param>
-        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string), TierType? newTier = default(TierType?), TierType? currentTier = default(TierType?))
+        /// <param name="firewallState">The current state of the IP address
+        /// firewall for this Data Lake Analytics account. Possible values
+        /// include: 'Enabled', 'Disabled'</param>
+        /// <param name="firewallAllowAzureIps">The current state of allowing
+        /// or disallowing IPs originating within Azure through the firewall.
+        /// If the firewall itself is disabled, this is not enforced. Possible
+        /// values include: 'Enabled', 'Disabled'</param>
+        /// <param name="firewallRules">The list of firewall rules associated
+        /// with this Data Lake Analytics account.</param>
+        public DataLakeAnalyticsAccount(string location, string defaultDataLakeStoreAccount, IList<DataLakeStoreAccountInfo> dataLakeStoreAccounts, string id = default(string), string name = default(string), string type = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>), DataLakeAnalyticsAccountStatus? provisioningState = default(DataLakeAnalyticsAccountStatus?), DataLakeAnalyticsAccountState? state = default(DataLakeAnalyticsAccountState?), string activeHiveMetastore = default(string), int? maxDegreeOfParallelism = default(int?), int? queryStoreRetention = default(int?), int? maxJobCount = default(int?), int? systemMaxDegreeOfParallelism = default(int?), int? systemMaxJobCount = default(int?), IList<StorageAccountInfo> storageAccounts = default(IList<StorageAccountInfo>), IList<HiveMetastore> hiveMetastores = default(IList<HiveMetastore>), System.DateTime? creationTime = default(System.DateTime?), System.DateTime? lastModifiedTime = default(System.DateTime?), string endpoint = default(string), TierType? newTier = default(TierType?), TierType? currentTier = default(TierType?), FirewallState? firewallState = default(FirewallState?), FirewallAllowAzureIpsState? firewallAllowAzureIps = default(FirewallAllowAzureIpsState?), IList<FirewallRule> firewallRules = default(IList<FirewallRule>))
             : base(location, id, name, type, tags)
         {
             ProvisioningState = provisioningState;
             State = state;
             DefaultDataLakeStoreAccount = defaultDataLakeStoreAccount;
+            ActiveHiveMetastore = activeHiveMetastore;
             MaxDegreeOfParallelism = maxDegreeOfParallelism;
             QueryStoreRetention = queryStoreRetention;
             MaxJobCount = maxJobCount;
@@ -100,11 +114,15 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
             SystemMaxJobCount = systemMaxJobCount;
             DataLakeStoreAccounts = dataLakeStoreAccounts;
             StorageAccounts = storageAccounts;
+            HiveMetastores = hiveMetastores;
             CreationTime = creationTime;
             LastModifiedTime = lastModifiedTime;
             Endpoint = endpoint;
             NewTier = newTier;
             CurrentTier = currentTier;
+            FirewallState = firewallState;
+            FirewallAllowAzureIps = firewallAllowAzureIps;
+            FirewallRules = firewallRules;
         }
 
         /// <summary>
@@ -129,6 +147,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.defaultDataLakeStoreAccount")]
         public string DefaultDataLakeStoreAccount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the currently active Hive metastore associated with
+        /// this Data Lake Analytics account.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.activeHiveMetastore")]
+        public string ActiveHiveMetastore { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum supported degree of parallelism for this
@@ -181,6 +206,13 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         public IList<StorageAccountInfo> StorageAccounts { get; set; }
 
         /// <summary>
+        /// Gets or sets the list of Hive metastores associated with this
+        /// account.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.hiveMetastores")]
+        public IList<HiveMetastore> HiveMetastores { get; set; }
+
+        /// <summary>
         /// Gets the account creation time.
         /// </summary>
         [JsonProperty(PropertyName = "properties.creationTime")]
@@ -219,6 +251,30 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
         /// </summary>
         [JsonProperty(PropertyName = "properties.currentTier")]
         public TierType? CurrentTier { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the current state of the IP address firewall for this
+        /// Data Lake Analytics account. Possible values include: 'Enabled',
+        /// 'Disabled'
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.firewallState")]
+        public FirewallState? FirewallState { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current state of allowing or disallowing IPs
+        /// originating within Azure through the firewall. If the firewall
+        /// itself is disabled, this is not enforced. Possible values include:
+        /// 'Enabled', 'Disabled'
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.firewallAllowAzureIps")]
+        public FirewallAllowAzureIpsState? FirewallAllowAzureIps { get; set; }
+
+        /// <summary>
+        /// Gets or sets the list of firewall rules associated with this Data
+        /// Lake Analytics account.
+        /// </summary>
+        [JsonProperty(PropertyName = "properties.firewallRules")]
+        public IList<FirewallRule> FirewallRules { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -270,6 +326,26 @@ namespace Microsoft.Azure.Management.DataLake.Analytics.Models
                     if (element1 != null)
                     {
                         element1.Validate();
+                    }
+                }
+            }
+            if (HiveMetastores != null)
+            {
+                foreach (var element2 in HiveMetastores)
+                {
+                    if (element2 != null)
+                    {
+                        element2.Validate();
+                    }
+                }
+            }
+            if (FirewallRules != null)
+            {
+                foreach (var element3 in FirewallRules)
+                {
+                    if (element3 != null)
+                    {
+                        element3.Validate();
                     }
                 }
             }

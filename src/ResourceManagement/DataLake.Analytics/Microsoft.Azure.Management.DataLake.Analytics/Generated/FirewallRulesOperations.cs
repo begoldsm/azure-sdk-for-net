@@ -6,7 +6,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.DataLake.Store
+namespace Microsoft.Azure.Management.DataLake.Analytics
 {
     using Azure;
     using DataLake;
@@ -29,7 +29,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
     /// <summary>
     /// FirewallRulesOperations operations.
     /// </summary>
-    internal partial class FirewallRulesOperations : IServiceOperations<DataLakeStoreAccountManagementClient>, IFirewallRulesOperations
+    internal partial class FirewallRulesOperations : IServiceOperations<DataLakeAnalyticsAccountManagementClient>, IFirewallRulesOperations
     {
         /// <summary>
         /// Initializes a new instance of the FirewallRulesOperations class.
@@ -40,7 +40,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal FirewallRulesOperations(DataLakeStoreAccountManagementClient client)
+        internal FirewallRulesOperations(DataLakeAnalyticsAccountManagementClient client)
         {
             if (client == null)
             {
@@ -50,20 +50,21 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Gets a reference to the DataLakeStoreAccountManagementClient
+        /// Gets a reference to the DataLakeAnalyticsAccountManagementClient
         /// </summary>
-        public DataLakeStoreAccountManagementClient Client { get; private set; }
+        public DataLakeAnalyticsAccountManagementClient Client { get; private set; }
 
         /// <summary>
         /// Creates or updates the specified firewall rule. During update, the firewall
         /// rule with the specified name will be replaced with this new firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to which to add the firewall rule.
+        /// The name of the Data Lake Analytics account to which to add or replace the
+        /// firewall rule.
         /// </param>
         /// <param name='firewallRuleName'>
         /// The name of the firewall rule to create or update.
@@ -138,7 +139,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
@@ -281,11 +282,11 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// Updates the specified firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to which to update the firewall
+        /// The name of the Data Lake Analytics account to which to update the firewall
         /// rule.
         /// </param>
         /// <param name='firewallRuleName'>
@@ -353,7 +354,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
@@ -493,16 +494,16 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Deletes the specified firewall rule from the specified Data Lake Store
+        /// Deletes the specified firewall rule from the specified Data Lake Analytics
         /// account
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to delete the firewall
-        /// rule.
+        /// The name of the Data Lake Analytics account from which to delete the
+        /// firewall rule.
         /// </param>
         /// <param name='firewallRuleName'>
         /// The name of the firewall rule to delete.
@@ -562,7 +563,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
@@ -670,14 +671,14 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Gets the specified Data Lake Store firewall rule.
+        /// Gets the specified Data Lake Analytics firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the firewall
+        /// The name of the Data Lake Analytics account from which to get the firewall
         /// rule.
         /// </param>
         /// <param name='firewallRuleName'>
@@ -741,7 +742,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
@@ -875,15 +876,15 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Lists the Data Lake Store firewall rules within the specified Data Lake
-        /// Store account.
+        /// Lists the Data Lake Analytics firewall rules within the specified Data Lake
+        /// Analytics account.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the firewall
+        /// The name of the Data Lake Analytics account from which to get the firewall
         /// rules.
         /// </param>
         /// <param name='customHeaders'>
@@ -939,7 +940,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
@@ -1072,8 +1073,8 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Lists the Data Lake Store firewall rules within the specified Data Lake
-        /// Store account.
+        /// Lists the Data Lake Analytics firewall rules within the specified Data Lake
+        /// Analytics account.
         /// </summary>
         /// <param name='nextPageLink'>
         /// The NextLink from the previous successful call to List operation.
@@ -1245,5 +1246,6 @@ namespace Microsoft.Azure.Management.DataLake.Store
 
     }
 }
+
 
 

@@ -80,6 +80,11 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         public bool? GenerateClientRequestId { get; set; }
 
         /// <summary>
+        /// Gets the IFirewallRulesOperations.
+        /// </summary>
+        public virtual IFirewallRulesOperations FirewallRules { get; private set; }
+
+        /// <summary>
         /// Gets the IHiveMetastoresOperations.
         /// </summary>
         public virtual IHiveMetastoresOperations HiveMetastores { get; private set; }
@@ -300,6 +305,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// </summary>
         private void Initialize()
         {
+            FirewallRules = new FirewallRulesOperations(this);
             HiveMetastores = new HiveMetastoresOperations(this);
             StorageAccounts = new StorageAccountsOperations(this);
             DataLakeStoreAccounts = new DataLakeStoreAccountsOperations(this);

@@ -75,6 +75,11 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
 
 
         /// <summary>
+        /// Gets the IFirewallRulesOperations.
+        /// </summary>
+        IFirewallRulesOperations FirewallRules { get; }
+
+        /// <summary>
         /// Gets the IHiveMetastoresOperations.
         /// </summary>
         IHiveMetastoresOperations HiveMetastores { get; }

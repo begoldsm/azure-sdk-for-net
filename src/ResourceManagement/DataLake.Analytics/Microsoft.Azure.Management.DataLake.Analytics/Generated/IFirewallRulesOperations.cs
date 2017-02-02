@@ -6,7 +6,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.DataLake.Store
+namespace Microsoft.Azure.Management.DataLake.Analytics
 {
     using Azure;
     using DataLake;
@@ -23,30 +23,28 @@ namespace Microsoft.Azure.Management.DataLake.Store
     using System.Threading.Tasks;
 
     /// <summary>
-    /// TrustedIdProvidersOperations operations.
+    /// FirewallRulesOperations operations.
     /// </summary>
-    public partial interface ITrustedIdProvidersOperations
+    public partial interface IFirewallRulesOperations
     {
         /// <summary>
-        /// Creates or updates the specified trusted identity provider. During
-        /// update, the trusted identity provider with the specified name will
-        /// be replaced with this new provider
+        /// Creates or updates the specified firewall rule. During update, the
+        /// firewall rule with the specified name will be replaced with this
+        /// new firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
-        /// Store account.
+        /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to which to add or replace
-        /// the trusted identity provider.
+        /// The name of the Data Lake Analytics account to which to add or
+        /// replace the firewall rule.
         /// </param>
-        /// <param name='trustedIdProviderName'>
-        /// The name of the trusted identity provider. This is used for
-        /// differentiation of providers in the account.
+        /// <param name='firewallRuleName'>
+        /// The name of the firewall rule to create or update.
         /// </param>
         /// <param name='parameters'>
-        /// Parameters supplied to create or replace the trusted identity
-        /// provider.
+        /// Parameters supplied to create or update the firewall rule.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -63,24 +61,23 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<TrustedIdProvider>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string trustedIdProviderName, TrustedIdProvider parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<FirewallRule>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, FirewallRule parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Updates the specified trusted identity provider.
+        /// Updates the specified firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
-        /// Store account.
+        /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to which to update the
-        /// trusted identity provider.
+        /// The name of the Data Lake Analytics account to which to update the
+        /// firewall rule.
         /// </param>
-        /// <param name='trustedIdProviderName'>
-        /// The name of the trusted identity provider. This is used for
-        /// differentiation of providers in the account.
+        /// <param name='firewallRuleName'>
+        /// The name of the firewall rule to update.
         /// </param>
         /// <param name='parameters'>
-        /// Parameters supplied to update the trusted identity provider.
+        /// Parameters supplied to update the firewall rule.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -97,21 +94,21 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<TrustedIdProvider>> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string trustedIdProviderName, UpdateTrustedIdProviderParameters parameters = default(UpdateTrustedIdProviderParameters), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<FirewallRule>> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, UpdateFirewallRuleParameters parameters = default(UpdateFirewallRuleParameters), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Deletes the specified trusted identity provider from the specified
-        /// Data Lake Store account
+        /// Deletes the specified firewall rule from the specified Data Lake
+        /// Analytics account
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
-        /// Store account.
+        /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to delete the
-        /// trusted identity provider.
+        /// The name of the Data Lake Analytics account from which to delete
+        /// the firewall rule.
         /// </param>
-        /// <param name='trustedIdProviderName'>
-        /// The name of the trusted identity provider to delete.
+        /// <param name='firewallRuleName'>
+        /// The name of the firewall rule to delete.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -125,48 +122,20 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string trustedIdProviderName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Gets the specified Data Lake Store trusted identity provider.
+        /// Gets the specified Data Lake Analytics firewall rule.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
-        /// Store account.
+        /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the
-        /// trusted identity provider.
+        /// The name of the Data Lake Analytics account from which to get the
+        /// firewall rule.
         /// </param>
-        /// <param name='trustedIdProviderName'>
-        /// The name of the trusted identity provider to retrieve.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="CloudException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="SerializationException">
-        /// Thrown when unable to deserialize the response
-        /// </exception>
-        /// <exception cref="ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        Task<AzureOperationResponse<TrustedIdProvider>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string trustedIdProviderName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Lists the Data Lake Store trusted identity providers within the
-        /// specified Data Lake Store account.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake
-        /// Store account.
-        /// </param>
-        /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the
-        /// trusted identity providers.
+        /// <param name='firewallRuleName'>
+        /// The name of the firewall rule to retrieve.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -183,10 +152,38 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<IPage<TrustedIdProvider>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<FirewallRule>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Lists the Data Lake Store trusted identity providers within the
-        /// specified Data Lake Store account.
+        /// Lists the Data Lake Analytics firewall rules within the specified
+        /// Data Lake Analytics account.
+        /// </summary>
+        /// <param name='resourceGroupName'>
+        /// The name of the Azure resource group that contains the Data Lake
+        /// Analytics account.
+        /// </param>
+        /// <param name='accountName'>
+        /// The name of the Data Lake Analytics account from which to get the
+        /// firewall rules.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<AzureOperationResponse<IPage<FirewallRule>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Lists the Data Lake Analytics firewall rules within the specified
+        /// Data Lake Analytics account.
         /// </summary>
         /// <param name='nextPageLink'>
         /// The NextLink from the previous successful call to List operation.
@@ -206,8 +203,9 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<IPage<TrustedIdProvider>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<IPage<FirewallRule>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
+
 
 
