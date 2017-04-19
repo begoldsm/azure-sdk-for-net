@@ -44,7 +44,6 @@ namespace DataLakeAnalytics.Tests
                         // Type = JobType.USql, 
                         Script = "DROP DATABASE IF EXISTS testdb; CREATE DATABASE testdb;"
                     },
-                    JobId = jobId,
                     LogFilePatterns = new List<string>
                     {
                          "*.log",
