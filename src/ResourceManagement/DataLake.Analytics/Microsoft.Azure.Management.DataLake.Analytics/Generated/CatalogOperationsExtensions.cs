@@ -965,9 +965,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// resources included with the resources in the response, e.g.
             /// Categories?$count=true. Optional.
             /// </param>
-            public static IPage<USqlTableStatistics> ListStatisticsByDatabaseAndSchema(this ICatalogOperations operations, string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?))
+            public static IPage<USqlTableStatistics> ListTableStatisticsByDatabaseAndSchema(this ICatalogOperations operations, string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?))
             {
-                return operations.ListStatisticsByDatabaseAndSchemaAsync(accountName, databaseName, schemaName, odataQuery, select, count).GetAwaiter().GetResult();
+                return operations.ListTableStatisticsByDatabaseAndSchemaAsync(accountName, databaseName, schemaName, odataQuery, select, count).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1002,9 +1002,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IPage<USqlTableStatistics>> ListStatisticsByDatabaseAndSchemaAsync(this ICatalogOperations operations, string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IPage<USqlTableStatistics>> ListTableStatisticsByDatabaseAndSchemaAsync(this ICatalogOperations operations, string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListStatisticsByDatabaseAndSchemaWithHttpMessagesAsync(accountName, databaseName, schemaName, odataQuery, select, count, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.ListTableStatisticsByDatabaseAndSchemaWithHttpMessagesAsync(accountName, databaseName, schemaName, odataQuery, select, count, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2130,9 +2130,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// resources included with the resources in the response, e.g.
             /// Categories?$count=true. Optional.
             /// </param>
-            public static IPage<USqlTableStatistics> ListStatisticsByDatabase(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?))
+            public static IPage<USqlTableStatistics> ListTableStatisticsByDatabase(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?))
             {
-                return operations.ListStatisticsByDatabaseAsync(accountName, databaseName, odataQuery, select, count).GetAwaiter().GetResult();
+                return operations.ListTableStatisticsByDatabaseAsync(accountName, databaseName, odataQuery, select, count).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2164,9 +2164,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IPage<USqlTableStatistics>> ListStatisticsByDatabaseAsync(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IPage<USqlTableStatistics>> ListTableStatisticsByDatabaseAsync(this ICatalogOperations operations, string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListStatisticsByDatabaseWithHttpMessagesAsync(accountName, databaseName, odataQuery, select, count, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.ListTableStatisticsByDatabaseWithHttpMessagesAsync(accountName, databaseName, odataQuery, select, count, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2626,9 +2626,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='nextPageLink'>
             /// The NextLink from the previous successful call to List operation.
             /// </param>
-            public static IPage<USqlTableStatistics> ListStatisticsByDatabaseAndSchemaNext(this ICatalogOperations operations, string nextPageLink)
+            public static IPage<USqlTableStatistics> ListTableStatisticsByDatabaseAndSchemaNext(this ICatalogOperations operations, string nextPageLink)
             {
-                return operations.ListStatisticsByDatabaseAndSchemaNextAsync(nextPageLink).GetAwaiter().GetResult();
+                return operations.ListTableStatisticsByDatabaseAndSchemaNextAsync(nextPageLink).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2644,9 +2644,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IPage<USqlTableStatistics>> ListStatisticsByDatabaseAndSchemaNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IPage<USqlTableStatistics>> ListTableStatisticsByDatabaseAndSchemaNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListStatisticsByDatabaseAndSchemaNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.ListTableStatisticsByDatabaseAndSchemaNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -2976,9 +2976,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='nextPageLink'>
             /// The NextLink from the previous successful call to List operation.
             /// </param>
-            public static IPage<USqlTableStatistics> ListStatisticsByDatabaseNext(this ICatalogOperations operations, string nextPageLink)
+            public static IPage<USqlTableStatistics> ListTableStatisticsByDatabaseNext(this ICatalogOperations operations, string nextPageLink)
             {
-                return operations.ListStatisticsByDatabaseNextAsync(nextPageLink).GetAwaiter().GetResult();
+                return operations.ListTableStatisticsByDatabaseNextAsync(nextPageLink).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2994,9 +2994,9 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IPage<USqlTableStatistics>> ListStatisticsByDatabaseNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IPage<USqlTableStatistics>> ListTableStatisticsByDatabaseNextAsync(this ICatalogOperations operations, string nextPageLink, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.ListStatisticsByDatabaseNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.ListTableStatisticsByDatabaseNextWithHttpMessagesAsync(nextPageLink, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

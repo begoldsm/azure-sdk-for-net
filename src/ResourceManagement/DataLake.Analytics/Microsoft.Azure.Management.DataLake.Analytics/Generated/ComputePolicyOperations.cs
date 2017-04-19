@@ -6,7 +6,7 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 
-namespace Microsoft.Azure.Management.DataLake.Store
+namespace Microsoft.Azure.Management.DataLake.Analytics
 {
     using Microsoft.Azure;
     using Microsoft.Azure.Management;
@@ -24,12 +24,12 @@ namespace Microsoft.Azure.Management.DataLake.Store
     using System.Threading.Tasks;
 
     /// <summary>
-    /// FirewallRulesOperations operations.
+    /// ComputePolicyOperations operations.
     /// </summary>
-    internal partial class FirewallRulesOperations : IServiceOperations<DataLakeStoreAccountManagementClient>, IFirewallRulesOperations
+    internal partial class ComputePolicyOperations : IServiceOperations<DataLakeAnalyticsAccountManagementClient>, IComputePolicyOperations
     {
         /// <summary>
-        /// Initializes a new instance of the FirewallRulesOperations class.
+        /// Initializes a new instance of the ComputePolicyOperations class.
         /// </summary>
         /// <param name='client'>
         /// Reference to the service client.
@@ -37,7 +37,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal FirewallRulesOperations(DataLakeStoreAccountManagementClient client)
+        internal ComputePolicyOperations(DataLakeAnalyticsAccountManagementClient client)
         {
             if (client == null)
             {
@@ -47,27 +47,30 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Gets a reference to the DataLakeStoreAccountManagementClient
+        /// Gets a reference to the DataLakeAnalyticsAccountManagementClient
         /// </summary>
-        public DataLakeStoreAccountManagementClient Client { get; private set; }
+        public DataLakeAnalyticsAccountManagementClient Client { get; private set; }
 
         /// <summary>
-        /// Creates or updates the specified firewall rule. During update, the firewall
-        /// rule with the specified name will be replaced with this new firewall rule.
+        /// Creates or updates the specified compute policy. During update, the compute
+        /// policy with the specified name will be replaced with this new compute
+        /// policy. An account supports, at most, 50 policies
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to add or replace the firewall
-        /// rule.
+        /// The name of the Data Lake Analytics account to add or replace the compute
+        /// policy.
         /// </param>
-        /// <param name='firewallRuleName'>
-        /// The name of the firewall rule to create or update.
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to create or update.
         /// </param>
         /// <param name='parameters'>
-        /// Parameters supplied to create or update the firewall rule.
+        /// Parameters supplied to create or update the compute policy. The max degree
+        /// of parallelism per job property, min priority per job property, or both
+        /// must be present.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -90,7 +93,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<FirewallRule>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, FirewallRule parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<ComputePolicy>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, ComputePolicyCreateOrUpdateParameters parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (resourceGroupName == null)
             {
@@ -100,9 +103,9 @@ namespace Microsoft.Azure.Management.DataLake.Store
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "accountName");
             }
-            if (firewallRuleName == null)
+            if (computePolicyName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "firewallRuleName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "computePolicyName");
             }
             if (parameters == null)
             {
@@ -129,17 +132,17 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("accountName", accountName);
-                tracingParameters.Add("firewallRuleName", firewallRuleName);
+                tracingParameters.Add("computePolicyName", computePolicyName);
                 tracingParameters.Add("parameters", parameters);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreateOrUpdate", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
-            _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
+            _url = _url.Replace("{computePolicyName}", System.Uri.EscapeDataString(computePolicyName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
             List<string> _queryParameters = new List<string>();
             if (Client.ApiVersion != null)
@@ -245,7 +248,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse<FirewallRule>();
+            var _result = new AzureOperationResponse<ComputePolicy>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
@@ -258,7 +261,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<FirewallRule>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<ComputePolicy>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -278,21 +281,21 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Updates the specified firewall rule.
+        /// Updates the specified compute policy.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account to which to update the firewall
-        /// rule.
+        /// The name of the Data Lake Analytics account to which to update the compute
+        /// policy.
         /// </param>
-        /// <param name='firewallRuleName'>
-        /// The name of the firewall rule to update.
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to update.
         /// </param>
         /// <param name='parameters'>
-        /// Parameters supplied to update the firewall rule.
+        /// Parameters supplied to update the compute policy.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -315,7 +318,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<FirewallRule>> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, UpdateFirewallRuleParameters parameters = default(UpdateFirewallRuleParameters), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<ComputePolicy>> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, ComputePolicy parameters = default(ComputePolicy), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (resourceGroupName == null)
             {
@@ -325,9 +328,9 @@ namespace Microsoft.Azure.Management.DataLake.Store
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "accountName");
             }
-            if (firewallRuleName == null)
+            if (computePolicyName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "firewallRuleName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "computePolicyName");
             }
             if (Client.ApiVersion == null)
             {
@@ -346,17 +349,17 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("accountName", accountName);
-                tracingParameters.Add("firewallRuleName", firewallRuleName);
+                tracingParameters.Add("computePolicyName", computePolicyName);
                 tracingParameters.Add("parameters", parameters);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "Update", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
-            _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
+            _url = _url.Replace("{computePolicyName}", System.Uri.EscapeDataString(computePolicyName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
             List<string> _queryParameters = new List<string>();
             if (Client.ApiVersion != null)
@@ -462,7 +465,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse<FirewallRule>();
+            var _result = new AzureOperationResponse<ComputePolicy>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
@@ -475,7 +478,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<FirewallRule>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<ComputePolicy>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -495,19 +498,19 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Deletes the specified firewall rule from the specified Data Lake Store
+        /// Deletes the specified compute policy from the specified Data Lake Analytics
         /// account
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to delete the firewall
-        /// rule.
+        /// The name of the Data Lake Analytics account from which to delete the
+        /// compute policy.
         /// </param>
-        /// <param name='firewallRuleName'>
-        /// The name of the firewall rule to delete.
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to delete.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -527,7 +530,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (resourceGroupName == null)
             {
@@ -537,9 +540,9 @@ namespace Microsoft.Azure.Management.DataLake.Store
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "accountName");
             }
-            if (firewallRuleName == null)
+            if (computePolicyName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "firewallRuleName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "computePolicyName");
             }
             if (Client.ApiVersion == null)
             {
@@ -558,16 +561,16 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("accountName", accountName);
-                tracingParameters.Add("firewallRuleName", firewallRuleName);
+                tracingParameters.Add("computePolicyName", computePolicyName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "Delete", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
-            _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
+            _url = _url.Replace("{computePolicyName}", System.Uri.EscapeDataString(computePolicyName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
             List<string> _queryParameters = new List<string>();
             if (Client.ApiVersion != null)
@@ -682,18 +685,18 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Gets the specified Data Lake Store firewall rule.
+        /// Gets the specified Data Lake Analytics compute policy.
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the firewall
-        /// rule.
+        /// The name of the Data Lake Analytics account from which to get the compute
+        /// policy.
         /// </param>
-        /// <param name='firewallRuleName'>
-        /// The name of the firewall rule to retrieve.
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to retrieve.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -716,7 +719,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<FirewallRule>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string firewallRuleName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<ComputePolicy>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (resourceGroupName == null)
             {
@@ -726,9 +729,9 @@ namespace Microsoft.Azure.Management.DataLake.Store
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "accountName");
             }
-            if (firewallRuleName == null)
+            if (computePolicyName == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "firewallRuleName");
+                throw new ValidationException(ValidationRules.CannotBeNull, "computePolicyName");
             }
             if (Client.ApiVersion == null)
             {
@@ -747,16 +750,16 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("resourceGroupName", resourceGroupName);
                 tracingParameters.Add("accountName", accountName);
-                tracingParameters.Add("firewallRuleName", firewallRuleName);
+                tracingParameters.Add("computePolicyName", computePolicyName);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "Get", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
-            _url = _url.Replace("{firewallRuleName}", System.Uri.EscapeDataString(firewallRuleName));
+            _url = _url.Replace("{computePolicyName}", System.Uri.EscapeDataString(computePolicyName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
             List<string> _queryParameters = new List<string>();
             if (Client.ApiVersion != null)
@@ -856,7 +859,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse<FirewallRule>();
+            var _result = new AzureOperationResponse<ComputePolicy>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
@@ -869,7 +872,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<FirewallRule>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<ComputePolicy>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -889,16 +892,16 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Lists the Data Lake Store firewall rules within the specified Data Lake
-        /// Store account.
+        /// Lists the Data Lake Analytics compute policies within the specified Data
+        /// Lake Analytics account. An account supports, at most, 50 policies
         /// </summary>
         /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake Store
+        /// The name of the Azure resource group that contains the Data Lake Analytics
         /// account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Store account from which to get the firewall
-        /// rules.
+        /// The name of the Data Lake Analytics account from which to get the compute
+        /// policies.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -921,7 +924,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<FirewallRule>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<ComputePolicy>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (resourceGroupName == null)
             {
@@ -953,7 +956,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies").ToString();
             _url = _url.Replace("{resourceGroupName}", System.Uri.EscapeDataString(resourceGroupName));
             _url = _url.Replace("{accountName}", System.Uri.EscapeDataString(accountName));
             _url = _url.Replace("{subscriptionId}", System.Uri.EscapeDataString(Client.SubscriptionId));
@@ -1055,7 +1058,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse<IPage<FirewallRule>>();
+            var _result = new AzureOperationResponse<IPage<ComputePolicy>>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
@@ -1068,7 +1071,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<Page<FirewallRule>>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<Page<ComputePolicy>>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1088,8 +1091,8 @@ namespace Microsoft.Azure.Management.DataLake.Store
         }
 
         /// <summary>
-        /// Lists the Data Lake Store firewall rules within the specified Data Lake
-        /// Store account.
+        /// Lists the Data Lake Analytics compute policies within the specified Data
+        /// Lake Analytics account. An account supports, at most, 50 policies
         /// </summary>
         /// <param name='nextPageLink'>
         /// The NextLink from the previous successful call to List operation.
@@ -1115,7 +1118,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<FirewallRule>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<ComputePolicy>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (nextPageLink == null)
             {
@@ -1229,7 +1232,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse<IPage<FirewallRule>>();
+            var _result = new AzureOperationResponse<IPage<ComputePolicy>>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
@@ -1242,7 +1245,7 @@ namespace Microsoft.Azure.Management.DataLake.Store
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<Page<FirewallRule>>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<Page<ComputePolicy>>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {

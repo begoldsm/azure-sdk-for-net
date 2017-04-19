@@ -3465,7 +3465,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListStatisticsByDatabaseAndSchemaWithHttpMessagesAsync(string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListTableStatisticsByDatabaseAndSchemaWithHttpMessagesAsync(string accountName, string databaseName, string schemaName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (accountName == null)
             {
@@ -3501,7 +3501,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                 tracingParameters.Add("select", select);
                 tracingParameters.Add("count", count);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "ListStatisticsByDatabaseAndSchema", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ListTableStatisticsByDatabaseAndSchema", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri;
@@ -7560,7 +7560,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListStatisticsByDatabaseWithHttpMessagesAsync(string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListTableStatisticsByDatabaseWithHttpMessagesAsync(string accountName, string databaseName, ODataQuery<USqlTableStatistics> odataQuery = default(ODataQuery<USqlTableStatistics>), string select = default(string), bool? count = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (accountName == null)
             {
@@ -7591,7 +7591,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                 tracingParameters.Add("select", select);
                 tracingParameters.Add("count", count);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "ListStatisticsByDatabase", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ListTableStatisticsByDatabase", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri;
@@ -9569,7 +9569,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListStatisticsByDatabaseAndSchemaNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListTableStatisticsByDatabaseAndSchemaNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (nextPageLink == null)
             {
@@ -9584,7 +9584,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("nextPageLink", nextPageLink);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "ListStatisticsByDatabaseAndSchemaNext", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ListTableStatisticsByDatabaseAndSchemaNext", tracingParameters);
             }
             // Construct URL
             string _url = "{nextLink}";
@@ -11304,7 +11304,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListStatisticsByDatabaseNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<IPage<USqlTableStatistics>>> ListTableStatisticsByDatabaseNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (nextPageLink == null)
             {
@@ -11319,7 +11319,7 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("nextPageLink", nextPageLink);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "ListStatisticsByDatabaseNext", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ListTableStatisticsByDatabaseNext", tracingParameters);
             }
             // Construct URL
             string _url = "{nextLink}";

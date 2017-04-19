@@ -13,7 +13,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
     using Microsoft.Azure.Management.DataLake;
     using Microsoft.Rest;
     using Microsoft.Rest.Azure;
-    using Microsoft.Rest.Azure.OData;
     using Models;
     using System.Collections;
     using System.Collections.Generic;
@@ -21,24 +20,30 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
     using System.Threading.Tasks;
 
     /// <summary>
-    /// HiveMetastoresOperations operations.
+    /// ComputePolicyOperations operations.
     /// </summary>
-    public partial interface IHiveMetastoresOperations
+    public partial interface IComputePolicyOperations
     {
         /// <summary>
-        /// Gets the specified Hive metastore linked to the given Data Lake
-        /// Analytics account.
+        /// Creates or updates the specified compute policy. During update, the
+        /// compute policy with the specified name will be replaced with this
+        /// new compute policy. An account supports, at most, 50 policies
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
         /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Analytics account from which to retrieve
-        /// Hive metastore details.
+        /// The name of the Data Lake Analytics account to add or replace the
+        /// compute policy.
         /// </param>
-        /// <param name='hiveMetastoreName'>
-        /// The name of the Hive metastore for which to retrieve the details.
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to create or update.
+        /// </param>
+        /// <param name='parameters'>
+        /// Parameters supplied to create or update the compute policy. The max
+        /// degree of parallelism per job property, min priority per job
+        /// property, or both must be present.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -55,122 +60,23 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<HiveMetastore>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string hiveMetastoreName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<ComputePolicy>> CreateOrUpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, ComputePolicyCreateOrUpdateParameters parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Updates the specified Data Lake Analytics account to remove the
-        /// specified Hive metastore.
+        /// Updates the specified compute policy.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// The name of the Azure resource group that contains the Data Lake
         /// Analytics account.
         /// </param>
         /// <param name='accountName'>
-        /// The name of the Data Lake Analytics account from which to remove
-        /// the Hive metastore.
+        /// The name of the Data Lake Analytics account to which to update the
+        /// compute policy.
         /// </param>
-        /// <param name='hiveMetastoreName'>
-        /// The name of the Hive metastore to remove
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="Microsoft.Rest.Azure.CloudException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string hiveMetastoreName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Updates the Data Lake Analytics account to replace Hive metastore
-        /// details with updated ones, such as an updated password.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake
-        /// Analytics account.
-        /// </param>
-        /// <param name='accountName'>
-        /// The name of the Data Lake Analytics account to modify Hive
-        /// metastores in
-        /// </param>
-        /// <param name='hiveMetastoreName'>
-        /// The Hive metastore to modify
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to update.
         /// </param>
         /// <param name='parameters'>
-        /// The parameters containing Hive metastore properties to update.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="Microsoft.Rest.Azure.CloudException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        Task<AzureOperationResponse> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string hiveMetastoreName, UpdateHiveMetaStoreParameters parameters = default(UpdateHiveMetaStoreParameters), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Updates the specified Data Lake Analytics account to add a Hive
-        /// metastore.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake
-        /// Analytics account.
-        /// </param>
-        /// <param name='accountName'>
-        /// The name of the Data Lake Analytics account to which to add Hive
-        /// metastore.
-        /// </param>
-        /// <param name='hiveMetastoreName'>
-        /// The name of the Hive metastore to add
-        /// </param>
-        /// <param name='parameters'>
-        /// The parameters containing properties for the Hive metastore to add.
-        /// </param>
-        /// <param name='customHeaders'>
-        /// The headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="Microsoft.Rest.Azure.CloudException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown when a required parameter is null
-        /// </exception>
-        Task<AzureOperationResponse> AddWithHttpMessagesAsync(string resourceGroupName, string accountName, string hiveMetastoreName, AddHiveMetaStoreParameters parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
-        /// <summary>
-        /// Gets the first page of the Hive metastores, if any, linked to the
-        /// specified Data Lake Analytics account. The response includes a link
-        /// to the next page, if any.
-        /// </summary>
-        /// <param name='resourceGroupName'>
-        /// The name of the Azure resource group that contains the Data Lake
-        /// Analytics account.
-        /// </param>
-        /// <param name='accountName'>
-        /// The name of the Data Lake Analytics account for which to list Hive
-        /// metastores.
-        /// </param>
-        /// <param name='odataQuery'>
-        /// OData parameters to apply to the operation.
-        /// </param>
-        /// <param name='select'>
-        /// OData Select statement. Limits the properties on each entry to just
-        /// those requested, e.g. Categories?$select=CategoryName,Description.
-        /// Optional.
-        /// </param>
-        /// <param name='count'>
-        /// The Boolean value of true or false to request a count of the
-        /// matching resources included with the resources in the response,
-        /// e.g. Categories?$count=true. Optional.
+        /// Parameters supplied to update the compute policy.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -187,11 +93,98 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<IPage<HiveMetastore>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, ODataQuery<HiveMetastore> odataQuery = default(ODataQuery<HiveMetastore>), string select = default(string), bool? count = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<ComputePolicy>> UpdateWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, ComputePolicy parameters = default(ComputePolicy), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Gets the first page of the Hive metastores, if any, linked to the
-        /// specified Data Lake Analytics account. The response includes a link
-        /// to the next page, if any.
+        /// Deletes the specified compute policy from the specified Data Lake
+        /// Analytics account
+        /// </summary>
+        /// <param name='resourceGroupName'>
+        /// The name of the Azure resource group that contains the Data Lake
+        /// Analytics account.
+        /// </param>
+        /// <param name='accountName'>
+        /// The name of the Data Lake Analytics account from which to delete
+        /// the compute policy.
+        /// </param>
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to delete.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.Azure.CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Gets the specified Data Lake Analytics compute policy.
+        /// </summary>
+        /// <param name='resourceGroupName'>
+        /// The name of the Azure resource group that contains the Data Lake
+        /// Analytics account.
+        /// </param>
+        /// <param name='accountName'>
+        /// The name of the Data Lake Analytics account from which to get the
+        /// compute policy.
+        /// </param>
+        /// <param name='computePolicyName'>
+        /// The name of the compute policy to retrieve.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.Azure.CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<AzureOperationResponse<ComputePolicy>> GetWithHttpMessagesAsync(string resourceGroupName, string accountName, string computePolicyName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Lists the Data Lake Analytics compute policies within the specified
+        /// Data Lake Analytics account. An account supports, at most, 50
+        /// policies
+        /// </summary>
+        /// <param name='resourceGroupName'>
+        /// The name of the Azure resource group that contains the Data Lake
+        /// Analytics account.
+        /// </param>
+        /// <param name='accountName'>
+        /// The name of the Data Lake Analytics account from which to get the
+        /// compute policies.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="Microsoft.Rest.Azure.CloudException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<AzureOperationResponse<IPage<ComputePolicy>>> ListByAccountWithHttpMessagesAsync(string resourceGroupName, string accountName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Lists the Data Lake Analytics compute policies within the specified
+        /// Data Lake Analytics account. An account supports, at most, 50
+        /// policies
         /// </summary>
         /// <param name='nextPageLink'>
         /// The NextLink from the previous successful call to List operation.
@@ -211,6 +204,6 @@ namespace Microsoft.Azure.Management.DataLake.Analytics
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<IPage<HiveMetastore>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<IPage<ComputePolicy>>> ListByAccountNextWithHttpMessagesAsync(string nextPageLink, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
