@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using Xunit;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
+using Microsoft.Azure.Test.HttpRecorder;
 
 namespace DataLakeAnalytics.Tests
 {
@@ -32,6 +33,14 @@ namespace DataLakeAnalytics.Tests
 
                 Guid jobId = TestUtilities.GenerateGuid();
                 var secondId = TestUtilities.GenerateGuid();
+
+                // all of this information is for validation of the pipeline logic.
+                var pipelineId = TestUtilities.GenerateGuid();
+                var recurrenceId = TestUtilities.GenerateGuid();
+                var pipelineName = TestUtilities.GenerateName("pipename");
+                var recurrenceName = TestUtilities.GenerateName("recurName");
+                var pipelineUri = string.Format("https://contoso.adl.com/somepipeline/{0}", TestUtilities.GenerateName("pipeuri"));
+                var startTime = DateTimeOffset.Parse(HttpMockServer.GetVariable("startTime", DateTime.UtcNow.ToString()));
                 // Submit a job to the account
                 var jobToSubmit = new JobInformation
                 {
@@ -48,6 +57,14 @@ namespace DataLakeAnalytics.Tests
                     {
                          "*.log",
                          "*.txt"
+                    },
+                    Related = new JobRelationshipProperties
+                    {
+                        PipelineId = pipelineId,
+                        PipelineName = pipelineName,
+                        PipelineUri = pipelineUri,
+                        RecurrenceId = recurrenceId,
+                        RecurrenceName = recurrenceName
                     }
                 };
 
@@ -97,6 +114,29 @@ namespace DataLakeAnalytics.Tests
                     getJobResponse.State == JobState.Ended && getJobResponse.Result == JobResult.Succeeded,
                     string.Format("Job: {0} did not return success. Current job state: {1}. Actual result: {2}. Error (if any): {3}",
                         getJobResponse.JobId, getJobResponse.State, getJobResponse.Result, getJobResponse.ErrorMessage));
+
+                // give a little buffer for start and end time to ensure we can retrieve the pipeline and recurrence.
+                var endTime = DateTimeOffset.Parse(HttpMockServer.GetVariable("endTime", DateTime.UtcNow.ToString())).AddMinutes(2);
+
+                // get the pipeline
+                var pipeline = clientToUse.Pipeline.Get(commonData.SecondDataLakeAnalyticsAccountName, pipelineId, startTime, endTime);
+                Assert.Equal(pipelineId, pipeline.PipelineId);
+                Assert.Equal(pipelineName, pipeline.PipelineName);
+
+                // list all pipelines and ensure that it is here.
+                var pipelines = clientToUse.Pipeline.List(commonData.SecondDataLakeAnalyticsAccountName, startTime, endTime);
+                Assert.True(pipelines.Count() >= 1);
+                Assert.True(pipelines.Any(pipe => pipe.PipelineId == pipelineId));
+
+                // get the recurrence
+                var recurrence = clientToUse.Recurrence.Get(commonData.SecondDataLakeAnalyticsAccountName, recurrenceId, startTime, endTime);
+                Assert.Equal(recurrenceId, recurrence.RecurrenceId);
+                Assert.Equal(recurrenceName, recurrence.RecurrenceName);
+
+                // list all pipelines and ensure that it is here.
+                var recurrences = clientToUse.Recurrence.List(commonData.SecondDataLakeAnalyticsAccountName, startTime, endTime);
+                Assert.True(recurrences.Count() >= 1);
+                Assert.True(recurrences.Any(pipe => pipe.RecurrenceId == recurrenceId));
 
                 var listJobResponse = clientToUse.Job.List(commonData.SecondDataLakeAnalyticsAccountName, null);
                 Assert.NotNull(listJobResponse);
