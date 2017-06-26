@@ -18,14 +18,14 @@ namespace Microsoft.Azure.Management.DataLake.Store.Models
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Defines values for FirewallState.
+    /// Defines values for ReplicationType.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum FirewallState
+    public enum ReplicationType
     {
-        [EnumMember(Value = "Enabled")]
-        Enabled,
-        [EnumMember(Value = "Disabled")]
-        Disabled
+        [EnumMember(Value = "LRS")]
+        LRS,
+        [EnumMember(Value = "RAGRS")]
+        RAGRS
     }
 }

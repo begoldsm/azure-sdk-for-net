@@ -41,7 +41,8 @@ namespace DataLakeStore.Tests
                                 Type = EncryptionConfigType.ServiceManaged
                             },
                             EncryptionState = EncryptionState.Enabled,
-                            NewTier = TierType.Commitment1TB
+                            NewTier = TierType.Commitment1TB,
+                            ReplicationType = ReplicationType.LRS
                         });
 
                 Assert.Equal(DataLakeStoreAccountStatus.Succeeded, responseCreate.ProvisioningState);
@@ -60,6 +61,7 @@ namespace DataLakeStore.Tests
                 Assert.Equal("Microsoft.DataLakeStore/accounts", responseGet.Type);
                 Assert.Equal(TierType.Commitment1TB, responseGet.CurrentTier);
                 Assert.Equal(TierType.Commitment1TB, responseGet.NewTier);
+                Assert.Equal(ReplicationType.LRS, responseGet.ReplicationType);
 
                 // wait for provisioning state to be Succeeded
                 // we will wait a maximum of 15 minutes for this to happen and then report failures
